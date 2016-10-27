@@ -1,3 +1,4 @@
+#Loading, Clean Data for eda-analysis"
 dat = read.csv('../../data/credit.csv', row.names = 1)  
 
 income = dat$Income
@@ -20,7 +21,7 @@ save(corr_matrix, file = "../../data/correlation-matrix.RData")
 upper_corr_matrix = format(corr_matrix, digits = 4)
 upper_corr_matrix[lower.tri(upper_corr_matrix, diag=FALSE)] = ""
 
-
+#EDA-Analysis: eda-output.txt"
 sink(file = "../../data/eda-output.txt")
 cat("1. Explanatory Analysis of Quantative Varibles\n\n")
 for(i in 1:length(quant))
@@ -49,31 +50,50 @@ for(i in 1:length(qual))
 sink()
 
 
-#png("../../images/histogram-tv.png", width=800, height=600)
-#hist(dat$TV, ylim = c(0,40), col = "#5679DF"
-#     , main = "Histogram of TV advertising budget", breaks=15, xlab = "TV advertising budget (in thousands of dollars)")
-#dev.off()
+#Creating Histograms for Quantative Variable
+for(i in 1:length(quant))
+{
+  path1 = paste("../../images/histogram-",names(quant[i]),".png")
+  png(filename = path1, width=800, height=600)
+  hist(as.vector(unlist(quant[i])) ,breaks= 10, main = paste("Histogram of "
+          ,names(quant[i])), col = "#5679DF", xlab = paste(names(quant[i])))
+  dev.off()
+}
 
 
-#png("../../images/histogram-radio.png", width=800, height=600)
-#hist(dat$Radio, ylim = c(0,40), col = "#5679DF"
-#     , main = "Histogram of radio advertising budget", breaks=15, xlab = "radio advertising budget (in thousands of dollars)")
-#dev.off()
+#Creating Scatterplotmatrix
+png("../../images/scatterplot-matrix.png", width=800, height=600)
+pairs(~income+limit+rating+cards+age+education+balance,data=quant, main="Scatterplot matrix among quantative variables")
+dev.off()
 
 
-#png("../../images/histogram-newspaper.png", width=800, height=600)
-#hist(dat$Newspaper, ylim = c(0,50), col = "#5679DF"
-#     , main = "Histogram of newspaper advertising budget", breaks=15, xlab = "newspaper advertising budget (in thousands of dollars)")
-#dev.off()
+
+#Creating barcharts for Qualitative Variable
+for(i in 1:length(qual))
+{
+  path2 = paste("../../images/barchart-",names(qual[i]),".png")
+  png(filename = path2, width=800, height=600)
+  barplot(prop.table(table(qual[i])), col = "#5679DF", main = paste("Barchart of ", names(qual[i])))
+  dev.off()
+}
 
 
-#png("../../images/histogram-sales.png", width=800, height=600)
-#hist(dat$Sales, ylim = c(0,50), col = "#5679DF"
-#     , main = "Histogram of sales", breaks=15, xlab = "sales (in thousands of dollars)")
-#dev.off()
+#anova's between Balance and all the qualitative variables (gender, student, marriage, ethnicity)
+anova_all = aov(balance~gender+student+marriage+ethnicity)
+png("../../images/anova-qualitative.png", width=800, height=600)
+layout(matrix(c(1,2,3,4),2,2))
+plot(anova_all)
+dev.off()
 
 
-#png("../../images/scatterplot-matrix.png", width=800, height=600)
-#pairs(~TV+Radio+Newspaper+Sales,data=dat, main="Scatterplot matrix among TV, Radio, Newpaper, Sales")
-#dev.off()
+#Creating conditional boxplots between Balance and the qualitative variables (gender, student, marriage, ethnicity)
+for(i in 1:length(qual))
+{
+  path3 = paste("../../images/conditional-boxplot-balance-",names(qual[i]),".png")
+  png(filename = path3, width=800, height=600)
+  plot(x=qual[i],y=balance, col = "#5679DF"
+       , main = paste("Condition boxplot of ", names(qual[i])," on Balance"))
+  dev.off()
+}
+
 
