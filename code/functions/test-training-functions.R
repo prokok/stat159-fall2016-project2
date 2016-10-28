@@ -1,7 +1,5 @@
-dat = read.csv('../../data/credit.csv', row.names = 1)
-new_credit=read.csv("../../data/new-credit.csv", row.names = 1 )
-scaled_credit = read.csv("../../data/scaled-credit.csv", row.names=1)
-
+new_credit = read.csv("../../data/new-credit.csv")
+scaled_credit = read.csv("../../data/scaled-credit.RData")
 
 set.seed(0)
 sub = sample(1:400, 300, replace = FALSE)
