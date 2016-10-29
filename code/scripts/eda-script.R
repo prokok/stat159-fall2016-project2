@@ -79,11 +79,28 @@ for(i in 1:length(qual))
 
 
 #anova's between Balance and all the qualitative variables (gender, student, marriage, ethnicity)
-anova_all = aov(balance~gender+student+marriage+ethnicity)
-png("../../images/anova-qualitative.png", width=800, height=600)
-layout(matrix(c(1,2,3,4),2,2))
-plot(anova_all)
-dev.off()
+anova_gender = aov(balance~gender)
+anova_student = aov(balance~student)
+anova_marriage = aov(balance~marriage)
+anova_ethnicity = aov(balance~ethnicity)
+save(anova_gender, anova_student, anova_marriage, anova_ethnicity, file = "../../data/anova-qual.RData")
+
+#appending anova anaylsis to eda-output.txt
+sink(file = "../../data/eda-output.txt", append = TRUE)
+cat("3. Anova Analysis on Qualative Variable\n\n")
+cat("Anova Analysis of gender on balance\n\n")
+summary(anova_gender)
+cat("\n")
+cat("Anova Analysis of student on balance\n\n")
+summary(anova_student)
+cat("\n")
+cat("Anova Analysis of marriage on balance\n\n")
+summary(anova_marriage)
+cat("\n")
+cat("Anova Analysis of ethnicity on balance\n\n")
+summary(anova_ethnicity)
+cat("\n")
+sink()
 
 
 #Creating conditional boxplots between Balance and the qualitative variables (gender, student, marriage, ethnicity)
