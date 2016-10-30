@@ -28,13 +28,12 @@ new_marriage = cbind(marriage = temp_gender[,-1], balance = balance)
 new_ethnicity = cbind(asian = temp_ethnicity[,2], caucasian = temp_ethnicity[,3], balance = balance)
 
 #saving dummyout variables
-new_credit = data.frame(income, limit, rating, cards, age, education, gender = new_gender[,1], student = new_student[,1]
-                      , marriage=new_marriage[,1], asian = new_ethnicity[,2]
-                      , caucasian = new_ethnicity[,3], balance = balance)
-write.csv(new_credit, file ="../../data/new-credit.csv" )
-
-
+new_credit =cbind(income, limit, rating, cards, age, education,
+                  gender = new_gender[,1], student = new_student[,1]
+                  , marriage=new_marriage[,1], asian = new_ethnicity[,2]
+                  , caucasian = new_ethnicity[,3], balance = balance)
+write.csv(new_credit, file ="../../data/new-credit.csv")
 
 #Mean Centering and Standardizing 
 scaled_credit = scale(new_credit, center=TRUE, scale=TRUE)
-write.csv(scaled_credit, file = "../../data/scaled-credit.csv")
+write.csv(scaled_credit, file = "../../data/scaled-credit.RData")
