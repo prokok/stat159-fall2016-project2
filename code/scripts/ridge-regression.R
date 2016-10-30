@@ -14,8 +14,9 @@ y <- as.matrix(scaled_credit_train$balance)
 cv.out <- cv.glmnet(x, y, alpha=0, lambda=grid, intercept=FALSE, standardize=FALSE)
 plot(cv.out)
 bestlambda <- cv.out$lambda.min
+train.lambdas <- cv.out$lambda
 
-
+save(train.lambdas, file='data/train-lambdas.RData')
 
 predict (cv.out, type= "coefficients", s= bestlambda) [1:20,]
   
