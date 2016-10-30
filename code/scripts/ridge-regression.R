@@ -1,11 +1,21 @@
 install.packages('glmnet')
 library(glmnet)
-load('data/train-test.R')
+load('data/new-train-test.RData')
+load('data/scale-train-test.RData')
 
 #x = matrix
 #y = vector
 
-set.seed(1)
+
 grid <- 10^seq(10, -2, length = 100)
-cv.out = cv.glmnet(as.matrix(train), y, alpha=0, lambda=grid, intercept=FALSE, standardize=FALSE)
+x <- as.matrix(scaled_credit_train[,-length(scaled_credit_train)])
+y <- as.matrix(scaled_credit_train$balance)
+
+cv.out <- cv.glmnet(x, y, alpha=0, lambda=grid, intercept=FALSE, standardize=FALSE)
 plot(cv.out)
+bestlambda <- cv.out$lambda.min
+
+
+
+predict (cv.out, type= "coefficients", s= bestlambda) [1:20,]
+  
