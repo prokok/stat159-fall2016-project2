@@ -1,7 +1,7 @@
 library(glmnet)
-load('../..data/new-train-test.RData')
-load('data/scale-train-test.RData')
-scaled_credit = read.csv("../../data/scaled-credit.csv", row.names=1)
+load('../../data/new-train-test.RData')
+load('../../data/scale-train-test.RData')
+scaled_credit = read.csv("../../data/scaled-credit.RData")
 
 grid <- 10^seq(10, -2, length = 100)
 x <- as.matrix(scaled_credit_train[,-length(scaled_credit_train)])
