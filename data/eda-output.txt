@@ -1,0 +1,133 @@
+1. Explanatory Analysis of Quantative Varibles
+
+summary statistics of income 
+
+Min.   : 10.35   1st Qu.: 21.01   Median : 33.12   Mean   : 45.22   3rd Qu.: 57.47   Max.   :186.63   
+Stadard Deviation. :  35.24427 
+Range. :  176.28  
+IQR. :  36.4635 
+
+summary statistics of limit 
+
+Min.   :  855   1st Qu.: 3088   Median : 4622   Mean   : 4736   3rd Qu.: 5873   Max.   :13913   
+Stadard Deviation. :  2308.199 
+Range. :  13058  
+IQR. :  2784.75 
+
+summary statistics of rating 
+
+Min.   : 93.0   1st Qu.:247.2   Median :344.0   Mean   :354.9   3rd Qu.:437.2   Max.   :982.0   
+Stadard Deviation. :  154.7241 
+Range. :  889  
+IQR. :  190 
+
+summary statistics of cards 
+
+Min.   :1.000   1st Qu.:2.000   Median :3.000   Mean   :2.958   3rd Qu.:4.000   Max.   :9.000   
+Stadard Deviation. :  1.371275 
+Range. :  8  
+IQR. :  2 
+
+summary statistics of age 
+
+Min.   :23.00   1st Qu.:41.75   Median :56.00   Mean   :55.67   3rd Qu.:70.00   Max.   :98.00   
+Stadard Deviation. :  17.24981 
+Range. :  75  
+IQR. :  28.25 
+
+summary statistics of education 
+
+Min.   : 5.00   1st Qu.:11.00   Median :14.00   Mean   :13.45   3rd Qu.:16.00   Max.   :20.00   
+Stadard Deviation. :  3.125207 
+Range. :  15  
+IQR. :  5 
+
+summary statistics of balance 
+
+Min.   :   0.00   1st Qu.:  68.75   Median : 459.50   Mean   : 520.01   3rd Qu.: 863.00   Max.   :1999.00   
+Stadard Deviation. :  459.7589 
+Range. :  1999  
+IQR. :  794.25 
+
+
+Correlation matrix for income, limit, rating, cards, age, education, balance.
+
+             income     limit    rating     cards       age education   balance
+income     1.000000  0.792088  0.791378 -0.018273  0.175338 -0.027692  0.463656
+limit                1.000000  0.996880  0.010231  0.100888 -0.023549  0.861697
+rating                         1.000000  0.053239  0.103165 -0.030136  0.863625
+cards                                    1.000000  0.042948 -0.051084  0.086456
+age                                                1.000000  0.003619  0.001835
+education                                                    1.000000 -0.008062
+balance                                                                1.000000
+
+
+
+2. Explantory Analysis of qualitive Variables
+
+frequency table & relative frequency table of gender 
+
+ Male 193
+Female 207
+
+ Male 0.4825
+Female 0.5175
+
+
+frequency table & relative frequency table of student 
+
+No 360
+Yes 40
+
+No 0.9
+Yes 0.1
+
+
+frequency table & relative frequency table of marriage 
+
+No 155
+Yes 245
+
+No 0.3875
+Yes 0.6125
+
+
+frequency table & relative frequency table of ethnicity 
+
+African American 99
+Asian 102
+Caucasian 199
+
+African American 0.2475
+Asian 0.255
+Caucasian 0.4975
+
+
+3. Anova Analysis on Qualative Variable
+
+Anova Analysis of gender on balance
+
+             Df   Sum Sq Mean Sq F value Pr(>F)
+gender        1    38892   38892   0.184  0.669
+Residuals   398 84301020  211812               
+
+Anova Analysis of student on balance
+
+             Df   Sum Sq Mean Sq F value   Pr(>F)    
+student       1  5658372 5658372   28.62 1.49e-07 ***
+Residuals   398 78681540  197692                     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Anova Analysis of marriage on balance
+
+             Df   Sum Sq Mean Sq F value Pr(>F)
+marriage      1     2715    2715   0.013   0.91
+Residuals   398 84337197  211903               
+
+Anova Analysis of ethnicity on balance
+
+             Df   Sum Sq Mean Sq F value Pr(>F)
+ethnicity     2    18454    9227   0.043  0.957
+Residuals   397 84321458  212397               
+
