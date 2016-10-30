@@ -1,6 +1,6 @@
 library(glmnet)
-load('../..data/new-train-test.RData')
-load('data/scale-train-test.RData')
+load('../../data/new-train-test.RData')
+load('../../data/scale-train-test.RData')
 scaled_credit = read.csv("../../data/scaled-credit.csv", row.names=1)
 
 grid <- 10^seq(10, -2, length = 100)
@@ -12,8 +12,6 @@ y_test <- as.matrix(scaled_credit_test$balance)
 
 x_full <- as.matrix(scaled_credit[,-length(scaled_credit)])
 y_full <- as.matrix(scaled_credit$balance)
-
-scaled_credit$balance
 
 cv.out <- cv.glmnet(x, y, alpha=0, lambda=grid, intercept=FALSE, standardize=FALSE)
 plot(cv.out)
