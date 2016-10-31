@@ -12,3 +12,4 @@ scaled_credit_test = scaled_credit[-sub,]
 
 save(new_credit_test, new_credit_train, file = "../../data/new-train-test.Rdata")
 save(scaled_credit_test, scaled_credit_train, file = "../../data/scale-train-test.RData")
+
