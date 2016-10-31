@@ -11,7 +11,7 @@ output: pdf_document
 
 ```
 
-We first start out with the original data set: credit.csv from the book "An Introduction to Statistical Learning" by James et al. We stored this data set in R as the variable credit.  credit initally contains 12 columns(categories or predictors).  However, we remove the first column because it just contains the row numbers of each row, which is irrelevant to our analysis, so we will remember to subset that part out of the data set in R before doing analysis.  
+We first start out with the original data set: credit.csv from the book "An Introduction to Statistical Learning" by James et al. We stored this data set in R as the variable credit.  credit initally contains 12 columns(categories or predictors).  However, we remove the first column because it just contains the row numbers of each row, which is irrelevant to our analysis, so we will remember to subset that part out of the data set in R before doing analysis.   
 First, we pre-process the data set to make sure that it is in the format that we want.  Notable changes are changing categorical variables (such as: M/F, Yes/No, Caucasian/Asian) into 0/1 slots.  
 ```{r, include=FALSE}
 
