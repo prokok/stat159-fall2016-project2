@@ -1,0 +1,10 @@
+---
+title: "00-abstract"
+author: "Jamie Stankiewiz"
+date: "October 30, 2016"
+output: pdf_document
+---
+
+In this project, we will be testing alternate fit models to a data set aspiring to gernerate a response variable by many predictor variables that would not be feasable by regular least squares fitting.  
+These alternative fit models are different from linear models, like least squares, because we are now dealing with a lot more predictor variables.  It is difficult to predict relationships as well as fitting because we may now deal with high colinearity, multi-colinearity, and weighting variables that correlate more or less to the response variable.  The goal of this project is to explore alternative methods of model fitting.  
+We will be using the data set credit.csv from the book "An Introduction to Statistical Learning" by James et al.  The methods, models and code used are also derived from this book.
