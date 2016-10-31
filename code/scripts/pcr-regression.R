@@ -1,17 +1,18 @@
-install.packages('pls')
 library(pls)
-set.seed(924)
 load('../../data/new-train-test.RData')
 load('../../data/scale-train-test.RData')
-scaled_credit = read.csv("../../data/scaled-credit.RData")
+scaled_credit = read.csv("../../data/scaled-credit.csv")
+scaled_credit = scaled_credit[,-1]
 
 #x[test,] = scaled_credit_test
 y.test <- scaled_credit_test$balance
 y.test_full <- scaled_credit$balance
 
-pcr.fit <- pcr(balance~., data = scaled_credit_train, validation='CV')
+set.seed(0)
+pcr.fit <- pcr(balance~., data = scaled_credit_train[,-1], validation='CV')
+pcr.fit$validation$PRESS
 validationplot(pcr.fit, val.type="MSEP")
-
+summary(pcr.fit)
 #m = pcr.fit$validation$PRESS[which(min(pcr.fit$validation$PRESS))]
 #which(min(pcr.fit$validation$PRESS))
 

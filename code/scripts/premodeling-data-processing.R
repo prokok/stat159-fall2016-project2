@@ -36,4 +36,4 @@ write.csv(new_credit, file ="../../data/new-credit.csv")
 
 #Mean Centering and Standardizing 
 scaled_credit = scale(new_credit, center=TRUE, scale=TRUE)
-write.csv(scaled_credit, file = "../../data/scaled-credit.RData")
+write.csv(scaled_credit, file = "../../data/scaled-credit.csv")
