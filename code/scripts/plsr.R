@@ -19,7 +19,7 @@ m = as.numeric(which(pls.fit$validation$PRESS==min(pls.fit$validation$PRESS)))
 #ncomp = m  (in this case m=10)
 pls.pred <- predict(pls.fit, scaled_credit_test, ncomp=m)
 #find the MSE
-mean((pcr.pred - y.test)^2)
+mean((pls.pred - y.test)^2)
 
 #full prediction
 pls.pred_full <- predict(pls.fit, scaled_credit, ncomp =m)

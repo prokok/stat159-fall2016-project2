@@ -1,4 +1,3 @@
-library(glmnet)
 load('../../data/new-train-test.RData')
 load('../../data/scale-train-test.RData')
 scaled_credit = read.csv("../../data/scaled-credit.RData")
