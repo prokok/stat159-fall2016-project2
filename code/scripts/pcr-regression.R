@@ -1,4 +1,3 @@
-install.packages('pls')
 library(pls)
 set.seed(0)
 load('../../data/new-train-test.RData')
