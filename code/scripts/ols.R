@@ -1,5 +1,7 @@
+load('../../data/new-train-test.RData')
 load('../../data/scale-train-test.RData')
-scaled_credit = read.csv("../../data/scaled-credit.RData")
+scaled_credit = read.csv("../../data/scaled-credit.csv")
+scaled_credit = scaled_credit[,-1]
 
 y.test = scaled_credit_test$balance
 y.test_full = scaled_credit$balance
@@ -26,4 +28,3 @@ mean((ols.pred - y.test)^2)
 ols.pred_full = predict(reg3, newdata = scaled_credit)
 mean((ols.pred_full - y.test_full)^2)
  
-save(reg, sum_reg, file = "../../data/regression.RData")
