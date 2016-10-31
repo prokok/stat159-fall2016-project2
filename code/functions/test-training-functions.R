@@ -1,5 +1,7 @@
 new_credit = read.csv("../../data/new-credit.csv")
-scaled_credit = read.csv("../../data/scaled-credit.RData")
+scaled_credit = read.csv("../../data/scaled-credit.csv")
+new_credit = new_credit[,-1]
+scaled_credit = scaled_credit[,-1]
 
 set.seed(0)
 sub = sample(1:400, 300, replace = FALSE)
