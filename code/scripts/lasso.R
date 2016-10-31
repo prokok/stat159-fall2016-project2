@@ -1,18 +1,27 @@
-load("../../data/new-train-test.Rdata")
-load("../../data/scale-train-test.RData")
 library(glmnet)
+load('../../data/new-train-test.RData')
+load('../../data/scale-train-test.RData')
+scaled_credit = read.csv("../../data/scaled-credit.RData")
 
-x1 = scaled_credit_train[,-length(scaled_credit_train)]
-y1 = scaled_credit_train$balance
+grid = 10^seq(10, -2, length = 100)
+x_train = as.matrix(scaled_credit_train[,-length(scaled_credit_train)])
+y_train = as.matrix(scaled_credit_train$balance)
 
-x=as.matrix(x1)
-y=as.matrix(y1)
+x_test = as.matrix(scaled_credit_test[,-length(scaled_credit_train)])
+y_test = as.matrix(scaled_credit_test$balance)
 
-grid = 10^seq(10,-2,length=100)
-ridge.mod =glmnet (x,y,alpha =0, lambda =grid)
+x_full <- as.matrix(scaled_credit[,-length(scaled_credit)])
+y_full <- as.matrix(scaled_credit$balance)
 
-dim(coef(ridge.mod))
-ridge.mod
-head(ridge.mod)
-ridge.mod$lambda[50]
-names(ridge.mod)
+cv.out_lasso <- cv.glmnet(x_train, y_train, alpha=1, lambda=grid, intercept=FALSE, standardize=FALSE)
+plot(cv.out_lasso)
+bestlambda <- cv.out_lasso$lambda.min
+
+lasso.pred = predict(cv.out_lasso, s=bestlambda, newx =x_test)
+mean((lasso.pred -y_test)^2)
+
+lasso.pred_full = predict(cv.out_lasso, s=bestlambda, newx = x_full)
+mean((lasso.pred_full - y_full)^2)
+
+
+
