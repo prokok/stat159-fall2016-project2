@@ -23,8 +23,8 @@ temp_ethnicity = model.matrix(balance~ethnicity)
 #Removing column of ones, and appending Balance on categorical variables one by one 
 #in order to name columns appropriately.
 new_gender = cbind(female = temp_gender[,-1], balance = balance)
-new_student = cbind(student = temp_gender[,-1], balance = balance)
-new_marriage = cbind(marriage = temp_gender[,-1], balance = balance)
+new_student = cbind(student = temp_student[,-1], balance = balance)
+new_marriage = cbind(marriage = temp_married[,-1], balance = balance)
 new_ethnicity = cbind(asian = temp_ethnicity[,2], caucasian = temp_ethnicity[,3], balance = balance)
 
 #saving dummyout variables
