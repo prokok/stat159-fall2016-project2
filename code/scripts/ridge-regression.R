@@ -13,7 +13,6 @@ y_test <- as.matrix(scaled_credit_test$balance)
 x_full <- as.matrix(scaled_credit[,-length(scaled_credit)])
 y_full <- as.matrix(scaled_credit$balance)
 
-set.seed(1)
 cv.out <- cv.glmnet(x, y, alpha=0, lambda=grid, intercept=FALSE, standardize=FALSE)
 plot(cv.out)
 bestlambda <- cv.out$lambda.min
