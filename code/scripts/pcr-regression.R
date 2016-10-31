@@ -1,6 +1,6 @@
 install.packages('pls')
 library(pls)
-set.seed(924)
+set.seed(0)
 load('../../data/new-train-test.RData')
 load('../../data/scale-train-test.RData')
 scaled_credit = read.csv("../../data/scaled-credit.RData")
