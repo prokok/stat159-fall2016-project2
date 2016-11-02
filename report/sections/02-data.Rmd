@@ -1,0 +1,36 @@
+---
+title: "02-data"
+author: "Jamie Stankiewiz"
+date: "October 31, 2016"
+output: pdf_document
+---
+
+```{r, include=F}
+
+#import data/eda-output.txt here
+
+```
+
+We first start out with the original data set: credit.csv from the book "An Introduction to Statistical Learning" by James et al. We stored this data set in R as the variable credit.  credit initally contains 12 columns(categories or predictors).  However, we remove the first column because it just contains the row numbers of each row, which is irrelevant to our analysis, so we will remember to subset that part out of the data set in R before doing analysis.   
+First, we pre-process the data set to make sure that it is in the format that we want.  Notable changes are changing categorical variables (such as: M/F, Yes/No, Caucasian/Asian) into 0/1 slots.  
+```{r, include=FALSE}
+
+credit = read.csv('../../data/credit.csv')
+new_credit = read.csv('../../data/new-credit.csv')
+new_credit = new_credit[,-1]
+scaled_credit = scale(new_credit, center=TRUE, scale=TRUE)
+```
+
+```{r}
+
+head(credit)
+head(new_credit)
+```
+These differences in the data set are a result of our pre-model processing.
+
+We then modify the data set once more to standardize the data.  By scaling it, it ensures that the mean of each variable is 0 and the sd is 1.  
+```{r}
+
+head(scaled_credit)
+```
+
