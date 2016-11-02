@@ -109,7 +109,7 @@ for(i in 1:length(qual))
   path3 = paste("../../images/conditional-boxplot-balance-",names(qual[i]),".png")
   png(filename = path3, width=800, height=600)
   plot(x=qual[i],y=balance, col = "#5679DF"
-       , main = paste("Condition boxplot of ", names(qual[i])," on Balance"))
+       , main = paste("Condition boxplot of ", names(qual[i])," on Balance"))git
   dev.off()
 }
 

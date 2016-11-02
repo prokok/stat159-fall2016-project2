@@ -1,34 +1,46 @@
 library(pls)
-load('../../data/new-train-test.RData')
 load('../../data/scale-train-test.RData')
 scaled_credit = read.csv("../../data/scaled-credit.csv")
 scaled_credit = scaled_credit[,-1]
 
-#x[test,] = scaled_credit_test
-y.test <- scaled_credit_test$balance
-y.test_full <- scaled_credit$balance
+y.test = scaled_credit_test$balance
+y.test_full = scaled_credit$balance
 
+#1 Run the corresponding fitting function on the train set using ten-fold cross-validation. 
 set.seed(0)
-pcr.fit <- pcr(balance~., data = scaled_credit_train[,-1], validation='CV')
-pcr.fit$validation$PRESS
+pcr.fit <- pcr(balance~., data = scaled_credit_train, validation='CV')
+
+
+#2. Saving list of models(saved in Rdata file at the end)
+list_models_pcr = pcr.fit
+
+
+#3. To select the best model:
+M = which(pcr.fit$validation$PRESS==min(pcr.fit$validation$PRESS))
+
+
+#4. Plot the cross-validation errors in terms of the tunning 
+##  parameter to visualize which parameter gives the "best" model:
+png(filename = "../../images/pcr-cross-validation-errors.png", width=800, height=600)
 validationplot(pcr.fit, val.type="MSEP")
-summary(pcr.fit)
-#m = pcr.fit$validation$PRESS[which(min(pcr.fit$validation$PRESS))]
-#which(min(pcr.fit$validation$PRESS))
+dev.off()
 
-#pcr.fit$validation$PRESS
-#min(pcr.fit$validation$PRESS)
-#str(pcr.fit$validation$PRESS)
 
-##code to subset pcr.fit$validation$PRESS to the 10th parameter
-M <- which(pcr.fit$validation$PRESS==min(pcr.fit$validation$PRESS))
-
-#ncomp = m  (in this case m=10)
+#5. Once you identify the "best" model, use the test set to compute the test Mean Square Error(test MSE)
 pcr.pred <- predict(pcr.fit, scaled_credit_test, ncomp=M)
-#find the MSE
-mean((pcr.pred - y.test)^2)
+test_mse_pcr = mean((pcr.pred - y.test)^2)
 
+
+#6. Last but not least, refit the model on the full data set using the parameter chosen by cross-validation.
+##  This fit will give you the "official" coefficient estimates.
+pcr_full = pcr(balance~., ncomp = M, data = scaled_credit)
+cof_pcr = pcr_full$coefficients[1:ncol(scaled_credit)-1,1,M] 
 
 #full prediction
 pcr.pred_full <- predict(pcr.fit, scaled_credit, ncomp =M)
-mean((pcr.pred_full - y.test_full)^2)
+full_mse_pcr = mean((pcr.pred_full - y.test_full)^2)
+
+#saving the the best tunning parameter, list_models_pcr, test_mse_pcr, cof_pcr, full_mse_pcr
+par_pcr = M
+save(par_pcr,list_models_pcr, test_mse_pcr, cof_pcr, full_mse_pcr
+     , file = "../../data/pcr-regression.Rdata")
