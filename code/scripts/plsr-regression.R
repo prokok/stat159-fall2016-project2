@@ -8,7 +8,7 @@ y.test_full = scaled_credit$balance
 
 #1 Run the corresponding fitting function on the train set using ten-fold cross-validation. 
 set.seed(0)
-pls.fit = plsr(balance~., data = scaled_credit_train, validation='CV')
+pls.fit = plsr(balance~., data = scaled_credit_train, validation='CV', scale = FALSE)
 
 
 #2. Saving list of models(saved in Rdata file at the end)
