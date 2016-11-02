@@ -44,3 +44,18 @@ full_mse_pcr = mean((pcr.pred_full - y.test_full)^2)
 par_pcr = M
 save(par_pcr,list_models_pcr, test_mse_pcr, cof_pcr, full_mse_pcr
      , file = "../../data/pcr-regression.Rdata")
+
+#putting the result in the eda-output.txt
+sink(file = "../../data/eda-output.txt", append = TRUE)
+cat("\n\n")
+cat("<<Summary Statistics of Pcr-regression>>\n\n")
+cat("1. Test Mean Square Error\n")
+test_mse_pcr
+cat("\n")
+cat("2. Best Model\n")
+cat("Compression equals ", par_pcr, "\n")
+cat("\n")
+cat("3. Official Coefficient\n")
+cof_pcr
+cat("\n")
+sink()

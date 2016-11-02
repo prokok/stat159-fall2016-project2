@@ -38,3 +38,18 @@ full_mse_ols = mean((ols.pred_full - y.test_full)^2)
 save(test_mse_ols,full_mse_ols, sum_ols_full,file = "../../data/ols-regression.Rdata")
 
 
+#putting the result in the eda-output.txt
+sink(file = "../../data/eda-output.txt", append = TRUE)
+cat("\n\n")
+cat("<<Summary Statistics of OLS>>\n\n")
+cat("1. Test Mean Square Error\n")
+test_mse_ols
+cat("\n")
+cat("2. Best Model\n")
+cat("balance ~ income+limit+cards+student\n")
+cat("\n")
+cat("3. Official Coefficient\n")
+reg4$coefficients
+cat("\n")
+sink()
+

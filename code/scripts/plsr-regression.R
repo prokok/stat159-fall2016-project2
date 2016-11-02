@@ -43,3 +43,19 @@ full_mse_plsr = mean((pls.pred_full - y.test_full)^2)
 par_plsr = M
 save(par_plsr,list_models_plsr, test_mse_plsr, cof_plsr, full_mse_plsr
      , file = "../../data/plsr-regression.Rdata")
+
+
+#putting the result in the eda-output.txt
+sink(file = "../../data/eda-output.txt", append = TRUE)
+cat("\n\n")
+cat("<<Summary Statistics of Plsr-regression>>\n\n")
+cat("1. Test Mean Square Error\n")
+test_mse_plsr
+cat("\n")
+cat("2. Best Model\n")
+cat("Compression equals ", par_plsr, "\n")
+cat("\n")
+cat("3. Official Coefficient\n")
+cof_plsr
+cat("\n")
+sink()

@@ -54,3 +54,18 @@ full_mse_lasso = mean((lasso.pred_full - y_full)^2)
 par_lasso = bestlambda
 save(par_lasso,list_models_lasso, test_mse_lasso, cof_lasso, full_mse_lasso
      , file = "../../data/lasso-regression.Rdata")
+
+#putting the result in the eda-output.txt
+sink(file = "../../data/eda-output.txt", append = TRUE)
+cat("\n\n")
+cat("<<Summary Statistics of Lasso-regression>>\n\n")
+cat("1. Test Mean Square Error\n")
+test_mse_lasso
+cat("\n")
+cat("2. Best Model\n")
+cat("lambda equals ", par_lasso, "\n")
+cat("\n")
+cat("3. Official Coefficient\n")
+cof_lasso
+cat("\n")
+sink()

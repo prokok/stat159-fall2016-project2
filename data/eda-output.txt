@@ -131,3 +131,78 @@ Anova Analysis of ethnicity on balance
 ethnicity     2    18454    9227   0.043  0.957
 Residuals   397 84321458  212397               
 
+
+
+<<Summary Statistics of OLS>>
+
+1. Test Mean Square Error
+[1] 0.05005021
+
+2. Best Model
+balance ~ income+limit+cards+student
+
+3. Official Coefficient
+  (Intercept)        income         limit         cards       student 
+ 8.657571e-16 -6.009409e-01  1.338677e+00  6.912279e-02  2.806761e-01 
+
+
+<<Summary Statistics of Ridge-regression>>
+
+1. Test Mean Square Error
+[1] 0.04798114
+
+2. Best Model
+lambda equals  0.01 
+
+3. Official Coefficient
+      income        limit       rating        cards          age    education       gender      student 
+-0.568706769  0.718657903  0.593058827  0.044252756 -0.025384931 -0.005879651 -0.010677773  0.273184181 
+    marriage        asian    caucasian 
+-0.011027761  0.016378729  0.011011789 
+
+
+
+<<Summary Statistics of Lasso-regression>>
+
+1. Test Mean Square Error
+[1] 0.05151814
+
+2. Best Model
+lambda equals  0.01 
+
+3. Official Coefficient
+     income       limit      rating       cards         age     student 
+-0.55166063  0.92504680  0.36787493  0.04499772 -0.01666003  0.26681304 
+
+
+
+<<Summary Statistics of Pcr-regression>>
+
+1. Test Mean Square Error
+[1] 0.04747221
+
+2. Best Model
+Compression equals  11 
+
+3. Official Coefficient
+      income        limit       rating        cards          age    education       gender      student 
+-0.598171486  0.958438722  0.382478949  0.052864969 -0.023033397 -0.007469459 -0.011593092  0.278154853 
+    marriage        asian    caucasian 
+-0.009054196  0.015950671  0.011005286 
+
+
+
+<<Summary Statistics of Plsr-regression>>
+
+1. Test Mean Square Error
+[1] 0.04646407
+
+2. Best Model
+Compression equals  8 
+
+3. Official Coefficient
+      income        limit       rating        cards          age    education       gender      student 
+-0.598299343  0.852471175  0.487415171  0.047787951 -0.019224144 -0.013050364 -0.010842616  0.281988491 
+    marriage        asian    caucasian 
+-0.005780630  0.014831325  0.009538472 
+

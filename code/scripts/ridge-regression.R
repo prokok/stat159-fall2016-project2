@@ -55,3 +55,18 @@ full_mse_ridge = mean((ridge.pred_full - y_full)^2)
 par_ridge = bestlambda
 save(par_ridge,list_models_ridge, test_mse_ridge, cof_ridge, full_mse_ridge
      , file = "../../data/ridge-regression.Rdata")
+
+#putting the result in the eda-output.txt
+sink(file = "../../data/eda-output.txt", append = TRUE)
+cat("\n\n")
+cat("<<Summary Statistics of Ridge-regression>>\n\n")
+cat("1. Test Mean Square Error\n")
+test_mse_ridge
+cat("\n")
+cat("2. Best Model\n")
+cat("lambda equals ", par_ridge, "\n")
+cat("\n")
+cat("3. Official Coefficient\n")
+cof_ridge
+cat("\n")
+sink()
