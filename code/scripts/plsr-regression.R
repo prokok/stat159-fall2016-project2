@@ -21,7 +21,7 @@ M = which(pls.fit$validation$PRESS==min(pls.fit$validation$PRESS))
 
 #4. Plot the cross-validation errors in terms of the tunning 
 ##  parameter to visualize which parameter gives the "best" model:
-png(filename = "../../images/pslr-cross-validation-errors.png", width=800, height=600)
+png(filename = "../../images/plsr-cross-validation-errors.png", width=800, height=600)
 validationplot(pls.fit, val.type="MSEP")
 dev.off()
 
