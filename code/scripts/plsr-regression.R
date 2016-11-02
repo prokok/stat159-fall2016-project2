@@ -40,6 +40,7 @@ cof_plsr = plsr_full$coefficients[1:ncol(scaled_credit)-1,1,M]
 pls.pred_full <- predict(pls.fit, scaled_credit, ncomp =M)
 full_mse_plsr = mean((pls.pred_full - y.test_full)^2)
 
-#saving the list_models_plsr, test_mse_plsr, cof_plsr, full_mse_plsr
-save(list_models_plsr, test_mse_plsr, cof_plsr, full_mse_plsr
+#saving the the best tunning parameter, list_models_plsr, test_mse_plsr, cof_plsr, full_mse_plsr
+par_plsr = M
+save(par_plsr,list_models_plsr, test_mse_plsr, cof_plsr, full_mse_plsr
      , file = "../../data/plsr-regression.Rdata")
