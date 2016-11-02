@@ -1,5 +1,4 @@
 library(pls)
-
 load('../../data/scale-train-test.RData')
 scaled_credit = read.csv("../../data/scaled-credit.csv")
 scaled_credit = scaled_credit[,-1]
@@ -12,7 +11,7 @@ set.seed(0)
 pls.fit = plsr(balance~., data = scaled_credit_train, validation='CV')
 
 
-#2. Saving list of models.
+#2. Saving list of models(saved in Rdata file at the end)
 list_models_plsr = pls.fit
 
 
