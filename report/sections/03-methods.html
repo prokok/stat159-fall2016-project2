@@ -120,35 +120,40 @@ $(document).ready(function () {
 
 <div id="method" class="section level1">
 <h1>Method</h1>
-<p>For the project, we will analyze the given data with five different approaches: OLS(Ordinary Least Squares), RR(ridge regression), LR(lasso regression), PCR(principle components regression) and PLSR(partial least squares regression). Each approahes will be explained in details bewlow.</p>
-<div id="olsordinary-least-square-method" class="section level3">
-<h3>1) OLS(Ordinary Least Square Method)</h3>
+<p>For the project, we will analyze the given data with five different approaches: OLS(Ordinary Least Squares), RR(ridge regression), LR(lasso regression), PCR(principle components regression) and PLSR(partial least squares regression).</p>
+<div id="ordinary-least-square-methodols" class="section level3">
+<h3>1) Ordinary Least Square Method(OLS)</h3>
 <p><span class="math display">\[\\Y = \beta_{0} + \beta_{1}X_{1} + \beta_{2}X_{2} + \beta_{3}X_{3} + ... + \beta_{p}X_{p}\]</span><br />
 <span class="math display">\[\\RSS = \sum_{i=1}^{n} (y_{i} - \beta_{0} - \sum_{j=1}^{p}\beta_{j}x_{ij})^2\]</span></p>
 <p>Ordinary least squares(OLS) is estimataing parameters in a linear regression model by minimizing the sum of squares of the distance between observed reponses and predcited reponses. This approach is perfomed under certain assumptions: errors are finite, homoscedastic, uncorrelated, and normally distributed. Under these assumption OLS provides the minimum-variance and unbiased mean estimators.</p>
 </div>
-<div id="a-shrinkage-methods" class="section level2">
-<h2>A) Shrinkage Methods</h2>
-<p>Shrinkage Methods starts with fitting a modeling with all p predictors. However, it forces the estimated coefficients to be close to zero or to be zero. Also, it requires the data to be standardized before applying the method. There are two methods of shrinkage methods: Ridge Regression Method, and Lasso Regression Method. Depending on the method, some of the cofficients forced to be estimated to be exactly zero. Thus, Shrinkage Method does variable selection.</p>
-<div id="rrridge-regression" class="section level3">
-<h3>2) RR(ridge regression)</h3>
+<div id="shrinkage-methods" class="section level2">
+<h2>Shrinkage Methods</h2>
+<p>Shrinkage Methods starts with fitting a modeling with all p predictors. However, it forces the estimated coefficients to be close to zero or to be zero. Also, it requires the data to be standardized before applying the method. There are two methods of shrinkage methods: Ridge Regression Method, and Lasso Regression Method. Depending on the method, some of the cofficients forced to be estimated to be exactly zero, which is the case of Lasso Regression. Thus, shrinkage Method does variable selection.</p>
+<div id="ridge-regressionrr" class="section level3">
+<h3>2) Ridge Regression(RR)</h3>
 <p><span class="math display">\[\sum_{i=1}^{n} (y_{i} - \beta_{0} - \sum_{j=1}^{p}\beta_{j}x_{ij})^2 + \lambda\sum_{j=1}^{p}\beta_{j}^2 = RSS + \lambda\sum_{j=1}^{p}\beta_{j}^2\]</span></p>
 <p><span class="math display">\[minimize_{\beta} \{\sum_{i=1}^{n} (y_{i} - \beta_{0} - \sum_{j=1}^{p}\beta_{j}x_{ij})^2\}\quad subject\  to\quad \lambda\sum_{j=1}^{p}\beta_{j}^2 \leq s\]</span></p>
+<p><span class="math display">\[where\ every\ value\ of\ \lambda\ there\ is\ a\ corresponding\ s\]</span></p>
+<p>Equations above are two different representations of Ridge Regression. The first equation explains the similarity between OLS regression and Ridge Regression. Ridge regression calculates the coefficients by minimizing <span class="math inline">\(RSS + \lambda\sum_{j=1}^{p}\beta_{j}^2\)</span>. If <span class="math inline">\(\lambda\)</span>, the tunning parameter, is equal to zero, the estimated coefficients will be same as those of OLS regression. The advantage of Ridge regression over OLS regression is bias-variance trade-off. As <span class="math inline">\(\lambda\)</span> increases, the estimated coefficients forced to be close to zero, leading bias estimators and decreasing the variance. As <span class="math inline">\(\lambda\)</span> decreases, the estimated coefficients do not have to be close to zero, leading less - bias estimators and increasing the variance.</p>
 </div>
-<div id="lrlasso-regression" class="section level3">
-<h3>3) LR(lasso regression)</h3>
+<div id="lasso-regressionlr" class="section level3">
+<h3>3) Lasso Regression(LR)</h3>
 <p><span class="math display">\[\sum_{i=1}^{n} (y_{i} - \beta_{0} - \sum_{j=1}^{p}\beta_{j}x_{ij})^2 + \lambda\sum_{j=1}^{p}\left|\beta_{j}\right| = RSS + \lambda\sum_{j=1}^{p}\left|\beta_{j}\right|\]</span></p>
 <p><span class="math display">\[minimize_{\beta} \{\sum_{i=1}^{n} (y_{i} - \beta_{0} - \sum_{j=1}^{p}\beta_{j}x_{ij})^2\}\quad subject\  to\quad \lambda\sum_{j=1}^{p}\left|\beta_{j}\right| \leq s\]</span></p>
+<p><span class="math display">\[where\ every\ value\ of\ \lambda\ there\ is\ a\ corresponding\ s\]</span></p>
+<p>Equations above are two different representations of Lasso Regression. The first equation explains the similarity between OLS regression, Ridge regression and Lasso regression. Lasso regression calculates the coefficients by minimizing <span class="math inline">\(RSS + \lambda\sum_{j=1}^{p}\left|\beta_{j}\right|\)</span>. If <span class="math inline">\(\lambda\)</span>, the tunning parameter, is equal to zero, the estimated coefficients will be same as those of OLS regression. Lasso regression has the same advantage over OLS regression as Ridge regression does: bias-variance trade-off. However, as <span class="math inline">\(\lambda\)</span> increases, the Lasso regression forces esimates to be exactly equal to zero. Thus, Lasso shrinkage method performs the variable selection and a model generated by Lasso regression is easier to interpret than a model generated by Ridge regression. Lasso regression involves only a subset of the variables referred as sparse-model.</p>
 </div>
 </div>
-<div id="b-dimension-reduction-methods" class="section level2">
-<h2>B) Dimension Reduction Methods</h2>
-<p>This approach involves projecting the p predictors into a M-dimensional subspace, where M &lt;p. This is achieved by computing M different linear combinations, or projections, of the variables. Then these M projections are used as predictors to fit a linear regression model by least squares.</p>
-<div id="pcrprinciple-components-regression" class="section level3">
-<h3>4) PCR(principle components regression)</h3>
+<div id="dimension-reduction-methods" class="section level2">
+<h2>Dimension Reduction Methods</h2>
+<p><span class="math display">\[\\Z_{m} = \sum_{j=1}^{p}\phi_{jm}X_{j}\]</span> <span class="math display">\[\\y_{i} = \theta_{0} + \sum_{m=1}^{M}\theta_{m}z_{im} + \varepsilon_{i} \quad i\ = \ 1, ..., n\]</span> <span class="math display">\[\sum_{m=1}^{M}\theta_{m}z_{im}\ =\ \sum_{m=1}^{M}\theta_{m}\sum_{j=1}^{p}\phi_{jm}x_{ij}\ =\ \sum_{j=1}^{p}\sum_{m=1}^{M}\theta_{m}\phi_{jm}x_{ij}\ =\ \sum_{j=1}^{p}\beta_{j}x_{ij}\]</span> <span class="math display">\[where\quad \beta_{j}\  =\ \sum_{m=1}^{M}\theta_{m}\phi_{jm}\]</span></p>
+<p>Dimenstion reduction method is transforming the predictors,<span class="math inline">\(\\Z_{m} = \sum_{j=1}^{p}\phi_{jm}X_{j}\)</span> and fit a least square models using transformed variables, <span class="math inline">\(\\y_{i} = \theta_{0} + \sum_{m=1}^{M}\theta_{m}z_{im} + \varepsilon_{i} \quad i\ = \ 1, ..., n\)</span>. This approach is used when there is a large number of predictor variables. By computing M different linear combinations, transforming the predictors, we can project p predictors into a M-dimensional subspace where M is less than or equal to p. Then M projections can be used as predictors to fit a linear model by ordinary least squares. If M is equal to p, there is no dimention reduction occurs, yielding the same result equivalent to performing ordinary least squares on the p predictors. There are two major dimension reduction methods: principal components regression and partial least squares regression. Those methods work in two steps. First step is transforming the predictors, <span class="math inline">\(\\Z_{m} = \sum_{j=1}^{p}\phi_{jm}X_{j}\)</span>. Second steop is selecting <span class="math inline">\(\phi_{jm}\)</span>.</p>
+<div id="principle-components-regressionpcr" class="section level3">
+<h3>4) Principle Components Regression(PCR)</h3>
 </div>
-<div id="plsrpartial-least-squares-regression" class="section level3">
-<h3>5) PLSR(partial least squares regression)</h3>
+<div id="partial-least-squares-regressionplsr" class="section level3">
+<h3>5) Partial Least Squares Regression(PLSR)</h3>
 </div>
 </div>
 </div>
