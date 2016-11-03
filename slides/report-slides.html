@@ -269,7 +269,7 @@ sum_reg</pre>
 
 <pre >## [1] 0.01</pre>
 
-<p>Then we use that lambda value to determine the MSE for the test subset and the full data set:</p>
+<p>We then use that lambda value to determine the MSE for the test subset and the full data set:</p>
 
 <pre class = 'prettyprint lang-r'>test_mse_ridge</pre>
 
@@ -277,7 +277,29 @@ sum_reg</pre>
 
 <pre class = 'prettyprint lang-r'>full_mse_ridge</pre>
 
-<pre >## [1] 0.04604064</pre></article></slide>
+<pre >## [1] 0.04604064</pre>
+
+</article></slide><slide class=''><hgroup><h2>Lasso Regression</h2></hgroup><article  id="lasso-regression" class="smaller">
+
+<p><em>a shrinkage method</em></p>
+
+<p>Using 10-fold cross validation on a test data set (of 100) to generate an optimal lambda value.</p>
+
+<p>Optimal lambda value:</p>
+
+<pre >## [1] 0.01</pre>
+
+<p>We then use that lambda value to determine the MSE for the test subset and the full data set:</p>
+
+<pre class = 'prettyprint lang-r'>test_mse_lasso</pre>
+
+<pre >## [1] 0.05151814</pre>
+
+<pre class = 'prettyprint lang-r'>full_mse_lasso</pre>
+
+<pre >## [1] 0.04748458</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-2"></article></slide>
 
 
   <slide class="backdrop"></slide>

@@ -150,4 +150,23 @@ test_mse_ridge
 full_mse_ridge
 ```
 
-# Lasso Regression
+## Lasso Regression {.smaller}
+_a shrinkage method_
+
+Using 10-fold cross validation on a test data set (of 100) to generate an optimal lambda value.
+```{r, echo=FALSE}
+load('../data/lasso-regression.Rdata')
+```
+Optimal lambda value: 
+```{r}
+par_lasso
+```
+
+We then use that lambda value to determine the MSE for the test subset and the full data set:
+```{r, echo=TRUE}
+test_mse_lasso
+full_mse_lasso
+```
+
+
+## 
