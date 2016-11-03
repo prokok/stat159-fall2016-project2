@@ -1,6 +1,4 @@
 #Data
-***
-
 
   We first start out with the original data set: credit.csv from the book __An Introduction to Statistical Learning__ by James et al. We stored this data set in R as the variable credit. Credit initally contains 12 columns(categories or predictors).  However, we remove the first column because it just contains the row numbers of each row, which is irrelevant to our analysis, so we will remember to subset that part out of the data set in R before doing analysis.   
   There are two important steps in premodeling data proces.

@@ -1,0 +1,37 @@
+#Method
+
+  For the project, we will analyze the given data with five different approaches: OLS(Ordinary Least Squares), RR(ridge regression), LR(lasso regression), PCR(principle components regression) and PLSR(partial least squares regression). Each approahes will be explained in details bewlow.
+
+
+###1) OLS(Ordinary Least Square Method)  
+
+
+$$\\Y = \beta_{0} + \beta_{1}X_{1} + \beta_{2}X_{2} + \beta_{3}X_{3} + ... + \beta_{p}X_{p}$$   
+$$\\RSS = \sum_{i=1}^{n} (y_{i} - \beta_{0} - \sum_{j=1}^{p}\beta_{j}x_{ij})^2$$
+
+
+  Ordinary least squares(OLS) is estimataing parameters in a linear regression model by minimizing the sum of squares of the distance between observed reponses and predcited reponses. This approach is perfomed under certain assumptions: errors are finite, homoscedastic, uncorrelated, and normally distributed. Under these assumption OLS provides the minimum-variance and unbiased mean estimators. 
+  
+  
+##A) Shrinkage Methods
+  Shrinkage Methods starts with fitting a modeling with all p predictors. However, it forces the estimated coefficients to be close to zero or to be zero. Also, it requires the data to be standardized before applying the method. There are two methods of shrinkage methods: Ridge Regression Method, and Lasso Regression Method. Depending on the method, some of the cofficients forced to be estimated to be exactly zero. Thus, Shrinkage Method does variable selection.
+  
+
+###2) RR(ridge regression)
+
+$$\sum_{i=1}^{n} (y_{i} - \beta_{0} - \sum_{j=1}^{p}\beta_{j}x_{ij})^2 + \lambda\sum_{j=1}^{p}\beta_{j}^2 = RSS + \lambda\sum_{j=1}^{p}\beta_{j}^2$$
+
+$$minimize_{\beta} \{\sum_{i=1}^{n} (y_{i} - \beta_{0} - \sum_{j=1}^{p}\beta_{j}x_{ij})^2\}\quad subject\  to\quad \lambda\sum_{j=1}^{p}\beta_{j}^2 \leq s$$
+  
+###3) LR(lasso regression)
+
+$$\sum_{i=1}^{n} (y_{i} - \beta_{0} - \sum_{j=1}^{p}\beta_{j}x_{ij})^2 + \lambda\sum_{j=1}^{p}\left|\beta_{j}\right| = RSS + \lambda\sum_{j=1}^{p}\left|\beta_{j}\right|$$
+
+$$minimize_{\beta} \{\sum_{i=1}^{n} (y_{i} - \beta_{0} - \sum_{j=1}^{p}\beta_{j}x_{ij})^2\}\quad subject\  to\quad \lambda\sum_{j=1}^{p}\left|\beta_{j}\right| \leq s$$
+
+##B) Dimension Reduction Methods
+  This approach involves projecting the p predictors into a M-dimensional subspace, where M <p. This is achieved by computing M different linear combinations, or projections, of the variables. Then these M projections are used as predictors to fit a linear regression model by least squares.
+
+###4) PCR(principle components regression)
+###5) PLSR(partial least squares regression)
+
