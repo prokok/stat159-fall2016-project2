@@ -6,7 +6,7 @@ y.test = scaled_credit_test$balance
 y.test_full = scaled_credit$balance
 
 #regression on all the predictor variables
-reg = lm(balance ~ income+limit+rating+cards+age+education+student+gender+marriage+asian+caucasian
+reg = lm(balance ~ income+limit+rating+cards+age+education+gender+student+marriage+asian+caucasian
          , data = scaled_credit_train)
 sum_reg = summary(reg)
 
@@ -27,7 +27,28 @@ test_mse_ols = mean((ols.pred - y.test)^2)
 
 #using the predictors in reg3, apply lm function to full data set
 reg4 = lm(balance ~ income+limit+cards+student, data = scaled_credit)
+reg5 = lm(balance ~ income+limit+rating+cards+age+education+student+gender+marriage+asian+caucasian
+          , data = scaled_credit)
+cof_ols_2 = coef(reg5)
+cof_names = names(cof_ols_2)
+cof_ols_2 = rep(0,length(scaled_credit))
+names(cof_ols_2) = cof_names
+cof_ols_1 = coef(reg4)
+
+for(i in 1:length(cof_ols_1)){
+  for(j in i:length(cof_ols_2)){
+    if(names(cof_ols_1)[i]==names(cof_ols_2)[j]){
+      cof_ols_2[j] = cof_ols_1[i]
+      break
+    }
+    else{cof_ols_2[j] =0}
+  }
+}
+
+cof_ols = cof_ols_2
+
 sum_ols_full = summary(reg4)
+sum_ols_full_all = summary(reg5)
 
 #calculate the full_data_mse
 ols.pred_full = predict(reg3, newdata = scaled_credit)
@@ -35,7 +56,7 @@ full_mse_ols = mean((ols.pred_full - y.test_full)^2)
 
 
 #saving the result of test_mse, official coefficients of full data, and full_data_mse
-save(test_mse_ols,full_mse_ols, sum_ols_full,file = "../../data/ols-regression.Rdata")
+save(test_mse_ols, cof_ols, full_mse_ols, sum_ols_full,file = "../../data/ols-regression.Rdata")
 
 
 #putting the result in the eda-output.txt

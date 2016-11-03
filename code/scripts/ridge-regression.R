@@ -43,7 +43,7 @@ test_mse_ridge = mean(( ridge.pred -y_test)^2)
 ##  This fit will give you the "official" coefficient estimates.
 ridge_full = glmnet(x_full, y_full, alpha = 0, lambda = bestlambda
                     , intercept = FALSE, standardize = FALSE)
-cof_ridge = ridge_full$beta[,1]
+cof_ridge = predict(ridge_full, type = "coefficients", s = bestlambda)[1:length(scaled_credit),]
 
 
 #full prediction

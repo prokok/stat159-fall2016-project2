@@ -43,7 +43,7 @@ test_mse_lasso = mean((lasso.pred - y_test)^2)
 ##  This fit will give you the "official" coefficient estimates.
 lasso_full = glmnet(x_full, y_full, alpha = 1, lambda = bestlambda
                        , intercept = FALSE, standardize = FALSE)
-cof_lasso = lasso_full$beta[,1][lasso_full$beta[,1]!=0]
+cof_lasso = predict(lasso_full, type = "coefficients", s = bestlambda)[1:length(scaled_credit),]
 
 
 #full prediction

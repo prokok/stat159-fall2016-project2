@@ -34,7 +34,8 @@ test_mse_pcr = mean((pcr.pred - y.test)^2)
 #6. Last but not least, refit the model on the full data set using the parameter chosen by cross-validation.
 ##  This fit will give you the "official" coefficient estimates.
 pcr_full = pcr(balance~., ncomp = M, data = scaled_credit)
-cof_pcr = pcr_full$coefficients[1:ncol(scaled_credit)-1,1,M] 
+cof_pcr = t(as.data.frame(coef(pcr_full, ncomp = M, intercept = TRUE)))
+rownames(cof_pcr) = ''
 
 #full prediction
 pcr.pred_full <- predict(pcr.fit, scaled_credit, ncomp =M)
