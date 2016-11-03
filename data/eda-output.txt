@@ -7,18 +7,12 @@ Stadard Deviation. :  35.24427
 Range. :  176.28  
 IQR. :  36.4635 
 
-
-Correlation matrix for income, limit, rating, cards, age, education, balance.
-
 summary statistics of limit 
 
 Min.   :  855   1st Qu.: 3088   Median : 4622   Mean   : 4736   3rd Qu.: 5873   Max.   :13913   
 Stadard Deviation. :  2308.199 
 Range. :  13058  
 IQR. :  2784.75 
-
-
-Correlation matrix for income, limit, rating, cards, age, education, balance.
 
 summary statistics of rating 
 
@@ -27,18 +21,12 @@ Stadard Deviation. :  154.7241
 Range. :  889  
 IQR. :  190 
 
-
-Correlation matrix for income, limit, rating, cards, age, education, balance.
-
 summary statistics of cards 
 
 Min.   :1.000   1st Qu.:2.000   Median :3.000   Mean   :2.958   3rd Qu.:4.000   Max.   :9.000   
 Stadard Deviation. :  1.371275 
 Range. :  8  
 IQR. :  2 
-
-
-Correlation matrix for income, limit, rating, cards, age, education, balance.
 
 summary statistics of age 
 
@@ -47,18 +35,12 @@ Stadard Deviation. :  17.24981
 Range. :  75  
 IQR. :  28.25 
 
-
-Correlation matrix for income, limit, rating, cards, age, education, balance.
-
 summary statistics of education 
 
 Min.   : 5.00   1st Qu.:11.00   Median :14.00   Mean   :13.45   3rd Qu.:16.00   Max.   :20.00   
 Stadard Deviation. :  3.125207 
 Range. :  15  
 IQR. :  5 
-
-
-Correlation matrix for income, limit, rating, cards, age, education, balance.
 
 summary statistics of balance 
 
@@ -70,9 +52,6 @@ IQR. :  794.25
 
 Correlation matrix for income, limit, rating, cards, age, education, balance.
 
-
-
-
              income     limit    rating     cards       age education   balance
 income     1.000000  0.792088  0.791378 -0.018273  0.175338 -0.027692  0.463656
 limit                1.000000  0.996880  0.010231  0.100888 -0.023549  0.861697
@@ -81,6 +60,9 @@ cards                                    1.000000  0.042948 -0.051084  0.086456
 age                                                1.000000  0.003619  0.001835
 education                                                    1.000000 -0.008062
 balance                                                                1.000000
+
+
+
 2. Explantory Analysis of qualitive Variables
 
 frequency table & relative frequency table of gender 
@@ -148,4 +130,82 @@ Anova Analysis of ethnicity on balance
              Df   Sum Sq Mean Sq F value Pr(>F)
 ethnicity     2    18454    9227   0.043  0.957
 Residuals   397 84321458  212397               
+
+
+
+<<Summary Statistics of OLS>>
+
+1. Test Mean Square Error
+[1] 0.05005021
+
+2. Best Model
+balance ~ income+limit+cards+student
+
+3. Official Coefficient
+  (Intercept)        income         limit         cards       student 
+ 8.657571e-16 -6.009409e-01  1.338677e+00  6.912279e-02  2.806761e-01 
+
+
+
+<<Summary Statistics of Ridge-regression>>
+
+1. Test Mean Square Error
+[1] 0.04798114
+
+2. Best Model
+lambda equals  0.01 
+
+3. Official Coefficient
+ (Intercept)       income        limit       rating        cards          age    education       gender 
+ 0.000000000 -0.568706769  0.718657903  0.593058827  0.044252756 -0.025384931 -0.005879651 -0.010677773 
+     student     marriage        asian    caucasian 
+ 0.273184181 -0.011027761  0.016378729  0.011011789 
+
+
+
+<<Summary Statistics of Lasso-regression>>
+
+1. Test Mean Square Error
+[1] 0.05151814
+
+2. Best Model
+lambda equals  0.01 
+
+3. Official Coefficient
+(Intercept)      income       limit      rating       cards         age   education      gender     student 
+ 0.00000000 -0.55166063  0.92504680  0.36787493  0.04499772 -0.01666003  0.00000000  0.00000000  0.26681304 
+   marriage       asian   caucasian 
+ 0.00000000  0.00000000  0.00000000 
+
+
+
+<<Summary Statistics of Pcr-regression>>
+
+1. Test Mean Square Error
+[1] 0.04747221
+
+2. Best Model
+Compression equals  11 
+
+3. Official Coefficient
+  (Intercept)     income     limit    rating      cards        age    education      gender   student
+ 7.666863e-16 -0.5981715 0.9584387 0.3824789 0.05286497 -0.0230334 -0.007469459 -0.01159309 0.2781549
+     marriage      asian  caucasian
+ -0.009054196 0.01595067 0.01100529
+
+
+
+<<Summary Statistics of Plsr-regression>>
+
+1. Test Mean Square Error
+[1] 0.04646407
+
+2. Best Model
+Compression equals  8 
+
+3. Official Coefficient
+  (Intercept)     income     limit    rating      cards         age   education      gender   student
+ 7.426374e-16 -0.5982993 0.8524712 0.4874152 0.04778795 -0.01922414 -0.01305036 -0.01084262 0.2819885
+    marriage      asian   caucasian
+ -0.00578063 0.01483133 0.009538472
 
