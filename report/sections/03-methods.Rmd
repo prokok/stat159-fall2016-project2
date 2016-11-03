@@ -1,10 +1,6 @@
 #Method
 
-<<<<<<< HEAD
-  For the project, we will analyze the given data with five different approaches: OLS(Ordinary Least Squares), RR(ridge regression), LR(lasso regression), PCR(principle components regression) and PLSR(partial least squares regression). Each approahes will be explained in details below.
-=======
   For the project, we will analyze the given data with five different approaches: OLS(Ordinary Least Squares), RR(ridge regression), LR(lasso regression), PCR(principle components regression) and PLSR(partial least squares regression).
->>>>>>> philhoon
 
 
 ###1) Ordinary Least Square Method(OLS)  
