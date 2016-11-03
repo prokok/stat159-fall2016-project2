@@ -21,8 +21,12 @@ pcr:
 
 plsr:
 
-regression: data/Advertising.csv code/scripts/ols-regression.R plsr-regression.R ridge-regression.R lasso-regression.R pcr-regression.R premodeling-data-processing.R
-	Rscript ................
+regression:
+	make ols
+	make ridge
+	make lasso
+	make pcr
+	make plsr
 
 report: report/report.Rmd
 	cd report && Rscript -e 'library(rmarkdown); render('report.Rmd')'
