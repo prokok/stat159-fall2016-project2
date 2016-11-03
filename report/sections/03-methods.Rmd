@@ -89,5 +89,5 @@ $$where\quad \beta_{j}\  =\ \sum_{m=1}^{M}\theta_{m}\phi_{jm}$$
   
   To find the second direction $Z_{2}$, we need to regressing each variable on $Z_{1}$ and take the residuals. Then compute the $Z_{2}$ with the residuals that are orthogonal to the original data by applying the same procedure to compute the first directon $Z_{1}$
   
-    By doing this process iteratively up to desired M, it gives us the Partial Least Squares Regression on a given M space.
+  By doing this process iteratively up to desired M, it gives us the Partial Least Squares Regression on a given M space.
   
