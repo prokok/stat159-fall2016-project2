@@ -22,12 +22,21 @@ $$\\RSS = \sum_{i=1}^{n} (y_{i} - \beta_{0} - \sum_{j=1}^{p}\beta_{j}x_{ij})^2$$
 $$\sum_{i=1}^{n} (y_{i} - \beta_{0} - \sum_{j=1}^{p}\beta_{j}x_{ij})^2 + \lambda\sum_{j=1}^{p}\beta_{j}^2 = RSS + \lambda\sum_{j=1}^{p}\beta_{j}^2$$
 
 $$minimize_{\beta} \{\sum_{i=1}^{n} (y_{i} - \beta_{0} - \sum_{j=1}^{p}\beta_{j}x_{ij})^2\}\quad subject\  to\quad \lambda\sum_{j=1}^{p}\beta_{j}^2 \leq s$$
-  
+
+will give the same lasso coefficient estimates.
+Similarly, for every value of ?? there is a corresponding s such that Equations
+(6.5) and (6.9) will give the same ridge regression coefficient estimates
+
+
 ###3) LR(lasso regression)
 
 $$\sum_{i=1}^{n} (y_{i} - \beta_{0} - \sum_{j=1}^{p}\beta_{j}x_{ij})^2 + \lambda\sum_{j=1}^{p}\left|\beta_{j}\right| = RSS + \lambda\sum_{j=1}^{p}\left|\beta_{j}\right|$$
 
 $$minimize_{\beta} \{\sum_{i=1}^{n} (y_{i} - \beta_{0} - \sum_{j=1}^{p}\beta_{j}x_{ij})^2\}\quad subject\  to\quad \lambda\sum_{j=1}^{p}\left|\beta_{j}\right| \leq s$$
+
+will give the same lasso coefficient estimates.
+Similarly, for every value of ?? there is a corresponding s such that Equations
+(6.5) and (6.9) will give the same ridge regression coefficient estimates
 
 ##B) Dimension Reduction Methods
   This approach involves projecting the p predictors into a M-dimensional subspace, where M <p. This is achieved by computing M different linear combinations, or projections, of the variables. Then these M projections are used as predictors to fit a linear regression model by least squares.
