@@ -160,7 +160,7 @@
 
 <p>Now in order to use the data set for our regression models, we must standardize the data.</p>
 
-<p>Here&#39;s a look at the new daa set: scaled_credit.csv</p>
+<p>Here&#39;s a look at the new data set: scaled_credit.csv</p>
 
 <pre >##       income      limit     rating       cards        age  education
 ## 1 -0.8605053 -0.4893859 -0.4649565 -0.69825535 -1.2561010 -0.7839481
@@ -171,7 +171,91 @@
 ## 2  0.9643839  2.9962477  0.794400  1.7071218 -0.9937679  0.8330127
 ## 3 -1.0343392 -0.3329164 -1.255665  1.7071218 -0.9937679  0.1304706</pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-1"></article></slide>
+</article></slide><slide class=''><hgroup><h2>Overview of the Regressions</h2></hgroup><article  id="overview-of-the-regressions">
+
+<ul>
+<li>Oridnary Least Squares</li>
+</ul>
+
+<p><em>Shrinkage Methods</em></p>
+
+<p><em>shrinking the coefficients and the variance</em></p>
+
+<ul>
+<li>Ridge Regression</li>
+<li>Lasso Regression</li>
+</ul>
+
+<p><em>Dimension Reduction Methods</em></p>
+
+<p><em>getting rid of variables that aren&#39;t significant</em></p>
+
+<ul>
+<li>Principle Components Regression</li>
+<li>Partial Least Squares Regression</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Ordinary Least Squares</h2></hgroup><article  id="ordinary-least-squares">
+
+<p><strong>Goal</strong>: To minimize the sum of the squares between the observed and predicted values.</p>
+
+<p>We need to figure out which variables have a significant effect on the response variable. To do so, we look at the regression summary of all the predictors on the response (balance).</p>
+
+<p>we can see that only income, limit, cards, and student are the only predictors that have a significant effect on balance.</p>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-1" class="smaller">
+
+<pre class = 'prettyprint lang-r'>reg = lm(balance ~ income+limit+rating+cards+age+education+student+gender+marriage+asian+caucasian
+         , data = scaled_credit_train)
+sum_reg = summary(reg)
+sum_reg</pre>
+
+<pre >## 
+## Call:
+## lm(formula = balance ~ income + limit + rating + cards + age + 
+##     education + student + gender + marriage + asian + caucasian, 
+##     data = scaled_credit_train)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.33486 -0.16857 -0.02653  0.11932  0.70361 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -0.002281   0.012478  -0.183 0.855095    
+## income      -0.595385   0.021488 -27.708  &lt; 2e-16 ***
+## limit        1.059762   0.194619   5.445 1.11e-07 ***
+## rating       0.279175   0.195302   1.429 0.153957    
+## cards        0.052861   0.015118   3.496 0.000546 ***
+## age         -0.006628   0.012987  -0.510 0.610175    
+## education   -0.012060   0.012840  -0.939 0.348405    
+## student      0.276275   0.013047  21.175  &lt; 2e-16 ***
+## gender      -0.004894   0.012645  -0.387 0.699026    
+## marriage    -0.000123   0.012927  -0.010 0.992413    
+## asian        0.011161   0.016175   0.690 0.490752    
+## caucasian    0.006447   0.015805   0.408 0.683623    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.2154 on 288 degrees of freedom
+## Multiple R-squared:  0.9549, Adjusted R-squared:  0.9532 
+## F-statistic: 554.1 on 11 and 288 DF,  p-value: &lt; 2.2e-16</pre>
+
+</article></slide><slide class=''><hgroup><h2>OLS MSE</h2></hgroup><article  id="ols-mse">
+
+<p>By only using income, limit, cards and student to predict response, we can find the MSE on the full data set.</p>
+
+<p>test MSE:</p>
+
+<pre class = 'prettyprint lang-r'>test_mse_ols</pre>
+
+<pre >## [1] 0.05005021</pre>
+
+<p>full MSE (full data set):</p>
+
+<pre class = 'prettyprint lang-r'>full_mse_ols</pre>
+
+<pre >## [1] 0.04635291</pre></article></slide>
 
 
   <slide class="backdrop"></slide>

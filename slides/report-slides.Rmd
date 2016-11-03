@@ -73,5 +73,61 @@ scaled_credit[1:3,-1]
 ```
 
 
+## Overview of the Regressions
 
-## 
+- Oridnary Least Squares
+
+_Shrinkage Methods_
+
+\smallfont _shrinking the coefficients and the variance_
+
+- Ridge Regression
+- Lasso Regression
+
+_Dimension Reduction Methods_
+
+\smallfont _getting rid of variables that aren't significant_
+
+- Principle Components Regression
+- Partial Least Squares Regression
+
+
+##Ordinary Least Squares
+
+**Goal**: To minimize the sum of the squares between the observed and predicted values.
+
+```{r, echo=FALSE}
+
+load('../data/ols-regression.Rdata')
+load('../data/scale-train-test.RData')
+scaled_credit = read.csv("../data/scaled-credit.csv")
+scaled_credit = scaled_credit[,-1]
+```
+We need to figure out which variables have a significant effect on the response variable.  To do so, we look at the regression summary of all the predictors on the response (balance).
+
+
+we can see that only income, limit, cards, and student are the only predictors that have a significant effect on balance.
+
+##{.smaller}
+```{r, echo=TRUE}
+reg = lm(balance ~ income+limit+rating+cards+age+education+student+gender+marriage+asian+caucasian
+         , data = scaled_credit_train)
+sum_reg = summary(reg)
+sum_reg
+```
+
+## OLS MSE
+
+By only using income, limit, cards and student to predict response, we can find the MSE on the full data set.
+
+test MSE:
+
+```{r, echo=TRUE}
+test_mse_ols
+```
+
+full MSE (full data set):
+```{r, echo=TRUE}
+full_mse_ols
+```
+
