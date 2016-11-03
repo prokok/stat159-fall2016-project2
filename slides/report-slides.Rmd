@@ -106,7 +106,7 @@ scaled_credit = scaled_credit[,-1]
 We need to figure out which variables have a significant effect on the response variable.  To do so, we look at the regression summary of all the predictors on the response (balance).
 
 
-we can see that only income, limit, cards, and student are the only predictors that have a significant effect on balance.
+> we can see that only income, limit, cards, and student are the only predictors that have a significant effect on balance.
 
 ##{.smaller}
 ```{r, echo=TRUE}
@@ -131,3 +131,23 @@ full MSE (full data set):
 full_mse_ols
 ```
 
+
+## Ridge Regression {.smaller}
+_a shrinkage method_
+
+Using 10-fold cross validation on a test data set (of 100) to generate an optimal lambda value.
+```{r, echo=FALSE}
+load('../data/ridge-regression.Rdata')
+```
+Optimal lambda value: 
+```{r}
+par_ridge
+```
+
+We then use that lambda value to determine the MSE for the test subset and the full data set:
+```{r, echo=TRUE}
+test_mse_ridge
+full_mse_ridge
+```
+
+# Lasso Regression
