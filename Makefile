@@ -11,15 +11,20 @@ tests: code/functions/test-training-functions.R
 eda: code/scripts/eda-script.R data/Advertising.csv
 	Rscript code/scripts/eda-script.R
 
-ols:
+ols: data/Advertising.csv code/scripts/ols-regression.Rmd
+	Rscript code/scripts/ols-regression.R
 
-ridge:
+ridge: data/Advertising.csv code/scripts/ridge-regression.R
+	Rscript code/scripts/ridge-regression.R
 
-lasso:
+lasso: data/Advertising.csv code/scripts/lasso-regression.R
+	Rscript code/scripts/lasso-regression.R
 
-pcr:
+pcr: data/Advertising.csv code/scripts/pcr-regression.R
+	Rscript code/scripts/pcr-regression.R
 
-plsr:
+plsr: data/Advertising.csv code/scripts/plsr-regression.R
+	Rscript code/scripts/plsr-regression.R
 
 regression:
 	make ols
