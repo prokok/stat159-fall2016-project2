@@ -1,3 +1,8 @@
+#need to have vairables
+#need to have Make automatic variables
+#include comments for rules, targets, or dependencies
+
+
 .PHONY: all data tests eda ols ridge lasso pcr plsr regressions report slides session clean
 
 all: eda regressions report
