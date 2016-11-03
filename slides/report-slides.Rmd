@@ -1,7 +1,7 @@
 ---
-title: "Report"
-author: "Jamie Stankiewiz"
-date: "November 1, 2016"
+title: "Predictive Modeling Report"
+author: "Jamie Stankiewiz  and Philhoon Oh"
+date: "November 4, 2016"
 output: ioslides_presentation
 ---
 
@@ -9,23 +9,45 @@ output: ioslides_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## R Markdown
+## References
 
-This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+The information, code and methods in this report is based off of the book: "An Introduction to Statistical Learning"" by James et al.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+Chapter 6: _Linear Model Selection to Statistical Learning_
 
-## Slide with Bullets
+We will be using the data set: Credit.csv
 
-- Bullet 1
-- Bullet 2
-- Bullet 3
+## Goals
 
-## Slide with R Output
+Alternative Model Fitting using:
 
-```{r cars, echo = TRUE}
-summary(cars)
+- OLS
+- Ridge Regression
+- Lasso Regression
+- PCR
+- PLSR
+
+We will be using these 5 methods to generate the response variable.  We will then determine which regression model produces the best response variable.
+
+## Variables
+
+  Predictor Variables: 
+  
+    Income, Limit, Rating, Cards, Age, Education, Gender, Student, Married, Ethnicity
+  
+  Response Variable:
+  
+    Balance
+
+## A look at the Credit data set
+
+```{r}
+
+credit=read.csv("../data/Credit.csv")  
+head(credit)[,-1]
 ```
+
+
 
 ## Slide with Plot
 
