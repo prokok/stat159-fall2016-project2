@@ -27,7 +27,7 @@ test_mse_ols = mean((ols.pred - y.test)^2)
 
 #using the predictors in reg3, apply lm function to full data set
 reg4 = lm(balance ~ income+limit+cards+student, data = scaled_credit)
-reg5 = lm(balance ~ income+limit+rating+cards+age+education+student+gender+marriage+asian+caucasian
+reg5 = lm(balance ~ income+limit+rating+cards+age+education+gender+student+marriage+asian+caucasian
           , data = scaled_credit)
 cof_ols_2 = coef(reg5)
 cof_names = names(cof_ols_2)
