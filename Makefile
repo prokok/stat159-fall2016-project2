@@ -2,11 +2,13 @@
 CS = code/scripts
 CF = code/functions
 AD = data/credit.csv 
+D1 = data/scaled-credit.csv
+D2 = data/scale-train-test.RData
 
 # phony targets
 .PHONY: all data eda pre traintest tests ols ridge lasso pcr plsr regressions report slides session clean
 
-all: eda pre regressions report
+all: eda pre traintest regressions report
 
 #download the Credit.csv
 data: 
@@ -29,19 +31,19 @@ traintest: $(CS)/test-training.R data/scaled-credit.csv
 ##Rscript $(CF)/test-training-functions.Rscript	
 	
 #Runing OLS regression script
-ols: $(CS)/ols-regression.R data/scaled-credit.csv data/scale-train-test.RData
+ols: $(CS)/ols-regression.R $(D1) $(D2)
 	cd $(CS); Rscript $(<F)
 	
 #Runing RIDGE regression script
-ridge: $(CS)/ridge-regression.R data/scaled-credit.csv data/scale-train-test.RData
+ridge: $(CS)/ridge-regression.R $(D1) $(D2)
 	cd $(CS); Rscript $(<F)
 	
 #Runing LASSO regression script
-lasso: $(CS)/lasso-regression.R data/scaled-credit.csv data/scale-train-test.RData
+lasso: $(CS)/lasso-regression.R $(D1) $(D2)
 	cd $(CS); Rscript $(<F)
 	
 #Runing PCR regression script
-pcr: $(CS)/pcr-regression.R data/scaled-credit.csv data/scale-train-test.RData
+pcr: $(CS)/pcr-regression.R $(D1) $(D2)
 	cd $(CS); Rscript $(<F)
 	
 #Runing PLSR regression script
@@ -50,7 +52,12 @@ plsr: $(CS)/plsr-regression.R data/scaled-credit.csv data/scale-train-test.RData
 	
 
 #Running all the regression scripts at once
-regressions: ols ridge lasso pcr plsr
+regressions: 
+	make ols
+	make ridge
+	make lasso
+	make pcr
+	make plsr
 	
 #Makeing report.pdf
 report: report/report.Rmd
@@ -63,7 +70,6 @@ report: report/report.Rmd
 session: 
 	bash session.sh
 
-	
 #remove the report.pdf 
 clean:
 	rm -f report/report.pdf

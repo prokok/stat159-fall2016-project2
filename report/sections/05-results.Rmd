@@ -27,26 +27,8 @@ load("../../data/plsr-regression.RData")
   Therefore, we can conclude that among all the regression methods we considered, `r names[which(mse_values == min(mse_values))]` yields the smallest TEST MSE and thus is the best model for our given dataset.
   
   
-  Lastly, we are going to compare the each official coefficients of regression methods. By plotting trend lines of the official coefficients. We can easily see that limit has the most influential aspect on balance on all regression method. Trend line plot is shown below.
+  Lastly, we are going to compare the each official coefficients of regression methods. By plotting trend lines of the official coefficients. We can easily see that limit has the most influential aspect on balance on all regression method. Trend line plot is shown in Figure 6
   
-```{r echo=FALSE}
-  ols_cof = as.data.frame(t(as.data.frame(cof_ols)))
-  ridge_cof = as.data.frame(t(as.data.frame(cof_ridge)))
-  lasso_cof = as.data.frame(t(as.data.frame(cof_lasso)))
-  pcr_cof = as.data.frame(cof_pcr)
-  plsr_cof = as.data.frame(cof_plsr)
-  
-  off_cof = as.data.frame(t(rbind(ols_cof,ridge_cof,lasso_cof,pcr_cof,plsr_cof)))
-  names(off_cof) = c("OLS", "RR", "LASSO", "PCR", "PLSR")
-  
-  
-plot(off_cof[,1], type = "l", xaxt = "n", ylab="valeus", xlab = ' ', col = "red", lwd=2, main = "Trend lines of the coefficients of regression methods")
-  lines(off_cof[,2], type = "l", col = "green", lwd=2)
-  lines(off_cof[,3], type = "l", col = "blue", lwd =2 )
-  lines(off_cof[,4], type = "l", col = "purple", lwd =2)
-  lines(off_cof[,5], type = "l", col = "orange", lwd =2)
-  axis(1, at=1:12, labels=rownames(off_cof), las=2)
-  legend("topright", legend =  c("OLS", "RR", "LASSO", "PCR", "PLSR"), lty = 1, lwd=2, col = c("red","green","blue","purple","orange"))
-```  
+
 
 
