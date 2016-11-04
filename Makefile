@@ -22,8 +22,8 @@ pre: $(CS)/premodeling-data-processing.R $(AD)
 	cd $(CS); Rscript $(<F)
 
 #producing test and training set
-traintest: code/functions/test-training-functions.R data/scaled-credit.csv	
-	cd code/functions; Rscript $(<F)
+traintest: $(CS)/test-training.R data/scaled-credit.csv	
+	cd $(CS); Rscript $(<F)
 
 ##tests: $(CF)/test-training-functions.R
 ##Rscript $(CF)/test-training-functions.Rscript	
