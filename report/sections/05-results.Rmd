@@ -15,18 +15,14 @@ load("../../data/plsr-regression.RData")
 
   From analyzing each regression model, we were able to come up with the Test MSE value. By comparing them, we can determine which method produced the smallest TEST MSE value, and therefore the best regression model.
 
-  Table of TEST MSE values of each regression is shown here:
+  Table of TEST MSE values of each regression is shown in Table 10.
 
 ```{r echo=FALSE, results='asis'}
   names <- c('OLS', 'Ridge', 'Lasso', 'PCR', 'PLSR')
   mse_values <- c(test_mse_ols, test_mse_ridge, test_mse_lasso, test_mse_pcr, test_mse_plsr)
-  results = data.frame(RegressionMethods = names, MSE = mse_values)
-  x=xtable(results, digits = 4, caption = "Test MSE of all regression methods")
-  print(x, comment=FALSE, type='latex', include.rownames=FALSE)
-
 ```
 
-  According to the table, `r names[which(mse_values == min(mse_values))]` has the smallest Test MSE is `r min(mse_values)`. 
+  According to the Table 10, `r names[which(mse_values == min(mse_values))]` has the smallest Test MSE is `r min(mse_values)`. 
   
   Therefore, we can conclude that among all the regression methods we considered, `r names[which(mse_values == min(mse_values))]` yields the smallest TEST MSE and thus is the best model for our given dataset.
   

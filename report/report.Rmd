@@ -4,6 +4,16 @@ author: "Jamie Stankiewiz, Philhoon Oh"
 date: "October 30, 2016"
 output: pdf_document
 ---
+```{r setup5, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+scaled_credit = read.csv("../data/scaled-credit.csv")
+library(xtable)
+load("../data/ols-regression.RData")
+load("../data/ridge-regression.RData")
+load("../data/lasso-regression.RData")
+load("../data/pcr-regression.RData")
+load("../data/plsr-regression.RData")
+```
 
 ```{r child = 'sections/00-abstract.Rmd'}
 ```
@@ -25,3 +35,144 @@ output: pdf_document
 
 ```{r child = 'sections/06-conclusion.Rmd'}
 ```
+
+
+#Tables and Figures
+
+```{r echo = FALSE, results='asis'}
+  scaled_credit2 = scaled_credit[,-1]
+  scaled_credit3 = scaled_credit2[,1:5]
+  x = xtable(head(scaled_credit3), digits=4)
+  print(x, comment=FALSE, type='latex', include.rownames = FALSE)
+  scaled_credit4 = scaled_credit2[,6:length(scaled_credit2)]
+  x = xtable(head(scaled_credit4), digits=4, ,caption = "First 6 results of Premodeling data processing results")
+  print(x, comment=FALSE, type='latex', include.rownames = FALSE)
+  
+  
+```
+
+
+```{r echo = FALSE, results='asis'}
+load( "../data/anova-qual.RData")
+
+x = xtable(anova_ethnicity, digits=2, caption = "Anova analysis of ethnicity and Balance")
+
+print(x, comment=FALSE, type="latex")
+
+x = xtable(anova_gender, digits=2, caption = "Anova analysis of gender and Balance")
+print(x, comment=FALSE, type="latex")
+
+x = xtable(anova_marriage, digits=2, caption = "Anova analysis of marriage and Balance")
+print(x, comment=FALSE, type="latex")
+
+x = xtable(anova_student, digits=2, caption = "Anova analysis of student and Balance")
+print(x, comment=FALSE, type="latex")
+
+```
+
+
+```{r echo = FALSE, results='asis'}
+x = xtable(reg2, digits=4, caption = "MODEL1 using selected predictor variables: income, limit, rating, cards, ages, eduction, student")
+print(x, comment=FALSE, type='latex')
+
+```
+  
+```{r echo = FALSE, results='asis'}
+x = xtable(reg3, digits=4, caption = "MODEL2 using Optimal predictor variables: income, limitm cards, student")
+print(x, comment=FALSE, type='latex')
+
+```
+
+```{r echo = FALSE, results='asis'}
+  k = data.frame(Adjusted.R.Square= c("Model1","Model2"),
+                 Value = c(summary(reg2)$adj.r.squared,summary(reg3)$adj.r.squared))
+  x=xtable(k,digits=4, caption = "Adjusted R Square of Model1 and Model2")
+  print(x, comment=FALSE, type = 'latex')
+
+```
+  
+  
+```{r echo = FALSE, results='asis'}
+  ols_cof = as.data.frame(t(as.data.frame(cof_ols)))
+  ridge_cof = as.data.frame(t(as.data.frame(cof_ridge)))
+  lasso_cof = as.data.frame(t(as.data.frame(cof_lasso)))
+  pcr_cof = as.data.frame(cof_pcr)
+  plsr_cof = as.data.frame(cof_plsr)
+  
+  off_cof = as.data.frame(t(rbind(ols_cof,ridge_cof,lasso_cof,pcr_cof,plsr_cof)))
+  names(off_cof) = c("OLS", "RR", "LASSO", "PCR", "PLSR")
+  
+  off_cof_xt = xtable(off_cof, digits =4, caption = "Official Coefficients of all Regression Methods")
+  print(off_cof_xt, comment=FALSE, type = 'latex')
+  
+   
+```
+
+
+```{r echo=FALSE, results='asis'}
+  names <- c('OLS', 'Ridge', 'Lasso', 'PCR', 'PLSR')
+  mse_values <- c(test_mse_ols, test_mse_ridge, test_mse_lasso, test_mse_pcr, test_mse_plsr)
+  results = data.frame(RegressionMethods = names, MSE = mse_values)
+  x=xtable(results, digits = 4, caption = "Test MSE of all regression methods")
+  print(x, comment=FALSE, type='latex', include.rownames=FALSE)
+
+```
+
+
+```{r echo=FALSE, results='asis'}
+  cof_best = as.data.frame(cof_plsr)
+  cof_best1 = cof_best[1:5]
+  cof_best2 = cof_best[6:12]
+  x1=xtable(cof_best1, digits = 4)
+  x2=xtable(cof_best2, digits = 4, caption = "The official coefficients of best model(PLSR Regression)")
+  print(x1, comment=FALSE, type='latex')
+  print(x2, comment=FALSE, type='latex')
+
+```
+
+
+
+
+\begin{figure}[b]
+  \begin{center}
+    \caption{Residuals plot of OLS on the test dataset}
+    \centering
+      \includegraphics[width=4in]{../../images/ols-residuals.png}
+  \end{center}
+\end{figure}
+  
+  
+\begin{figure}[!b]
+  \begin{center}
+    \caption{Plot of the cross-validtion errors of Ridge Regression on Lambda}
+    \centering
+      \includegraphics[width=4in]{../../images/ridge-cross-validation-errors.png}
+  \end{center}
+\end{figure}
+
+
+\begin{figure}[!b]
+  \begin{center}
+    \caption{Plot of the cross-validtion errors of Lasso Regression on Lambda}
+    \centering
+      \includegraphics[width=4in]{../../images/lasso-cross-validation-errors.png}
+  \end{center}
+\end{figure}
+
+
+\begin{figure}[!b]
+  \begin{center}
+    \caption{Plot of the cross-validtion errors of PCR Regression on M}
+    \centering
+      \includegraphics[width=4in]{../../images/pcr-cross-validation-errors.png}
+  \end{center}
+\end{figure}
+
+
+\begin{figure}[!b]
+  \begin{center}
+    \caption{Plot of the cross-validtion errors of PLSR Regression on M}
+    \centering
+      \includegraphics[width=4in]{../../images/plsr-cross-validation-errors.png}
+  \end{center}
+\end{figure}

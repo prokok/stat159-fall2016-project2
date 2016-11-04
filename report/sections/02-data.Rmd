@@ -16,19 +16,6 @@ library(xtable)
   First, we need to factors into dummy variables. We pre-process the data set to make sure that it is in the format that we want. Notable changes are changing categorical variables (such as: M/F, Yes/No, Caucasian/Asian) into 0/1 slots.  
   Second, we need to standaraize each predictor variables to apply 5 regression linear methods
   
-  The first 6 results of the standardized data set are shown below :
-
-```{r echo = FALSE, results='asis'}
-  scaled_credit = read.csv("../../data/scaled-credit.csv")
-  scaled_credit2 = scaled_credit[,-1]
-  scaled_credit3 = scaled_credit2[,1:5]
-  x = xtable(head(scaled_credit3), digits=4)
-  print(x, comment=FALSE, type='latex', include.rownames = FALSE)
-  scaled_credit4 = scaled_credit2[,6:length(scaled_credit2)]
-  x = xtable(head(scaled_credit4), digits=4, ,caption = "First 6 results of Premodeling data processing results")
-  print(x, comment=FALSE, type='latex', include.rownames = FALSE)
-  
-  
-```
+  The first 6 results of the standardized data set are shown in Table 1 in Tables and Figures Sections.
 
   With this data, we are going to apply five regression methods:  OLS(Ordinary Least Squares), RR(ridge regression), LR(lasso regression), PCR(principle components regression) and PLSR(partial least squares regression).

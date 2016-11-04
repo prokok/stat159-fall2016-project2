@@ -3,6 +3,10 @@ library(knitr)
 library(rmarkdown)
 library(pls)
 library(devtools)
+library(rmarkdown)
+library(glmnet)
+library(xtable)
+
 
 
 sink('../../session-info.txt')
