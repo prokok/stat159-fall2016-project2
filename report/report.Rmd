@@ -1,0 +1,27 @@
+---
+title: "Stat159 Fall2016 Project2"
+author: "Jamie Stankiewiz, Philhoon Oh"
+date: "October 30, 2016"
+output: pdf_document
+---
+
+```{r child = 'sections/00-abstract.Rmd'}
+```
+
+```{r child = 'sections/01-introduction.Rmd'}
+```
+
+```{r child = 'sections/02-data.Rmd'}
+```
+
+```{r child = 'sections/03-methods.Rmd'}
+```
+
+```{r child = 'sections/04-analysis.Rmd'}
+```
+
+```{r child = 'sections/05-results.Rmd'}
+```
+
+```{r child = 'sections/06-conclusion.Rmd'}
+```

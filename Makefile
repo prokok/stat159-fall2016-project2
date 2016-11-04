@@ -52,12 +52,12 @@ plsr: $(CS)/plsr-regression.R data/scaled-credit.csv data/scale-train-test.RData
 #Running all the regression scripts at once
 regressions: ols ridge lasso pcr plsr
 	
-	
-report: report/report.Rmd data/*.Rdata data/*.RData data/*.csv
-	cd report && Rscript -e 'library(rmarkdown); render('report.Rmd')'
+#Makeing report
+report: report/report.Rmd
+	cd report; Rscript -e '.libPaths(c("C:/Users/vlfgn/Documents/R/win-library/3.3", "C:/Users/vlfgn/Documents/R/win-library/3.3")); library(rmarkdown); render("report.Rmd")'
 
 slides: slides/report-slides.Rmd data/*.Rdata data/*.RData data/*.csv
-	cd slides && Rscript -e 'library(rmarkdown); render('report-slides.Rmd')'
+	cd slides; Rscript -e '.libPaths(c("C:/Users/vlfgn/Documents/R/win-library/3.3", "C:/Users/vlfgn/Documents/R/win-library/3.3")); library(rmarkdown); render('report-slides.Rmd')'
 
 session: $(CS)/session-info-script.R
 	cd $(CS) && Rscript -e 'library(rmarkdown); render('report-slides.Rmd')'

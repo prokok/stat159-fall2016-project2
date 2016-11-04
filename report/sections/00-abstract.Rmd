@@ -1,7 +1,4 @@
 ---
-title: "Stat159 Fall2016 Project2"
-author: "Jamie Stankiewiz, Philhoon Oh"
-date: "October 30, 2016"
 output: pdf_document
 ---
 

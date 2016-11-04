@@ -1,5 +1,5 @@
-#.libPaths(c("C:/Users/vlfgn/Documents/R/win-library/3.3", "C:/Users/vlfgn/Documents/R/win-library/3.3"))
-#library(pls)
+.libPaths(c("C:/Users/vlfgn/Documents/R/win-library/3.3", "C:/Users/vlfgn/Documents/R/win-library/3.3"))
+library(pls)
 
 library(pls)
 load('../../data/scale-train-test.RData')
