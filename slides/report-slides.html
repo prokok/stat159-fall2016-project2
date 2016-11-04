@@ -179,16 +179,12 @@
 
 <p><em>Shrinkage Methods</em></p>
 
-<p><em>shrinking the coefficients and the variance</em></p>
-
 <ul>
 <li>Ridge Regression</li>
 <li>Lasso Regression</li>
 </ul>
 
 <p><em>Dimension Reduction Methods</em></p>
-
-<p><em>getting rid of variables that aren&#39;t significant</em></p>
 
 <ul>
 <li>Principle Components Regression</li>
@@ -259,11 +255,22 @@ sum_reg</pre>
 
 <pre >## [1] 0.04635291</pre>
 
+</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Shrinkage Methods</h2></hgroup><article  id="shrinkage-methods">
+
+</article></slide><slide class=''><hgroup><h2>Shrinkage Methods</h2></hgroup><article  id="shrinkage-methods-1">
+
+<p><em>shrinking the coefficients and the variance</em></p>
+
+<ul>
+<li>Ridge Regression</li>
+<li>Lasso Regression</li>
+</ul>
+
+<p>using 10-fold cross validation on a test data set (of 100) to generate an optimal lambda value.</p>
+
 </article></slide><slide class=''><hgroup><h2>Ridge Regression</h2></hgroup><article  id="ridge-regression" class="smaller">
 
 <p><em>a shrinkage method</em></p>
-
-<p>Using 10-fold cross validation on a test data set (of 100) to generate an optimal lambda value.</p>
 
 <p>Optimal lambda value:</p>
 
@@ -283,8 +290,6 @@ sum_reg</pre>
 
 <p><em>a shrinkage method</em></p>
 
-<p>Using 10-fold cross validation on a test data set (of 100) to generate an optimal lambda value.</p>
-
 <p>Optimal lambda value:</p>
 
 <pre >## [1] 0.01</pre>
@@ -299,13 +304,24 @@ sum_reg</pre>
 
 <pre >## [1] 0.04748458</pre>
 
+</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Dimension Reduction Methods</h2></hgroup><article  id="dimension-reduction-methods">
+
+</article></slide><slide class=''><hgroup><h2>Dimension Reduction Methods</h2></hgroup><article  id="dimension-reduction-methods-1">
+
+<p><em>getting rid of variables that aren&#39;t significant</em></p>
+
+<ul>
+<li>PCR</li>
+<li>PLSR</li>
+</ul>
+
+<p>Uses 10 fold cross validation to determine how many components (predictors) have a signifciant effect on the response variable.</p>
+
 </article></slide><slide class=''><hgroup><h2>PCR</h2></hgroup><article  id="pcr" class="smaller">
 
 <p><em>a dimension reduction method</em></p>
 
-<p>Uses 10 fold cross validation to determine how many components (predictors) have a signifciant effect on the response variable.</p>
-
-<p>in this case, the number of components that are significant are to the regression (out of 11) is:</p>
+<p>in this case, the number of components that are significant to the regression (out of 11) is:</p>
 
 <pre >## [1] 11</pre>
 
@@ -320,8 +336,6 @@ sum_reg</pre>
 </article></slide><slide class=''><hgroup><h2>PLSR</h2></hgroup><article  id="plsr" class="smaller">
 
 <p><em>a dimension reduction method</em></p>
-
-<p>Uses 10 fold cross validation to determine how many components (predictors) have a signifciant effect on the response variable.</p>
 
 <p>in this case, the number of components that are significant to the regression (out of 11) is:</p>
 

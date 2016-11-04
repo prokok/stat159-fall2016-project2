@@ -79,14 +79,10 @@ scaled_credit[1:3,-1]
 
 _Shrinkage Methods_
 
-\smallfont _shrinking the coefficients and the variance_
-
 - Ridge Regression
 - Lasso Regression
 
 _Dimension Reduction Methods_
-
-\smallfont _getting rid of variables that aren't significant_
 
 - Principle Components Regression
 - Partial Least Squares Regression
@@ -129,11 +125,20 @@ full MSE (full data set):
 full_mse_ols
 ```
 
+# Shrinkage Methods
+
+## Shrinkage Methods
+
+_shrinking the coefficients and the variance_
+
+using 10-fold cross validation on a test data set (of 100) to generate an optimal lambda value.
+
+- Ridge Regression
+- Lasso Regression
+
 
 ## Ridge Regression {.smaller}
 _a shrinkage method_
-
-Using 10-fold cross validation on a test data set (of 100) to generate an optimal lambda value.
 ```{r, echo=FALSE}
 load('../data/ridge-regression.Rdata')
 ```
@@ -151,7 +156,6 @@ full_mse_ridge
 ## Lasso Regression {.smaller}
 _a shrinkage method_
 
-Using 10-fold cross validation on a test data set (of 100) to generate an optimal lambda value.
 ```{r, echo=FALSE}
 load('../data/lasso-regression.Rdata')
 ```
@@ -167,10 +171,21 @@ full_mse_lasso
 ```
 
 
+# Dimension Reduction Methods
+
+## Dimension Reduction Methods
+
+_getting rid of variables that aren't significant_
+
+Uses 10 fold cross validation to determine how many components (predictors) have a signifciant effect on the response variable. 
+
+- PCR
+- PLSR
+
+
 ## PCR {.smaller}
 _a dimension reduction method_
 
-Uses 10 fold cross validation to determine how many components (predictors) have a signifciant effect on the response variable. 
 ```{r, echo=FALSE, include=F}
 load('../data/pcr-regression.Rdata')
 library(pls)
@@ -192,7 +207,6 @@ full_mse_pcr
 ## PLSR {.smaller}
 _a dimension reduction method_
 
-Uses 10 fold cross validation to determine how many components (predictors) have a signifciant effect on the response variable. 
 ```{r, echo=F, include=F}
 load('../data/plsr-regression.Rdata')
 set.seed(0)
