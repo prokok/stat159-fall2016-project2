@@ -1,3 +1,10 @@
+---
+output: pdf_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(xtable)
+```
 #Data
 
   We first start out with the original data set: credit.csv from the book __An Introduction to Statistical Learning__ by James et al. We stored this data set in R as the variable credit. Credit initally contains 12 columns(categories or predictors).  However, we remove the first column because it just contains the row numbers of each row, which is irrelevant to our analysis, so we will remember to subset that part out of the data set in R before doing analysis.   
@@ -11,10 +18,17 @@
   
   The first 6 results of the standardized data set are shown below :
 
-```{r, echo = FALSE}
-  scaled_credit = read.csv("../../data/scaled-credit.csv")  
-  scaled_credit = scaled_credit[,-1]
-  head(scaled_credit)
+```{r echo = FALSE, results='asis'}
+  scaled_credit = read.csv("../../data/scaled-credit.csv")
+  scaled_credit2 = scaled_credit[,-1]
+  scaled_credit3 = scaled_credit2[,1:5]
+  x = xtable(head(scaled_credit3), digits=4)
+  print(x, comment=FALSE, type='latex', include.rownames = FALSE)
+  scaled_credit4 = scaled_credit2[,6:length(scaled_credit2)]
+  x = xtable(head(scaled_credit4), digits=4, ,caption = "First 6 results of Premodeling data processing results")
+  print(x, comment=FALSE, type='latex', include.rownames = FALSE)
+  
+  
 ```
 
   With this data, we are going to apply five regression methods:  OLS(Ordinary Least Squares), RR(ridge regression), LR(lasso regression), PCR(principle components regression) and PLSR(partial least squares regression).

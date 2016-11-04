@@ -33,7 +33,8 @@ test_mse_plsr = mean((pls.pred - y.test)^2)
 #6. Last but not least, refit the model on the full data set using the parameter chosen by cross-validation.
 ##  This fit will give you the "official" coefficient estimates.
 plsr_full = plsr(balance~., ncomp = M, data = scaled_credit)
-cof_plsr = plsr_full$coefficients[1:ncol(scaled_credit)-1,1,M]
+cof_plsr = t(as.data.frame(coef(plsr_full, ncomp = M, intercept = TRUE)))
+rownames(cof_plsr) = ''
 
 #full prediction
 pls.pred_full <- predict(pls.fit, scaled_credit, ncomp =M)

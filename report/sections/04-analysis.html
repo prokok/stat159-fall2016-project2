@@ -118,64 +118,919 @@ $(document).ready(function () {
 </div>
 
 
-<div id="method" class="section level1">
-<h1>Method</h1>
-<<<<<<< HEAD
-<p>For the project, we will analyze the given data with five different approaches: OLS(Ordinary Least Squares), RR(ridge regression), LR(lasso regression), PCR(principle components regression) and PLSR(partial least squares regression). Each approahes will be explained in details below.</p>
-<div id="olsordinary-least-square-method" class="section level3">
-<h3>1) OLS(Ordinary Least Square Method)</h3>
-=======
-<p>For the project, we will analyze the given data with five different approaches: OLS(Ordinary Least Squares), RR(ridge regression), LR(lasso regression), PCR(principle components regression) and PLSR(partial least squares regression).</p>
+<div id="analysis" class="section level1">
+<h1>Analysis</h1>
+<p>In analysis part, we will see the results of the each methods we applied to a given data set.</p>
 <div id="ordinary-least-square-methodols" class="section level3">
 <h3>1) Ordinary Least Square Method(OLS)</h3>
->>>>>>> ee56bd042edeac9b7b799d125b46d2ff2f7ca8a3
-<p><span class="math display">\[\\Y = \beta_{0} + \beta_{1}X_{1} + \beta_{2}X_{2} + \beta_{3}X_{3} + ... + \beta_{p}X_{p}\]</span><br />
-<span class="math display">\[\\RSS = \sum_{i=1}^{n} (y_{i} - \beta_{0} - \sum_{j=1}^{p}\beta_{j}x_{ij})^2\]</span></p>
-<p>Ordinary least squares(OLS) is estimataing parameters in a linear regression model by minimizing the sum of squares of the distance between observed responses and predicted responses. This approach is perfomed under certain assumptions: errors are finite, homoscedastic, uncorrelated, and normally distributed. Under these assumption OLS provides the minimum-variance and unbiased mean estimators.</p>
+<p>There are several steps in applying the Ordinary Least Square method.</p>
+<p>step1. Using the result from F-statistics, ruling out the qualitative variables that is not significant in identifying the response variable, balance.</p>
+
+<table border="1">
+<caption align="bottom">
+Anova analysis of gender &amp; Balance
+</caption>
+<tr>
+<th>
+</th>
+<th>
+Df
+</th>
+<th>
+Sum Sq
+</th>
+<th>
+Mean Sq
+</th>
+<th>
+F value
+</th>
+<th>
+Pr(&gt;F)
+</th>
+</tr>
+<tr>
+<td>
+gender
+</td>
+<td align="right">
+1.00
+</td>
+<td align="right">
+38891.91
+</td>
+<td align="right">
+38891.91
+</td>
+<td align="right">
+0.18
+</td>
+<td align="right">
+0.67
+</td>
+</tr>
+<tr>
+<td>
+Residuals
+</td>
+<td align="right">
+398.00
+</td>
+<td align="right">
+84301020.00
+</td>
+<td align="right">
+211811.61
+</td>
+<td align="right">
+</td>
+<td align="right">
+</td>
+</tr>
+</table>
+<table border="1">
+<caption align="bottom">
+Anova analysis of marriage &amp; Balance
+</caption>
+<tr>
+<th>
+</th>
+<th>
+Df
+</th>
+<th>
+Sum Sq
+</th>
+<th>
+Mean Sq
+</th>
+<th>
+F value
+</th>
+<th>
+Pr(&gt;F)
+</th>
+</tr>
+<tr>
+<td>
+marriage
+</td>
+<td align="right">
+1.00
+</td>
+<td align="right">
+2714.77
+</td>
+<td align="right">
+2714.77
+</td>
+<td align="right">
+0.01
+</td>
+<td align="right">
+0.91
+</td>
+</tr>
+<tr>
+<td>
+Residuals
+</td>
+<td align="right">
+398.00
+</td>
+<td align="right">
+84337197.14
+</td>
+<td align="right">
+211902.51
+</td>
+<td align="right">
+</td>
+<td align="right">
+</td>
+</tr>
+</table>
+<table border="1">
+<caption align="bottom">
+Anova analysis of student &amp; Balance
+</caption>
+<tr>
+<th>
+</th>
+<th>
+Df
+</th>
+<th>
+Sum Sq
+</th>
+<th>
+Mean Sq
+</th>
+<th>
+F value
+</th>
+<th>
+Pr(&gt;F)
+</th>
+</tr>
+<tr>
+<td>
+student
+</td>
+<td align="right">
+1.00
+</td>
+<td align="right">
+5658372.27
+</td>
+<td align="right">
+5658372.27
+</td>
+<td align="right">
+28.62
+</td>
+<td align="right">
+0.00
+</td>
+</tr>
+<tr>
+<td>
+Residuals
+</td>
+<td align="right">
+398.00
+</td>
+<td align="right">
+78681539.64
+</td>
+<td align="right">
+197692.31
+</td>
+<td align="right">
+</td>
+<td align="right">
+</td>
+</tr>
+</table>
+<p>As you can see in the anova tables, only student variable is signifant in evaluating the response variable balance. Thus, we are ruling out ethnicity, gender, and marrage variables.</p>
+<p>step2. Apply the OLS on our training dataset on selected predictor variables: income, limit, rating, cards, ages, eduction, student</p>
+<!-- html table generated in R 3.3.1 by xtable 1.8-2 package -->
+<!-- Thu Nov 03 20:31:52 2016 -->
+<table border="1">
+<caption align="bottom">
+MODEL1 using selected predictor variables: income, limit, rating, cards, ages, education, student
+</caption>
+<tr>
+<th>
+</th>
+<th>
+Estimate
+</th>
+<th>
+Std. Error
+</th>
+<th>
+t value
+</th>
+<th>
+Pr(&gt;|t|)
+</th>
+</tr>
+<tr>
+<td align="right">
+(Intercept)
+</td>
+<td align="right">
+-0.0021
+</td>
+<td align="right">
+0.0124
+</td>
+<td align="right">
+-0.1680
+</td>
+<td align="right">
+0.8667
+</td>
+</tr>
+<tr>
+<td align="right">
+income
+</td>
+<td align="right">
+-0.5940
+</td>
+<td align="right">
+0.0211
+</td>
+<td align="right">
+-28.1295
+</td>
+<td align="right">
+0.0000
+</td>
+</tr>
+<tr>
+<td align="right">
+limit
+</td>
+<td align="right">
+1.0702
+</td>
+<td align="right">
+0.1919
+</td>
+<td align="right">
+5.5779
+</td>
+<td align="right">
+0.0000
+</td>
+</tr>
+<tr>
+<td align="right">
+rating
+</td>
+<td align="right">
+0.2676
+</td>
+<td align="right">
+0.1923
+</td>
+<td align="right">
+1.3917
+</td>
+<td align="right">
+0.1651
+</td>
+</tr>
+<tr>
+<td align="right">
+cards
+</td>
+<td align="right">
+0.0538
+</td>
+<td align="right">
+0.0150
+</td>
+<td align="right">
+3.5954
+</td>
+<td align="right">
+0.0004
+</td>
+</tr>
+<tr>
+<td align="right">
+age
+</td>
+<td align="right">
+-0.0078
+</td>
+<td align="right">
+0.0127
+</td>
+<td align="right">
+-0.6174
+</td>
+<td align="right">
+0.5374
+</td>
+</tr>
+<tr>
+<td align="right">
+education
+</td>
+<td align="right">
+-0.0115
+</td>
+<td align="right">
+0.0127
+</td>
+<td align="right">
+-0.9051
+</td>
+<td align="right">
+0.3662
+</td>
+</tr>
+<tr>
+<td align="right">
+student
+</td>
+<td align="right">
+0.2764
+</td>
+<td align="right">
+0.0129
+</td>
+<td align="right">
+21.4850
+</td>
+<td align="right">
+0.0000
+</td>
+</tr>
+</table>
+<p>This also enables us to identify the optimal predictors to predict the balance: income, limit, cards, students.</p>
+<p>Step3. Using the result from step2, apply linear regression model on opitmal predictor variables to estimate the balance: income, limit, cards, student. Figure 1 shows the residual plot of OLS on test dataset.</p>
+<!-- html table generated in R 3.3.1 by xtable 1.8-2 package -->
+<!-- Thu Nov 03 20:31:52 2016 -->
+<table border="1">
+<caption align="bottom">
+MODEL2 using Optimal predictor variables: income, limitm cards, student
+</caption>
+<tr>
+<th>
+</th>
+<th>
+Estimate
+</th>
+<th>
+Std. Error
+</th>
+<th>
+t value
+</th>
+<th>
+Pr(&gt;|t|)
+</th>
+</tr>
+<tr>
+<td align="right">
+(Intercept)
+</td>
+<td align="right">
+-0.0021
+</td>
+<td align="right">
+0.0124
+</td>
+<td align="right">
+-0.1676
+</td>
+<td align="right">
+0.8670
+</td>
+</tr>
+<tr>
+<td align="right">
+income
+</td>
+<td align="right">
+-0.5946
+</td>
+<td align="right">
+0.0210
+</td>
+<td align="right">
+-28.3296
+</td>
+<td align="right">
+0.0000
+</td>
+</tr>
+<tr>
+<td align="right">
+limit
+</td>
+<td align="right">
+1.3361
+</td>
+<td align="right">
+0.0203
+</td>
+<td align="right">
+65.9319
+</td>
+<td align="right">
+0.0000
+</td>
+</tr>
+<tr>
+<td align="right">
+cards
+</td>
+<td align="right">
+0.0666
+</td>
+<td align="right">
+0.0122
+</td>
+<td align="right">
+5.4648
+</td>
+<td align="right">
+0.0000
+</td>
+</tr>
+<tr>
+<td align="right">
+student
+</td>
+<td align="right">
+0.2764
+</td>
+<td align="right">
+0.0128
+</td>
+<td align="right">
+21.5288
+</td>
+<td align="right">
+0.0000
+</td>
+</tr>
+</table>
+<p>Step4. Identify the best model.</p>
+<table border="1">
+<tr>
+<th>
+Adjusted.R.Square
+</th>
+<th>
+Value
+</th>
+</tr>
+<tr>
+<td>
+Model1
+</td>
+<td align="right">
+0.9537
+</td>
+</tr>
+<tr>
+<td>
+Model2
+</td>
+<td align="right">
+0.9537
+</td>
+</tr>
+</table>
+<p>To identify the best OLS model. we are going to compare the Adjusted R square of both linear models. Model1, using selected predictor yields the 0.95371. Model2 using optimal predictor yields 0.95366. Therefore, the second model using optimal predictors is the best OLS model because it uses few variables but produces almost same Adjusted R square value as the first model.</p>
+<p>Step5. Apply the best model to calculate the “official coefficients”</p>
+<table border="1">
+<tr>
+<th>
+(Intercept)
+</th>
+<th>
+income
+</th>
+<th>
+limit
+</th>
+<th>
+rating
+</th>
+<th>
+cards
+</th>
+<th>
+age
+</th>
+<th>
+education
+</th>
+<th>
+student
+</th>
+<th>
+gender
+</th>
+<th>
+marriage
+</th>
+<th>
+asian
+</th>
+<th>
+caucasian
+</th>
+</tr>
+<tr>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-0.6009
+</td>
+<td align="right">
+1.3387
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+0.2807
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+0.0000
+</td>
+</tr>
+</table>
 </div>
-<div id="shrinkage-methods" class="section level2">
-<h2>Shrinkage Methods</h2>
-<p>Shrinkage Methods starts with fitting a modeling with all p predictors. However, it forces the estimated coefficients to be close to zero or to be zero. Also, it requires the data to be standardized before applying the method. There are two methods of shrinkage methods: Ridge Regression Method, and Lasso Regression Method. Depending on the method, some of the cofficients forced to be estimated to be exactly zero, which is the case of Lasso Regression. Thus, shrinkage Method does variable selection.</p>
 <div id="ridge-regressionrr" class="section level3">
 <h3>2) Ridge Regression(RR)</h3>
-<p><span class="math display">\[\sum_{i=1}^{n} (y_{i} - \beta_{0} - \sum_{j=1}^{p}\beta_{j}x_{ij})^2 + \lambda\sum_{j=1}^{p}\beta_{j}^2 = RSS + \lambda\sum_{j=1}^{p}\beta_{j}^2\]</span></p>
-<p><span class="math display">\[minimize_{\beta} \{\sum_{i=1}^{n} (y_{i} - \beta_{0} - \sum_{j=1}^{p}\beta_{j}x_{ij})^2\}\quad subject\  to\quad \lambda\sum_{j=1}^{p}\beta_{j}^2 \leq s\]</span></p>
-<p><span class="math display">\[where\ every\ value\ of\ \lambda\ there\ is\ a\ corresponding\ s\]</span></p>
-<p>Equations above are two different representations of Ridge Regression. The first equation explains the similarity between OLS regression and Ridge Regression. Ridge regression calculates the coefficients by minimizing <span class="math inline">\(RSS + \lambda\sum_{j=1}^{p}\beta_{j}^2\)</span>. If <span class="math inline">\(\lambda\)</span>, the tunning parameter, is equal to zero, the estimated coefficients will be same as those of OLS regression.</p>
-<p>The advantage of Ridge regression over OLS regression is bias-variance trade-off. As <span class="math inline">\(\lambda\)</span> increases, the estimated coefficients forced to be close to zero, leading bias estimators and decreasing the variance. As <span class="math inline">\(\lambda\)</span> decreases, the estimated coefficients do not have to be close to zero, leading less - bias estimators and increasing the variance.</p>
+<p>First, using ten-fold cross-validation, Ridge Regression selects the best model when <span class="math inline">\(\lambda =\ 0.01\)</span> and cross-validation plot is shown in Figure 2.</p>
+<p>After finding out the best model, applying the best model to our test set to compute the Test Mean Square Error, which is 0.0479811, later use this figure to compare different method in the result section.</p>
+<p>Lastly, using the best model we found, apply it to full data set to the “official coefficients”</p>
+<table border="1">
+<tr>
+<th>
+(Intercept)
+</th>
+<th>
+income
+</th>
+<th>
+limit
+</th>
+<th>
+rating
+</th>
+<th>
+cards
+</th>
+<th>
+age
+</th>
+<th>
+education
+</th>
+<th>
+gender
+</th>
+<th>
+student
+</th>
+<th>
+marriage
+</th>
+<th>
+asian
+</th>
+<th>
+caucasian
+</th>
+</tr>
+<tr>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-0.5687
+</td>
+<td align="right">
+0.7187
+</td>
+<td align="right">
+0.5931
+</td>
+<td align="right">
+0.0443
+</td>
+<td align="right">
+-0.0254
+</td>
+<td align="right">
+-0.0059
+</td>
+<td align="right">
+-0.0107
+</td>
+<td align="right">
+0.2732
+</td>
+<td align="right">
+-0.0110
+</td>
+<td align="right">
+0.0164
+</td>
+<td align="right">
+0.0110
+</td>
+</tr>
+</table>
 </div>
 <div id="lasso-regressionlr" class="section level3">
 <h3>3) Lasso Regression(LR)</h3>
-<p><span class="math display">\[\sum_{i=1}^{n} (y_{i} - \beta_{0} - \sum_{j=1}^{p}\beta_{j}x_{ij})^2 + \lambda\sum_{j=1}^{p}\left|\beta_{j}\right| = RSS + \lambda\sum_{j=1}^{p}\left|\beta_{j}\right|\]</span></p>
-<p><span class="math display">\[minimize_{\beta} \{\sum_{i=1}^{n} (y_{i} - \beta_{0} - \sum_{j=1}^{p}\beta_{j}x_{ij})^2\}\quad subject\  to\quad \lambda\sum_{j=1}^{p}\left|\beta_{j}\right| \leq s\]</span></p>
-<p><span class="math display">\[where\ every\ value\ of\ \lambda\ there\ is\ a\ corresponding\ s\]</span></p>
-<p>Equations above are two different representations of Lasso Regression. The first equation explains the similarity between OLS regression, Ridge regression and Lasso regression. Lasso regression calculates the coefficients by minimizing <span class="math inline">\(RSS + \lambda\sum_{j=1}^{p}\left|\beta_{j}\right|\)</span>. If <span class="math inline">\(\lambda\)</span>, the tunning parameter, is equal to zero, the estimated coefficients will be same as those of OLS regression.</p>
-<p>Lasso regression has the same advantage over OLS regression as Ridge regression does: bias-variance trade-off. However, as <span class="math inline">\(\lambda\)</span> increases, the Lasso regression forces esimates to be exactly equal to zero. Thus, Lasso shrinkage method performs the variable selection and a model generated by Lasso regression is easier to interpret than a model generated by Ridge regression. Lasso regression involves only a subset of the variables referred as sparse-model.</p>
+<p>Lasso Regression does exactly same procedure as Ridge Regression. It selecst the best model when <span class="math inline">\(\lambda =\ 0.01\)</span> and cross-validation plot is shown in Figure 3.</p>
+<p>After finding out the best model, applying the best model to our test set to compute the Test Mean Square Error, which is 0.0515181, later use this figure to compare different method in the result section.</p>
+<p>Lastly, using the best model we found, apply it to full data set to the “official coefficients”</p>
+<table border="1">
+<tr>
+<th>
+(Intercept)
+</th>
+<th>
+income
+</th>
+<th>
+limit
+</th>
+<th>
+rating
+</th>
+<th>
+cards
+</th>
+<th>
+age
+</th>
+<th>
+education
+</th>
+<th>
+gender
+</th>
+<th>
+student
+</th>
+<th>
+marriage
+</th>
+<th>
+asian
+</th>
+<th>
+caucasian
+</th>
+</tr>
+<tr>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-0.5517
+</td>
+<td align="right">
+0.9250
+</td>
+<td align="right">
+0.3679
+</td>
+<td align="right">
+0.0450
+</td>
+<td align="right">
+-0.0167
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+0.2668
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+0.0000
+</td>
+</tr>
+</table>
 </div>
-</div>
-<div id="dimension-reduction-methods" class="section level2">
-<h2>Dimension Reduction Methods</h2>
-<p><span class="math display">\[\\Z_{m} = \sum_{j=1}^{p}\phi_{jm}X_{j}\]</span> <span class="math display">\[where\quad \sum_{j=1}^{p}\phi_{jm}^2\ =\ 1 \]</span> <span class="math display">\[\\y_{i} = \theta_{0} + \sum_{m=1}^{M}\theta_{m}z_{im} + \varepsilon_{i} \quad i\ = \ 1, ..., n\]</span> <span class="math display">\[\sum_{m=1}^{M}\theta_{m}z_{im}\ =\ \sum_{m=1}^{M}\theta_{m}\sum_{j=1}^{p}\phi_{jm}x_{ij}\ =\ \sum_{j=1}^{p}\sum_{m=1}^{M}\theta_{m}\phi_{jm}x_{ij}\ =\ \sum_{j=1}^{p}\beta_{j}x_{ij}\]</span> <span class="math display">\[where\quad \beta_{j}\  =\ \sum_{m=1}^{M}\theta_{m}\phi_{jm}\]</span></p>
-<p>Dimenstion reduction method is transforming the predictors,<span class="math inline">\(\\Z_{m} = \sum_{j=1}^{p}\phi_{jm}X_{j}\)</span> and fit a least square models using transformed variables, <span class="math inline">\(\\y_{i} = \theta_{0} + \sum_{m=1}^{M}\theta_{m}z_{im} + \varepsilon_{i} \quad i\ = \ 1, ..., n\)</span>. This approach is used when there is a large number of predictor variables. By computing M different linear combinations, transforming the predictors, we can project p predictors into a M-dimensional subspace where M is less than or equal to p. Then M projections can be used as predictors to fit a linear model by ordinary least squares.</p>
-<p>If M is equal to p, there is no dimention reduction occurs, yielding the same result equivalent to performing ordinary least squares on the p predictors.</p>
-<p>There are two major dimension reduction methods: principal components regression and partial least squares regression. Those methods work in two steps. First step is transforming the predictors, <span class="math inline">\(\\Z_{m} = \sum_{j=1}^{p}\phi_{jm}X_{j}\)</span>. Second steop is selecting <span class="math inline">\(\phi_{jm}\)</span>.</p>
 <div id="principle-components-regressionpcr" class="section level3">
 <h3>4) Principle Components Regression(PCR)</h3>
-<p>Principle Components Regression is based on the principal component analysis. Principal components analysis extracts the most variation of datasets to reduce the dimension of the data.</p>
-<p>Find the first principal component <span class="math inline">\(Z_{1}\)</span> <span class="math display">\[Z_{1}\ =\ \phi_{11}X_{1} + \phi_{21}X_{2} + ... + \phi_{p1}X_{p}\]</span> <span class="math inline">\(Z_{1}\)</span> is the first factor maximizing the dispersion of obervations.</p>
-<p>Then find the second principal component <span class="math inline">\(Z_{2}\)</span> <span class="math display">\[Z_{2}\ =\ \phi_{12}X_{1} + \phi_{22}X_{2} + ... + \phi_{p2}X_{p}\]</span> <span class="math inline">\(Z_{2}\)</span> is the second factor maximizing the dispersion of observations as well as orthogonal to the first factor.</p>
-<p>By doing this process iteratively up to desired M, it gives us the Principal Components Regression on a given M space.</p>
-<p>Principle Components Regression shows a linear regression between the data on the factors that are correlated. It enables us to solve the colinearity between preditor variables and dimensionality of the given data. That is, the number of samples, n, does not necessarily bigger than the number of predictor variables.</p>
+<p>Principle Component Regression selecst the best model when <span class="math inline">\(M =\ 11\)</span> where M represents the compression, reduced dimension and cross-validation plot is shown in Figure 4.</p>
+<p>After finding out the best model, applying the best model to our test set to compute the Test Mean Square Error, which is 0.0474722, later use this figure to compare different methods in the result section.</p>
+<p>Lastly, using the best model we found, apply it to full data set to the “official coefficients”</p>
+<table border="1">
+<tr>
+<th>
+(Intercept)
+</th>
+<th>
+income
+</th>
+<th>
+limit
+</th>
+<th>
+rating
+</th>
+<th>
+cards
+</th>
+<th>
+age
+</th>
+<th>
+education
+</th>
+<th>
+gender
+</th>
+<th>
+student
+</th>
+<th>
+marriage
+</th>
+<th>
+asian
+</th>
+<th>
+caucasian
+</th>
+</tr>
+<tr>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-0.5982
+</td>
+<td align="right">
+0.9584
+</td>
+<td align="right">
+0.3825
+</td>
+<td align="right">
+0.0529
+</td>
+<td align="right">
+-0.0230
+</td>
+<td align="right">
+-0.0075
+</td>
+<td align="right">
+-0.0116
+</td>
+<td align="right">
+0.2782
+</td>
+<td align="right">
+-0.0091
+</td>
+<td align="right">
+0.0160
+</td>
+<td align="right">
+0.0110
+</td>
+</tr>
+</table>
 </div>
 <div id="partial-least-squares-regressionplsr" class="section level3">
 <h3>5) Partial Least Squares Regression(PLSR)</h3>
-<p>Like Principle Componenet Regression, Partial Least Square Regression calculuates <span class="math inline">\(Z_{1}, .. ,Z_{m}\)</span> and fit a linear model on those transformed predictors.However,Partial Least Square Regression takes into account the structure of both the explanatory and dependent variable unlike Principle Component Regression. That being said, it uses response variable Y to find directions that help explaining both the reponse and the predictors.</p>
-<p>Find the first direction <span class="math inline">\(Z_{1}\)</span> <span class="math display">\[Z_{1}\ =\ \phi_{11}X_{1} + \phi_{21}X_{2} + ... + \phi_{p1}X_{p}\]</span></p>
-<p><span class="math display">\[by\ setting\ \phi_{j1} \ =\ \beta_{j}\quad where\ \beta{j}\ is\ from\ simple\ linear\ regression\ Y\ onto\ X_{j}\ and\ j = 1,...,p\]</span></p>
-<p>The first direction <span class="math inline">\(Z_{1}\)</span> consequently places the weights on each predictor variables proportional to its correlation with the resoponse variable.</p>
-<p>To find the second direction <span class="math inline">\(Z_{2}\)</span>, we need to regressing each variable on <span class="math inline">\(Z_{1}\)</span> and take the residuals. Then compute the <span class="math inline">\(Z_{2}\)</span> with the residuals that are orthogonal to the original data by applying the same procedure to compute the first directon <span class="math inline">\(Z_{1}\)</span></p>
-<p>By doing this process iteratively up to desired M, it gives us the Partial Least Squares Regression on a given M space.</p>
-</div>
+<p>Principle Component Regression selecst the best model when <span class="math inline">\(M =\ 8\)</span> where M represents the compression, reduced dimension and cross-validation plot is shown in Figure 5.</p>
+<p>After finding out the best model, applying the best model to our test set to compute the Test Mean Square Error, which is 0.0464641, later use this figure to compare different methods in the result section.</p>
+<p>Lastly, using the best model we found, apply it to full data set to the “official coefficients”</p>
+<table border="1">
+<tr>
+<th>
+(Intercept)
+</th>
+<th>
+income
+</th>
+<th>
+limit
+</th>
+<th>
+rating
+</th>
+<th>
+cards
+</th>
+<th>
+age
+</th>
+<th>
+education
+</th>
+<th>
+gender
+</th>
+<th>
+student
+</th>
+<th>
+marriage
+</th>
+<th>
+asian
+</th>
+<th>
+caucasian
+</th>
+</tr>
+<tr>
+<td align="right">
+0.0000
+</td>
+<td align="right">
+-0.5983
+</td>
+<td align="right">
+0.8525
+</td>
+<td align="right">
+0.4874
+</td>
+<td align="right">
+0.0478
+</td>
+<td align="right">
+-0.0192
+</td>
+<td align="right">
+-0.0131
+</td>
+<td align="right">
+-0.0108
+</td>
+<td align="right">
+0.2820
+</td>
+<td align="right">
+-0.0058
+</td>
+<td align="right">
+0.0148
+</td>
+<td align="right">
+0.0095
+</td>
+</tr>
+</table>
+
+
+
+
+
 </div>
 </div>
 

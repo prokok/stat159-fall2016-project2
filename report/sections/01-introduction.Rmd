@@ -1,3 +1,6 @@
+---
+output: pdf_document
+---
 #Introduction
 
   The goal of this project is to perform alternate regression analyses to find the best model that produces the best response variable (balance).  

@@ -6,8 +6,10 @@ scaled_credit = scaled_credit[,-1]
 y.test = scaled_credit_test$balance
 y.test_full = scaled_credit$balance
 
+
+
 #1 Run the corresponding fitting function on the train set using ten-fold cross-validation. 
-set.seed(0)
+set.seed(1141242131)
 pcr.fit <- pcr(balance~., data = scaled_credit_train, validation='CV', scale = FALSE)
 
 
@@ -34,8 +36,7 @@ test_mse_pcr = mean((pcr.pred - y.test)^2)
 #6. Last but not least, refit the model on the full data set using the parameter chosen by cross-validation.
 ##  This fit will give you the "official" coefficient estimates.
 pcr_full = pcr(balance~., ncomp = M, data = scaled_credit)
-cof_pcr = t(as.data.frame(coef(pcr_full, ncomp = M, intercept = TRUE)))
-rownames(cof_pcr) = ''
+cof_pcr = pcr_full$coefficients[1:ncol(scaled_credit)-1,1,M] 
 
 #full prediction
 pcr.pred_full <- predict(pcr.fit, scaled_credit, ncomp =M)
