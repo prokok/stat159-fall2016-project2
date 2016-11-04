@@ -4,9 +4,6 @@ output: pdf_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(xtable)
-require(gglot2)
-require(reshape)
-require(zoo)
 load("../../data/ols-regression.RData")
 load("../../data/ridge-regression.RData")
 load("../../data/lasso-regression.RData")
