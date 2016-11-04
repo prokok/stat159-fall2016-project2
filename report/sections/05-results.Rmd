@@ -1,0 +1,22 @@
+# Results
+```{r, echo=FALSE}
+
+```
+
+From analyzing each regression model, we were able to come up with the MSE values.  And by comparing them, we can determine which method produced the smallest MSE value, and therefore the best regression model.
+
+
+Matrix of MSE values of each regression is shown here:
+```{r, echo=F}
+names <- c('OLS', 'ridge', 'lasso', 'PCR', 'PLSR')
+mse_values <- c(test_mse_ols, test_mse_ridge, test_mse_lasso, test_mse_pcr, test_mse_plsr)
+results <- as.data.frame(matrix(c(mse_values), nrow=1))
+colnames(results) <- names
+results
+```
+
+The regression that produced the smallest MSE value is:
+```{r, echo=TRUE}
+results[which(results==min(results))]
+```
+
