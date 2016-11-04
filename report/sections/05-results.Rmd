@@ -1,10 +1,12 @@
-<<<<<<< HEAD
 ---
 output: pdf_document
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(xtable)
+require(gglot2)
+require(reshape)
+require(zoo)
 load("../../data/ols-regression.RData")
 load("../../data/ridge-regression.RData")
 load("../../data/lasso-regression.RData")
@@ -12,33 +14,7 @@ load("../../data/pcr-regression.RData")
 load("../../data/plsr-regression.RData")
 ```
 
-<<<<<<< HEAD
-=======
-# Results
-```{r, echo=FALSE}
-
-```
-
-From analyzing each regression model, we were able to come up with the MSE values.  And by comparing them, we can determine which method produced the smallest MSE value, and therefore the best regression model.
-
-
-Matrix of MSE values of each regression is shown here:
-```{r, echo=F}
-names <- c('OLS', 'ridge', 'lasso', 'PCR', 'PLSR')
-mse_values <- c(test_mse_ols, test_mse_ridge, test_mse_lasso, test_mse_pcr, test_mse_plsr)
-results <- as.data.frame(matrix(c(mse_values), nrow=1))
-colnames(results) <- names
-results
-```
-
-The regression that produced the smallest MSE value is:
-```{r, echo=TRUE}
-results[which(results==min(results))]
-```
->>>>>>> 4d4eb5bc55b9601383affe2f4f61131502a0af5a
-=======
 #Results
->>>>>>> philhoon
 
   From analyzing each regression model, we were able to come up with the Test MSE value. By comparing them, we can determine which method produced the smallest TEST MSE value, and therefore the best regression model.
 
@@ -58,7 +34,26 @@ results[which(results==min(results))]
   Therefore, we can conclude that among all the regression methods we considered, `r names[which(mse_values == min(mse_values))]` yields the smallest TEST MSE and thus is the best model for our given dataset.
   
   
+  Lastly, we are going to compare the each official coefficients of regression methods. By plotting trend lines of the official coefficients. We can easily see that limit has the most influential aspect on balance on all regression method. Trend line plot is shown below.
   
-```{r}
+```{r echo=FALSE}
+  ols_cof = as.data.frame(t(as.data.frame(cof_ols)))
+  ridge_cof = as.data.frame(t(as.data.frame(cof_ridge)))
+  lasso_cof = as.data.frame(t(as.data.frame(cof_lasso)))
+  pcr_cof = as.data.frame(cof_pcr)
+  plsr_cof = as.data.frame(cof_plsr)
   
-```
+  off_cof = as.data.frame(t(rbind(ols_cof,ridge_cof,lasso_cof,pcr_cof,plsr_cof)))
+  names(off_cof) = c("OLS", "RR", "LASSO", "PCR", "PLSR")
+  
+  
+plot(off_cof[,1], type = "l", xaxt = "n", ylab="valeus", xlab = ' ', col = "red", lwd=2, main = "Trend lines of the coefficients of regression methods")
+  lines(off_cof[,2], type = "l", col = "green", lwd=2)
+  lines(off_cof[,3], type = "l", col = "blue", lwd =2 )
+  lines(off_cof[,4], type = "l", col = "purple", lwd =2)
+  lines(off_cof[,5], type = "l", col = "orange", lwd =2)
+  axis(1, at=1:12, labels=rownames(off_cof), las=2)
+  legend("topright", legend =  c("OLS", "RR", "LASSO", "PCR", "PLSR"), lty = 1, lwd=2, col = c("red","green","blue","purple","orange"))
+```  
+
+
