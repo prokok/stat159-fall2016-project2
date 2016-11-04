@@ -1,36 +1,136 @@
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(xtable)
+```
+
 #Analysis
 
-  For the project, we will analyze the given data with five different approaches: OLS(Ordinary Least Squares), RR(ridge regression), LR(lasso regression), PCR(principle components regression) and PLSR(partial least squares regression).
-
+ In analysis part, we will see the results of the each methods we applied to a given data set.
 
 ###1) Ordinary Least Square Method(OLS)  
 
+```{r echo = FALSE}
+load("../../data/ols-regression.RData")
+```
 
-$$\\Y = \beta_{0} + \beta_{1}X_{1} + \beta_{2}X_{2} + \beta_{3}X_{3} + ... + \beta_{p}X_{p}$$   
-$$\\RSS = \sum_{i=1}^{n} (y_{i} - \beta_{0} - \sum_{j=1}^{p}\beta_{j}x_{ij})^2$$
-
-
-  Ordinary least squares(OLS) is estimataing parameters in a linear regression model by minimizing the sum of squares of the distance between observed reponses and predcited reponses. This approach is perfomed under certain assumptions: errors are finite, homoscedastic, uncorrelated, and normally distributed. Under these assumption OLS provides the minimum-variance and unbiased mean estimators. 
+  There are several steps in applying the Ordinary Least Square method.
   
-  
-## Shrinkage Methods
+  step1. Using the result from F-statistics, ruling out the qualitative variables that is not significant in identifying the response variable, balance.
 
-  Shrinkage Methods starts with fitting a modeling with all p predictors. However, it forces the estimated coefficients to be close to zero or to be zero. Also, it requires the data to be standardized before applying the method. There are two methods of shrinkage methods: Ridge Regression Method, and Lasso Regression Method. Depending on the method, some of the cofficients forced to be estimated to be exactly zero, which is the case of Lasso Regression. Thus, shrinkage Method does variable selection.
+```{r echo = FALSE, results='asis'}
+load( "../../data/anova-qual.RData")
+x = xtable(anova_ethnicity, digits=2,"Anova analysis of ethnicity & Balance")
+print(x, comment=FALSE, type="html")
+x = xtable(anova_gender, digits=2,"Anova analysis of gender & Balance")
+print(x, comment=FALSE, type="html")
+x = xtable(anova_marriage, digits=2,"Anova analysis of marriage & Balance")
+print(x, comment=FALSE, type="html")
+x = xtable(anova_student, digits=2,"Anova analysis of student & Balance")
+print(x, comment=FALSE, type="html")
+```
+  
+  As you can see in the anova tables, only student variable is signifant in evaluating the response variable balance. Thus, we are ruling out ethnicity, gender, and marrage variables.
+  
+  step2. Apply the OLS on our training dataset on selected predictor variables: income, limit, rating, cards, ages, eduction, student
+  
+```{r echo = FALSE, results='asis'}
+x = xtable(reg2, digits=4, "MODEL1 using selected predictor variables: income, limit, rating, cards, ages, education, student")
+print(x, commnet=FALSE, type='html')
+```
+
+  This also enables us to identify the optimal predictors to predict the balance: income, limit, cards, students.
+  
+  Step3. Using the result from step2, apply linear regression model on opitmal predictor variables to estimate the balance: income, limit, cards, student.
+
+```{r echo = FALSE, results='asis'}
+x = xtable(reg3, digits=4, "MODEL2 using Optimal predictor variables: income, limitm cards, student")
+print(x, commnet=FALSE, type='html')
+
+```
+
+  Step4. Identify the best model.
+  
+```{r echo = FALSE, results='asis'}
+  k = data.frame(Adjusted.R.Square= c("Model1","Model2"), Value = c(summary(reg2)$adj.r.squared,summary(reg3)$adj.r.squared))
+  x=xtable(k,digits=4, captions = "Adjusted R Square of Model1 and Model2")
+  print(x, comment=FALSE, type = 'html')
+
+```
+  
+  To identify the best OLS model. we are going to compare the Adjusted R square of both linear models. Model1, using selected predictor yields the `r round(summary(reg2)$adj.r.squared,5)`. Model2 using optimal predictor yields `r round(summary(reg3)$adj.r.squared,5)`. Therefore, the second model using optimal predictors is the best OLS model because it uses few variables but produces almost same Adjusted R square value as the first model. 
   
 
 ###2) Ridge Regression(RR)
 
-$$\sum_{i=1}^{n} (y_{i} - \beta_{0} - \sum_{j=1}^{p}\beta_{j}x_{ij})^2 + \lambda\sum_{j=1}^{p}\beta_{j}^2 = RSS + \lambda\sum_{j=1}^{p}\beta_{j}^2$$
+  
+```{r echo = FALSE}
+load("../../data/ridge-regression.RData")
+```
 
-$$minimize_{\beta} \{\sum_{i=1}^{n} (y_{i} - \beta_{0} - \sum_{j=1}^{p}\beta_{j}x_{ij})^2\}\quad subject\  to\quad \lambda\sum_{j=1}^{p}\beta_{j}^2 \leq s$$
+  
+  First, using ten-fold cross-validation, Ridge Regression selects the best model when $\lambda\ =\$ `r par_ridge` 
 
-$$where\ every\ value\ of\ \lambda\ there\ is\ a\ corresponding\ s$$
+#2. Saving list of models(saved in Rdata file at the end)
+list_models_ridge = cv.out
+
+
+#3. To select the best model:
+bestlambda = cv.out$lambda.min
+
+
+#4. Plot the cross-validation errors in terms of the tunning 
+##  parameter to visualize which parameter gives the "best" model:
+png(filename = "../../images/ridge-cross-validation-errors.png", width=800, height=600)
+plot(cv.out)
+dev.off()
+
+
+#5. Once you identify the "best" model, use the test set to compute the test Mean Square Error(test MSE)
+ridge.pred = predict(cv.out, s=bestlambda, newx =x_test)
+test_mse_ridge = mean(( ridge.pred -y_test)^2)
+
+
+#6. Last but not least, refit the model on the full data set using the parameter chosen by cross-validation.
+##  This fit will give you the "official" coefficient estimates.
+ridge_full = glmnet(x_full, y_full, alpha = 0, lambda = bestlambda
+                    , intercept = FALSE, standardize = FALSE)
+cof_ridge = predict(ridge_full, type = "coefficients", s = bestlambda)[1:length(scaled_credit),]
+
+
+#full prediction
+ridge.pred_full = predict(cv.out, s=bestlambda, newx = x_full)
+full_mse_ridge = mean((ridge.pred_full - y_full)^2)
+
+
+#saving the the best tunning parameter, list_models_ridge, test_mse_ridge, cof_ridge, full_mse_ridge
+par_ridge = bestlambda
+save(par_ridge,list_models_ridge, test_mse_ridge, cof_ridge, full_mse_ridge
+     , file = "../../data/ridge-regression.Rdata")
+
+#putting the result in the eda-output.txt
+sink(file = "../../data/eda-output.txt", append = TRUE)
+cat("\n\n")
+cat("<<Summary Statistics of Ridge-regression>>\n\n")
+cat("1. Test Mean Square Error\n")
+test_mse_ridge
+cat("\n")
+cat("2. Best Model\n")
+cat("lambda equals ", par_ridge, "\n")
+cat("\n")
+cat("3. Official Coefficient\n")
+cof_ridge
+cat("\n")
+sink()
+  
+  
   
   
   Equations above are two different representations of Ridge Regression. The first equation explains the similarity between OLS regression and Ridge Regression. Ridge regression calculates the coefficients by minimizing $RSS + \lambda\sum_{j=1}^{p}\beta_{j}^2$. If $\lambda$, the tunning parameter, is equal to zero, the estimated coefficients will be same as those of OLS regression. 
   
   The advantage of Ridge regression over OLS regression is bias-variance trade-off. As $\lambda$ increases, the estimated coefficients forced to be close to zero, leading bias estimators and decreasing the variance. As $\lambda$ decreases, the estimated coefficients do not have to be close to zero, leading less - bias estimators and increasing the variance. 
-  
+
+
+
 
 ###3) Lasso Regression(LR)
 
