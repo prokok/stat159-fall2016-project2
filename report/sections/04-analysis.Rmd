@@ -26,7 +26,7 @@ load("../../data/ols-regression.RData")
 
 
   STEP4.  To identify the best OLS model. we are going to compare the Adjusted R square of both linear models. Model1, using selected predictor yields the `r round(summary(reg2)$adj.r.squared,5)`. Model2 using optimal predictor yields `r round(summary(reg3)$adj.r.squared,5)`. Therefore, the second model using optimal predictors is the best OLS model because it uses few variables but produces almost same Adjusted R square value as the first model as shown in Table 6.
-  Lastly, using the best model we found, apply it to full data set to the "official coefficients", which is displayed at the end of analysis section.
+  Lastly, using the best model we found, apply it to full data set to the "official coefficients" as shown in the Table 8.
   
 ###2) Ridge Regression(RR)
 
@@ -40,7 +40,7 @@ load("../../data/ridge-regression.RData")
   
   After finding out the best model, applying the best model to our test set to compute the Test Mean Square Error, which is `r test_mse_ridge`, later use this figure to compare different method in the result section.
   
-  Lastly, using the best model we found, apply it to full data set to the "official coefficients", which is displayed at the end of analysis section.
+  Lastly, using the best model we found, apply it to full data set to the "official coefficients" as shown in the Table 8.
   
 
 ###3) Lasso Regression(LR)
@@ -54,7 +54,7 @@ load("../../data/lasso-regression.RData")
   
   After finding out the best model, applying the best model to our test set to compute the Test Mean Square Error, which is `r test_mse_lasso`, later use this figure to compare different method in the result section.
   
-  Lastly, using the best model we found, apply it to full data set to the "official coefficients", which is displayed at the end of analysis section.
+  Lastly, using the best model we found, apply it to full data set to the "official coefficients" as shown in the Table 8.
   
 ###4) Principle Components Regression(PCR)
 
@@ -66,7 +66,7 @@ load("../../data/pcr-regression.RData")
   
   After finding out the best model, applying the best model to our test set to compute the Test Mean Square Error, which is `r test_mse_pcr`, later use this figure to compare different methods in the result section.
   
-  Lastly, using the best model we found, apply it to full data set to the "official coefficients", which is displayed at the end of analysis section.
+  Lastly, using the best model we found, apply it to full data set to the "official coefficients" as shown in the Table 8.
   
 
 ###5) Partial Least Squares Regression(PLSR)
@@ -79,7 +79,7 @@ load("../../data/plsr-regression.RData")
   
   After finding out the best model, applying the best model to our test set to compute the Test Mean Square Error, which is `r test_mse_plsr`, later use this figure to compare different methods in the result section.
   
-  Lastly, using the best model we found, apply it to full data set to the "official coefficients", which is displayed at the end of analysis section.
+  Lastly, using the best model we found, apply it to full data set to the "official coefficients" as shown in the Table 8.
 
 
 
@@ -103,13 +103,13 @@ print(x, comment=FALSE, type="latex")
 
 
 ```{r echo = FALSE, results='asis'}
-x = xtable(reg2, digits=4, "MODEL1 using selected predictor variables: income, limit, rating, cards, ages, eduction, student")
+x = xtable(reg2, digits=4, caption = "MODEL1 using selected predictor variables: income, limit, rating, cards, ages, eduction, student")
 print(x, comment=FALSE, type='latex')
 
 ```
   
 ```{r echo = FALSE, results='asis'}
-x = xtable(reg3, digits=4, "MODEL2 using Optimal predictor variables: income, limitm cards, student")
+x = xtable(reg3, digits=4, caption = "MODEL2 using Optimal predictor variables: income, limitm cards, student")
 print(x, comment=FALSE, type='latex')
 
 ```
@@ -117,11 +117,10 @@ print(x, comment=FALSE, type='latex')
 ```{r echo = FALSE, results='asis'}
   k = data.frame(Adjusted.R.Square= c("Model1","Model2"),
                  Value = c(summary(reg2)$adj.r.squared,summary(reg3)$adj.r.squared))
-  x=xtable(k,digits=4, captions = "Adjusted R Square of Model1 and Model2")
-  print(x, comment=FALSE, type = 'latex', include.rownames =FALSE)
+  x=xtable(k,digits=4, caption = "Adjusted R Square of Model1 and Model2")
+  print(x, comment=FALSE, type = 'latex')
 
 ```
-  
   
   
   
@@ -132,6 +131,13 @@ print(x, comment=FALSE, type='latex')
   pcr_cof = as.data.frame(cof_pcr)
   plsr_cof = as.data.frame(cof_plsr)
   
+  off_cof = as.data.frame(t(rbind(ols_cof,ridge_cof,lasso_cof,pcr_cof,plsr_cof)))
+  names(off_cof) = c("OLS", "RR", "LASSO", "PCR", "PLSR")
+  
+  off_cof_xt = xtable(off_cof, digits =4, caption = "Official Coefficients of all Regression Methods")
+  print(off_cof_xt, comment=FALSE, type = 'latex')
+  
+   
 ```
 
 

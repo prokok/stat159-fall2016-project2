@@ -237,3 +237,17 @@ balance ~ income+limit+cards+student
   (Intercept)        income         limit         cards       student 
  8.657571e-16 -6.009409e-01  1.338677e+00  6.912279e-02  2.806761e-01 
 
+
+
+<<Summary Statistics of OLS>>
+
+1. Test Mean Square Error
+[1] 0.05005021
+
+2. Best Model
+balance ~ income+limit+cards+student
+
+3. Official Coefficient
+  (Intercept)        income         limit         cards       student 
+ 8.657571e-16 -6.009409e-01  1.338677e+00  6.912279e-02  2.806761e-01 
+
