@@ -299,7 +299,41 @@ sum_reg</pre>
 
 <pre >## [1] 0.04748458</pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-2"></article></slide>
+</article></slide><slide class=''><hgroup><h2>PCR</h2></hgroup><article  id="pcr" class="smaller">
+
+<p><em>a dimension reduction method</em></p>
+
+<p>Uses 10 fold cross validation to determine how many components (predictors) have a signifciant effect on the response variable.</p>
+
+<p>in this case, the number of components that are significant are to the regression (out of 11) is:</p>
+
+<pre >## [1] 11</pre>
+
+<pre class = 'prettyprint lang-r'>test_mse_pcr</pre>
+
+<pre >## [1] 0.04747221</pre>
+
+<pre class = 'prettyprint lang-r'>full_mse_pcr</pre>
+
+<pre >## [1] 0.04526252</pre>
+
+</article></slide><slide class=''><hgroup><h2>PLSR</h2></hgroup><article  id="plsr" class="smaller">
+
+<p><em>a dimension reduction method</em></p>
+
+<p>Uses 10 fold cross validation to determine how many components (predictors) have a signifciant effect on the response variable.</p>
+
+<p>in this case, the number of components that are significant to the regression (out of 11) is:</p>
+
+<pre >## [1] 8</pre>
+
+<pre class = 'prettyprint lang-r'>test_mse_plsr</pre>
+
+<pre >## [1] 0.04646407</pre>
+
+<pre class = 'prettyprint lang-r'>full_mse_plsr</pre>
+
+<pre >## [1] 0.0454288</pre></article></slide>
 
 
   <slide class="backdrop"></slide>
