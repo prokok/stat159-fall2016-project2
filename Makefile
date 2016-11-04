@@ -60,9 +60,10 @@ report: report/report.Rmd
 ##	cd slides; Rscript -e '.libPaths(c("C:/Users/vlfgn/Documents/R/win-library/3.3", ##"C:/Users/vlfgn/Documents/R/win-library/3.3"));library(rmarkdown); render('report-slides.Rmd')'
 
 #making session.info.txt
-session: $(CS)/session-info-script.R
-	cd $(CS) && Rscript -e 'library(rmarkdown); render('report-slides.Rmd')'
+session: 
+	bash session.sh
 
+	
 #remove the report.pdf 
 clean:
 	rm -f report/report.pdf

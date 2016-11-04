@@ -1,4 +1,5 @@
 #r packages from this project
+.libPaths(c("C:/Users/vlfgn/Documents/R/win-library/3.3", "C:/Users/vlfgn/Documents/R/win-library/3.3"))
 library(knitr)
 library(rmarkdown)
 library(pls)
@@ -7,10 +8,8 @@ library(rmarkdown)
 library(glmnet)
 library(xtable)
 
-
-
-sink('../../session-info.txt')
-cat('Session Information\n\n')
+sink("../../session-info.txt", append = TRUE)
+cat("Session Information\n\n")
 print(sessionInfo())
 devtools::session_info()
 sink()

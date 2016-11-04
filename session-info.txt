@@ -1,49 +1,101 @@
+Session Info
+
+Make Version
+------------
+GNU Make 3.81
+Copyright (C) 2006  Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.
+There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.
+
+This program built for i686-pc-msys
+
+
+Git Version
+-----------
+git version 2.9.3.windows.2
+
+
+pandoc Version
+--------------
+pandoc.exe 1.17.2
+Compiled with texmath 0.8.6.4, highlighting-kate 0.6.2.
+Syntax highlighting is supported for the following languages:
+    abc, actionscript, ada, agda, apache, asn1, asp, awk, bash, bibtex, boo, c,
+    changelog, clojure, cmake, coffee, coldfusion, commonlisp, cpp, cs, css,
+    curry, d, diff, djangotemplate, dockerfile, dot, doxygen, doxygenlua, dtd,
+    eiffel, elixir, email, erlang, fasm, fortran, fsharp, gcc, glsl,
+    gnuassembler, go, hamlet, haskell, haxe, html, idris, ini, isocpp, java,
+    javadoc, javascript, json, jsp, julia, kotlin, latex, lex, lilypond,
+    literatecurry, literatehaskell, llvm, lua, m4, makefile, mandoc, markdown,
+    mathematica, matlab, maxima, mediawiki, metafont, mips, modelines, modula2,
+    modula3, monobasic, nasm, noweb, objectivec, objectivecpp, ocaml, octave,
+    opencl, pascal, perl, php, pike, postscript, prolog, pure, python, r,
+    relaxng, relaxngcompact, rest, rhtml, roff, ruby, rust, scala, scheme, sci,
+    sed, sgml, sql, sqlmysql, sqlpostgresql, tcl, tcsh, texinfo, verilog, vhdl,
+    xml, xorg, xslt, xul, yacc, yaml, zsh
+Default user data directory: C:\Users\vlfgn\AppData\Roaming\pandoc
+Copyright (C) 2006-2016 John MacFarlane
+Web:  http://pandoc.org
+This is free software; see the source for copying conditions.
+There is no warranty, not even for merchantability or fitness
+for a particular purpose.
+
+
+R Version
+---------
 Session Information
 
 R version 3.3.1 (2016-06-21)
 Platform: x86_64-w64-mingw32/x64 (64-bit)
-Running under: Windows >= 8 x64 (build 9200)
+Running under: Windows 10 x64 (build 10240)
 
 locale:
-[1] LC_COLLATE=English_United States.1252  LC_CTYPE=English_United States.1252   
-[3] LC_MONETARY=English_United States.1252 LC_NUMERIC=C                          
+[1] LC_COLLATE=English_United States.1252 
+[2] LC_CTYPE=English_United States.1252   
+[3] LC_MONETARY=English_United States.1252
+[4] LC_NUMERIC=C                          
 [5] LC_TIME=English_United States.1252    
 
 attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
+[1] stats     graphics  grDevices utils     datasets  base     
 
 other attached packages:
-[1] devtools_1.12.0 curl_2.2        pls_2.5-0       glmnet_2.0-5    foreach_1.4.3   Matrix_1.2-6   
+[1] xtable_1.8-2    glmnet_2.0-5    foreach_1.4.3   Matrix_1.2-6   
+[5] devtools_1.12.0 pls_2.5-0       rmarkdown_1.0   knitr_1.14     
 
 loaded via a namespace (and not attached):
- [1] Rcpp_0.12.5      lattice_0.20-33  codetools_0.2-14 withr_1.0.2      digest_0.6.9     grid_3.3.1      
- [7] rstudioapi_0.6   rmarkdown_0.9.6  iterators_1.0.8  tools_3.3.1      yaml_2.1.13      memoise_1.0.0   
-[13] htmltools_0.3.5  knitr_1.13      
+ [1] Rcpp_0.12.6      codetools_0.2-14 lattice_0.20-33  digest_0.6.10   
+ [5] withr_1.0.2      grid_3.3.1       magrittr_1.5     evaluate_0.9    
+ [9] stringi_1.1.1    iterators_1.0.8  tools_3.3.1      stringr_1.1.0   
+[13] memoise_1.0.0    htmltools_0.3.5  methods_3.3.1   
  setting  value                       
  version  R version 3.3.1 (2016-06-21)
  system   x86_64, mingw32             
- ui       RStudio (0.99.902)          
+ ui       RTerm                       
  language (EN)                        
  collate  English_United States.1252  
  tz       America/Los_Angeles         
- date     2016-11-03                  
+ date     2016-11-04                  
 
- package    * version date       source        
- codetools    0.2-14  2015-07-15 CRAN (R 3.3.1)
- curl       * 2.2     2016-10-21 CRAN (R 3.3.2)
- devtools   * 1.12.0  2016-06-24 CRAN (R 3.3.2)
- digest       0.6.9   2016-01-08 CRAN (R 3.3.1)
- foreach    * 1.4.3   2015-10-13 CRAN (R 3.3.1)
- glmnet     * 2.0-5   2016-03-17 CRAN (R 3.3.1)
- htmltools    0.3.5   2016-03-21 CRAN (R 3.3.1)
- iterators    1.0.8   2015-10-13 CRAN (R 3.3.1)
- knitr        1.13    2016-05-09 CRAN (R 3.3.1)
- lattice      0.20-33 2015-07-14 CRAN (R 3.3.1)
- Matrix     * 1.2-6   2016-05-02 CRAN (R 3.3.1)
- memoise      1.0.0   2016-01-29 CRAN (R 3.3.2)
- pls        * 2.5-0   2015-08-22 CRAN (R 3.3.1)
- Rcpp         0.12.5  2016-05-14 CRAN (R 3.3.1)
- rmarkdown    0.9.6   2016-05-01 CRAN (R 3.3.1)
- rstudioapi   0.6     2016-06-27 CRAN (R 3.3.2)
- withr        1.0.2   2016-06-20 CRAN (R 3.3.2)
- yaml         2.1.13  2014-06-12 CRAN (R 3.3.1)
+ package   * version date       source        
+ codetools   0.2-14  2015-07-15 CRAN (R 3.3.1)
+ devtools  * 1.12.0  2016-06-24 CRAN (R 3.3.2)
+ digest      0.6.10  2016-08-02 CRAN (R 3.3.1)
+ evaluate    0.9     2016-04-29 CRAN (R 3.3.1)
+ foreach   * 1.4.3   2015-10-13 CRAN (R 3.3.1)
+ glmnet    * 2.0-5   2016-03-17 CRAN (R 3.3.1)
+ htmltools   0.3.5   2016-03-21 CRAN (R 3.3.1)
+ iterators   1.0.8   2015-10-13 CRAN (R 3.3.1)
+ knitr     * 1.14    2016-08-13 CRAN (R 3.3.1)
+ lattice     0.20-33 2015-07-14 CRAN (R 3.3.1)
+ magrittr    1.5     2014-11-22 CRAN (R 3.3.1)
+ Matrix    * 1.2-6   2016-05-02 CRAN (R 3.3.1)
+ memoise     1.0.0   2016-01-29 CRAN (R 3.3.2)
+ pls       * 2.5-0   2015-08-22 CRAN (R 3.3.1)
+ Rcpp        0.12.6  2016-07-19 CRAN (R 3.3.1)
+ rmarkdown * 1.0     2016-07-08 CRAN (R 3.3.1)
+ stringi     1.1.1   2016-05-27 CRAN (R 3.3.0)
+ stringr     1.1.0   2016-08-19 CRAN (R 3.3.1)
+ withr       1.0.2   2016-06-20 CRAN (R 3.3.2)
+ xtable    * 1.8-2   2016-02-05 CRAN (R 3.3.1)
