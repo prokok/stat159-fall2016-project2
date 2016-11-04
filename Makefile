@@ -57,10 +57,12 @@ report: report/report.Rmd
 	cd report; Rscript -e '.libPaths(c("C:/Users/vlfgn/Documents/R/win-library/3.3", "C:/Users/vlfgn/Documents/R/win-library/3.3")); library(rmarkdown); render("report.Rmd")'
 
 slides: slides/report-slides.Rmd data/*.Rdata data/*.RData data/*.csv
-	cd slides; Rscript -e '.libPaths(c("C:/Users/vlfgn/Documents/R/win-library/3.3", "C:/Users/vlfgn/Documents/R/win-library/3.3")); library(rmarkdown); render('report-slides.Rmd')'
+	cd slides; Rscript -e '.libPaths(c("C:/Users/vlfgn/Documents/R/win-library/3.3", "C:/Users/vlfgn/Documents/R/win-library/3.3"));library(rmarkdown); render('report-slides.Rmd')'
 
 session: $(CS)/session-info-script.R
 	cd $(CS) && Rscript -e 'library(rmarkdown); render('report-slides.Rmd')'
 
+	
+#remove the report.pdf 
 clean:
 	rm -f report/report.pdf
