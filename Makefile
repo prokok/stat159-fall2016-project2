@@ -1,49 +1,58 @@
-#need to have Make automatic variables
-#include comments for rules, targets, or dependencies
-
 #variables
 CS = code/scripts
 CF = code/functions
+AD = data/credit.csv 
 
+# phony targets
+.PHONY: all data eda pre traintest tests ols ridge lasso pcr plsr regressions report slides session clean
 
-.PHONY: all data tests eda ols ridge lasso pcr plsr regressions report slides session clean
+all: eda pre regressions report
 
-all: eda regressions report
+#download the Credit.csv
+data: 
+	curl -O "http://www-bcf.usc.edu/~gareth/ISL/Credit.csv"
+	mv credit.csv data
 
-data:
-	curl -o data/Advertising.csv http://www-bcf.usc.edu/~gareth/ISL/Advertising.csv
+#executes the code in eda-script.R	
+eda: $(CS)/eda-script.R $(AD)
+	cd $(CS); Rscript $(<F)
+
+#premodeling data processing 
+pre: $(CS)/premodeling-data-processing.R $(AD)	
+	cd $(CS); Rscript $(<F)
+
+#producing test and training set
+traintest: code/functions/test-training-functions.R data/scaled-credit.csv	
+	cd code/functions; Rscript $(<F)
+
+##tests: $(CF)/test-training-functions.R
+##Rscript $(CF)/test-training-functions.Rscript	
 	
-tests: $(CF)/test-training-functions.R
-	Rscript $(CF)/test-training-functions.Rscript
+#Runing OLS regression script
+ols: $(CS)/ols-regression.R data/scaled-credit.csv data/scale-train-test.RData
+	cd $(CS); Rscript $(<F)
 	
-eda: $(CS)/eda-script.R data/Advertising.csv
-	Rscript $(CS)/eda-script.R
-
-#beginning of regression scripts
-ols: data/Advertising.csv $(CS)/ols-regression.Rmd data/scaled-credit.csv data/scale-train-test.RData
-	Rscript $(CS)/ols-regression.R
-
-ridge: data/Advertising.csv $(CS)/ridge-regression.R data/scaled-train-test.RData data/scaled-credit.csv
-	Rscript $(CS)/ridge-regression.R
-
-lasso: data/Advertising.csv $(CS)/lasso-regression.R data/scaled-train-test.RData data/scaled-credit.csv
-	Rscript $(CS)/lasso-regression.R
-
-pcr: data/Advertising.csv $(CS)/pcr-regression.R data/scale-train-tests.RData data/scaled-credit.csv
-	Rscript $(CS)/pcr-regression.R
-
-plsr: data/Advertising.csv $(CS)/plsr-regression.R data/scale-train-test.RData data/scaled-credit.csv
-	Rscript $(CS)/plsr-regression.R
-#end of regression scripts
+#Runing RIDGE regression script
+ridge: $(CS)/ridge-regression.R data/scaled-credit.csv data/scale-train-test.RData
+	cd $(CS); Rscript $(<F)
 	
-#code to produce all of the regression scripts
-regression:
-	make ols
-	make ridge
-	make lasso
-	make pcr
-	make plsr
+#Runing LASSO regression script
+lasso: $(CS)/lasso-regression.R data/scaled-credit.csv data/scale-train-test.RData
+	cd $(CS); Rscript $(<F)
+	
+#Runing PCR regression script
+pcr: $(CS)/pcr-regression.R data/scaled-credit.csv data/scale-train-test.RData
+	cd $(CS); Rscript $(<F)
+	
+#Runing PLSR regression script
+plsr: $(CS)/plsr-regression.R data/scaled-credit.csv data/scale-train-test.RData
+	cd $(CS); Rscript $(<F)	
+	
 
+#Running all the regression scripts at once
+regressions: ols ridge lasso pcr plsr
+	
+	
 report: report/report.Rmd data/*.Rdata data/*.RData data/*.csv
 	cd report && Rscript -e 'library(rmarkdown); render('report.Rmd')'
 

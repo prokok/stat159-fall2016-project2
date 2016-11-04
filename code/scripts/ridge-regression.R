@@ -1,3 +1,7 @@
+#.libPaths(c("C:/Users/vlfgn/Documents/R/win-library/3.3", "C:/Users/vlfgn/Documents/R/win-library/3.3"))
+#library(glmnet)
+
+
 library(glmnet)
 load('../../data/scale-train-test.RData')
 scaled_credit = read.csv("../../data/scaled-credit.csv")
