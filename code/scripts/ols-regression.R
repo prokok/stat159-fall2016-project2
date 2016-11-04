@@ -58,6 +58,12 @@ full_mse_ols = mean((ols.pred_full - y.test_full)^2)
 #saving the result of test_mse, official coefficients of full data, and full_data_mse
 save(reg2,reg3, test_mse_ols, cof_ols, full_mse_ols, sum_ols_full,file = "../../data/ols-regression.Rdata")
 
+#residual plot of ols on test dataset.
+png(filename = "../../images/ols-residuals.png", width=800, height=600)
+plot(reg3, which=1)
+dev.off()
+
+
 
 #putting the result in the eda-output.txt
 sink(file = "../../data/eda-output.txt", append = TRUE)
