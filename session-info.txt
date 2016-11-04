@@ -1,3 +1,5 @@
+Session Information
+
 R version 3.3.1 (2016-06-21)
 Platform: x86_64-w64-mingw32/x64 (64-bit)
 Running under: Windows >= 8 x64 (build 9200)
@@ -10,5 +12,38 @@ locale:
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
+other attached packages:
+[1] devtools_1.12.0 curl_2.2        pls_2.5-0       glmnet_2.0-5    foreach_1.4.3   Matrix_1.2-6   
+
 loaded via a namespace (and not attached):
-[1] tools_3.3.1 yaml_2.1.13
+ [1] Rcpp_0.12.5      lattice_0.20-33  codetools_0.2-14 withr_1.0.2      digest_0.6.9     grid_3.3.1      
+ [7] rstudioapi_0.6   rmarkdown_0.9.6  iterators_1.0.8  tools_3.3.1      yaml_2.1.13      memoise_1.0.0   
+[13] htmltools_0.3.5  knitr_1.13      
+ setting  value                       
+ version  R version 3.3.1 (2016-06-21)
+ system   x86_64, mingw32             
+ ui       RStudio (0.99.902)          
+ language (EN)                        
+ collate  English_United States.1252  
+ tz       America/Los_Angeles         
+ date     2016-11-03                  
+
+ package    * version date       source        
+ codetools    0.2-14  2015-07-15 CRAN (R 3.3.1)
+ curl       * 2.2     2016-10-21 CRAN (R 3.3.2)
+ devtools   * 1.12.0  2016-06-24 CRAN (R 3.3.2)
+ digest       0.6.9   2016-01-08 CRAN (R 3.3.1)
+ foreach    * 1.4.3   2015-10-13 CRAN (R 3.3.1)
+ glmnet     * 2.0-5   2016-03-17 CRAN (R 3.3.1)
+ htmltools    0.3.5   2016-03-21 CRAN (R 3.3.1)
+ iterators    1.0.8   2015-10-13 CRAN (R 3.3.1)
+ knitr        1.13    2016-05-09 CRAN (R 3.3.1)
+ lattice      0.20-33 2015-07-14 CRAN (R 3.3.1)
+ Matrix     * 1.2-6   2016-05-02 CRAN (R 3.3.1)
+ memoise      1.0.0   2016-01-29 CRAN (R 3.3.2)
+ pls        * 2.5-0   2015-08-22 CRAN (R 3.3.1)
+ Rcpp         0.12.5  2016-05-14 CRAN (R 3.3.1)
+ rmarkdown    0.9.6   2016-05-01 CRAN (R 3.3.1)
+ rstudioapi   0.6     2016-06-27 CRAN (R 3.3.2)
+ withr        1.0.2   2016-06-20 CRAN (R 3.3.2)
+ yaml         2.1.13  2014-06-12 CRAN (R 3.3.1)

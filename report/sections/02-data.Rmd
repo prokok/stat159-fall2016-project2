@@ -16,7 +16,7 @@ library(xtable)
   First, we need to factors into dummy variables. We pre-process the data set to make sure that it is in the format that we want. Notable changes are changing categorical variables (such as: M/F, Yes/No, Caucasian/Asian) into 0/1 slots.  
   Second, we need to standaraize each predictor variables to apply 5 regression linear methods
   
-  The first 6 results are shown below :
+  The first 6 results of the standardized data set are shown below :
 
 ```{r echo = FALSE, results='asis'}
   scaled_credit = read.csv("../../data/scaled-credit.csv")

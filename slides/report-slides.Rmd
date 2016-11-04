@@ -1,7 +1,7 @@
 ---
-title: "Report"
-author: "Jamie Stankiewiz"
-date: "November 1, 2016"
+title: "Predictive Modeling Report"
+author: "Jamie Stankiewiz  and Philhoon Oh"
+date: "November 4, 2016"
 output: ioslides_presentation
 ---
 
@@ -9,27 +9,234 @@ output: ioslides_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## R Markdown
+## References
 
-This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+The information, code and methods in this report is based off of the book: "An Introduction to Statistical Learning" by James et al.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+Chapter 6: _Linear Model Selection to Statistical Learning_
 
-## Slide with Bullets
+We will be using the data set: Credit.csv
 
-- Bullet 1
-- Bullet 2
-- Bullet 3
+## Goals
 
-## Slide with R Output
+Alternative Model Fitting using:
 
-```{r cars, echo = TRUE}
-summary(cars)
+- OLS (Orindary Least Squares)
+- RR (Ridge Regression)
+- LR (Lasso Regression)
+- PCR (Principle Components Regression)
+- PLSR (Partial Least Squares Regression)
+
+We will be using these 5 methods to generate the response variable.  We will then determine which regression model produces the best response variable.
+
+## Variables
+
+  Predictor Variables: 
+  
+    Income, Limit, Rating, Cards, Age, Education, Gender, Student, Married, Ethnicity
+  
+  Response Variable:
+  
+    Balance
+
+## A look at the Credit data set
+
+```{r}
+
+credit=read.csv("../data/Credit.csv")  
+head(credit)[,-1]
 ```
 
-## Slide with Plot
 
-```{r pressure}
-plot(pressure)
+## Pre-processing the data set
+
+In order to use the data set, we must convert qualitative variables into 0/1 slots.  This makes it better for statisticans to work with.
+
+Here's a look:
+
+```{r}
+
+new_credit = read.csv('../data/new-credit.csv')
+new_credit[1:3,-1]
+```
+
+##
+
+Now in order to use the data set for our regression models, we must standardize the data.
+
+Here's a look at the new data set: scaled_credit.csv
+
+```{r}
+
+scaled_credit = read.csv("../data/scaled-credit.csv")  
+scaled_credit[1:3,-1]
+```
+
+
+## Overview of the Regressions
+
+- Oridnary Least Squares
+
+_Shrinkage Methods_
+
+- Ridge Regression
+- Lasso Regression
+
+_Dimension Reduction Methods_
+
+- Principle Components Regression
+- Partial Least Squares Regression
+
+
+##Ordinary Least Squares
+
+**Goal**: To minimize the sum of the squares between the observed and predicted values.
+
+```{r, echo=FALSE}
+
+load('../data/ols-regression.Rdata')
+load('../data/scale-train-test.RData')
+```
+We need to figure out which variables have a significant effect on the response variable.  To do so, we look at the regression summary of all the predictors on the response (balance).
+
+
+> we can see that only income, limit, cards, and student are the only predictors that have a significant effect on balance.
+
+##{.smaller}
+```{r, echo=TRUE}
+reg = lm(balance ~ income+limit+rating+cards+age+education+student+gender+marriage+asian+caucasian
+         , data = scaled_credit_train)
+sum_reg = summary(reg)
+sum_reg
+```
+
+## OLS MSE
+
+By only using income, limit, cards and student to predict response, we can find the MSE on the full data set.
+
+test MSE:
+
+```{r, echo=TRUE}
+test_mse_ols
+```
+
+full MSE (full data set):
+```{r, echo=TRUE}
+full_mse_ols
+```
+
+# Shrinkage Methods
+
+## Shrinkage Methods
+
+_shrinking the coefficients and the variance_
+
+using 10-fold cross validation on a test data set (of 100) to generate an optimal lambda value.
+
+- Ridge Regression
+- Lasso Regression
+
+
+## Ridge Regression {.smaller}
+_a shrinkage method_
+```{r, echo=FALSE}
+load('../data/ridge-regression.Rdata')
+```
+Optimal lambda value: 
+```{r}
+par_ridge
+```
+
+We then use that lambda value to determine the MSE for the test subset and the full data set:
+```{r, echo=TRUE}
+test_mse_ridge
+full_mse_ridge
+```
+
+## Lasso Regression {.smaller}
+_a shrinkage method_
+
+```{r, echo=FALSE}
+load('../data/lasso-regression.Rdata')
+```
+Optimal lambda value: 
+```{r}
+par_lasso
+```
+
+We then use that lambda value to determine the MSE for the test subset and the full data set:
+```{r, echo=TRUE}
+test_mse_lasso
+full_mse_lasso
+```
+
+
+# Dimension Reduction Methods
+
+## Dimension Reduction Methods
+
+_getting rid of variables that aren't significant_
+
+Uses 10 fold cross validation to determine how many components (predictors) have a signifciant effect on the response variable. 
+
+- PCR
+- PLSR
+
+
+## PCR {.smaller}
+_a dimension reduction method_
+
+```{r, echo=FALSE, include=F}
+load('../data/pcr-regression.Rdata')
+library(pls)
+set.seed(0)
+pcr.fit <- pcr(balance~., data = scaled_credit_train, validation='CV', scale = FALSE)
+M = which(pcr.fit$validation$PRESS==min(pcr.fit$validation$PRESS))
+```
+in this case, the number of components that are significant to the regression (out of 11) is:
+```{r}
+M
+```
+
+```{r, echo=TRUE}
+test_mse_pcr
+full_mse_pcr
+
+```
+
+## PLSR {.smaller}
+_a dimension reduction method_
+
+```{r, echo=F, include=F}
+load('../data/plsr-regression.Rdata')
+set.seed(0)
+pls.fit = plsr(balance~., data = scaled_credit_train, validation='CV', scale = FALSE)
+M = which(pls.fit$validation$PRESS==min(pls.fit$validation$PRESS))
+```
+in this case, the number of components that are significant to the regression (out of 11) is:
+```{r}
+M
+```
+```{r, echo=TRUE}
+test_mse_plsr
+full_mse_plsr
+```
+
+
+# Results
+
+##
+
+Overview of the test data MSE values of each regression:
+```{r}
+names <- c('OLS', 'ridge', 'lasso', 'PCR', 'PLSR')
+mse_values <- c(test, test_mse_ridge, test_mse_lasso, test_mse_pcr, test_mse_plsr)
+results <- as.data.frame(matrix(c(mse_values), nrow=1))
+colnames(results) <- names
+results
+```
+The smallest MSE value is:
+```{r}
+results[which(results==min(results))]
 ```
 
