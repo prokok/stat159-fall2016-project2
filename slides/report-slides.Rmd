@@ -222,3 +222,21 @@ test_mse_plsr
 full_mse_plsr
 ```
 
+
+# Results
+
+##
+
+Overview of full data MSE values of each regression:
+```{r}
+names <- c('OLS', 'ridge', 'lasso', 'PCR', 'PLSR')
+mse_values <- c(full_mse_ols, full_mse_ridge, full_mse_lasso, full_mse_pcr, full_mse_plsr)
+results <- as.data.frame(matrix(c(mse_values), nrow=1))
+colnames(results) <- names
+results
+```
+The smallest MSE value is:
+```{r}
+results[min(results)]
+```
+

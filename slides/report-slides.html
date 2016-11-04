@@ -261,12 +261,12 @@ sum_reg</pre>
 
 <p><em>shrinking the coefficients and the variance</em></p>
 
+<p>using 10-fold cross validation on a test data set (of 100) to generate an optimal lambda value.</p>
+
 <ul>
 <li>Ridge Regression</li>
 <li>Lasso Regression</li>
 </ul>
-
-<p>using 10-fold cross validation on a test data set (of 100) to generate an optimal lambda value.</p>
 
 </article></slide><slide class=''><hgroup><h2>Ridge Regression</h2></hgroup><article  id="ridge-regression" class="smaller">
 
@@ -310,12 +310,12 @@ sum_reg</pre>
 
 <p><em>getting rid of variables that aren&#39;t significant</em></p>
 
+<p>Uses 10 fold cross validation to determine how many components (predictors) have a signifciant effect on the response variable.</p>
+
 <ul>
 <li>PCR</li>
 <li>PLSR</li>
 </ul>
-
-<p>Uses 10 fold cross validation to determine how many components (predictors) have a signifciant effect on the response variable.</p>
 
 </article></slide><slide class=''><hgroup><h2>PCR</h2></hgroup><article  id="pcr" class="smaller">
 
@@ -347,7 +347,20 @@ sum_reg</pre>
 
 <pre class = 'prettyprint lang-r'>full_mse_plsr</pre>
 
-<pre >## [1] 0.0454288</pre></article></slide>
+<pre >## [1] 0.0454288</pre>
+
+</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Results</h2></hgroup><article  id="results">
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-2">
+
+<p>Overview of full data MSE values of each regression:</p>
+
+<pre >##          OLS      ridge      lasso        PCR      PLSR
+## 1 0.04635291 0.04604064 0.04748458 0.04526252 0.0454288</pre>
+
+<p>The smallest MSE value is:</p>
+
+<pre >## data frame with 0 columns and 1 row</pre></article></slide>
 
 
   <slide class="backdrop"></slide>
