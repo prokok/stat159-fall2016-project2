@@ -62,11 +62,11 @@ regressions:
 	
 #Makeing report.pdf
 report: report/report.Rmd data/*.Rdata data/*.RData data/*.csv
-	cd report; Rscript -e '.libPaths(c("C:/Users/vlfgn/Documents/R/win-library/3.3", "C:/Users/vlfgn/Documents/R/win-library/3.3")); library(rmarkdown); render("report.Rmd")'
+	cd report; Rscript -e 'library(rmarkdown); render("report.Rmd")'
 
 #Making slides
 slides: slides/report-slides.Rmd data/*.Rdata data/*.RData data/*.csv
-	cd slides; Rscript -e '.libPaths(c("C:/Users/vlfgn/Documents/R/win-library/3.3", "C:/Users/vlfgn/Documents/R/win-library/3.3")); library(rmarkdown); render("report-slides.Rmd")'
+	cd slides; Rscript -e 'library(rmarkdown); render("report-slides.Rmd")'
 
 #making session.info.txt
 session: 
