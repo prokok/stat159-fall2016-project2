@@ -147,17 +147,6 @@
 
 <p>Here&#39;s a look:</p>
 
-<pre >##    income limit rating cards age education gender student marriage asian
-## 1  14.891  3606    283     2  34        11      0       0        1     0
-## 2 106.025  6645    483     3  82        15      1       1        1     1
-## 3 104.593  7075    514     4  71        11      0       0        0     1
-##   caucasian balance
-## 1         1     333
-## 2         0     903
-## 3         0     580</pre>
-
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section">
-
 <p>Now in order to use the data set for our regression models, we must standardize the data.</p>
 
 <p>Here&#39;s a look at the new data set: scaled_credit.csv</p>
@@ -201,7 +190,7 @@
 <p>we can see that only income, limit, cards, and student are the only predictors that have a significant effect on balance.</p>
 </blockquote>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-1" class="smaller">
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section" class="smaller">
 
 <pre class = 'prettyprint lang-r'>reg = lm(balance ~ income+limit+rating+cards+age+education+student+gender+marriage+asian+caucasian
          , data = scaled_credit_train)
@@ -255,7 +244,7 @@ sum_reg</pre>
 
 <pre >## [1] 0.04635291</pre>
 
-</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Shrinkage Methods</h2></hgroup><article  id="shrinkage-methods">
+</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Shrinkage Methods</h2></hgroup><article  id="shrinkage-methods">
 
 </article></slide><slide class=''><hgroup><h2>Shrinkage Methods</h2></hgroup><article  id="shrinkage-methods-1">
 
@@ -304,7 +293,7 @@ sum_reg</pre>
 
 <pre >## [1] 0.04748458</pre>
 
-</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Dimension Reduction Methods</h2></hgroup><article  id="dimension-reduction-methods">
+</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Dimension Reduction Methods</h2></hgroup><article  id="dimension-reduction-methods">
 
 </article></slide><slide class=''><hgroup><h2>Dimension Reduction Methods</h2></hgroup><article  id="dimension-reduction-methods-1">
 
@@ -349,9 +338,9 @@ sum_reg</pre>
 
 <pre >## [1] 0.0454288</pre>
 
-</article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Results</h2></hgroup><article  id="results">
+</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Results</h2></hgroup><article  id="results">
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-2">
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-1">
 
 <p>Overview of the test data MSE values of each regression:</p>
 
