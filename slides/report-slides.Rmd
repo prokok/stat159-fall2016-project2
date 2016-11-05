@@ -90,6 +90,7 @@ We need to figure out which variables have a significant effect on the response 
 
 We can see that only income, limit, cards, and student are the only predictors that have a significant effect on balance.
 
+##OLS analysis on all the predictor variables
 ```{r, echo=FALSE, results='asis'}
 
 load('../data/ols-regression.Rdata')
@@ -97,9 +98,20 @@ load('../data/scale-train-test.RData')
 reg = lm(balance ~ income+limit+rating+cards+age+education+student+gender+marriage+asian+caucasian
          , data = scaled_credit_train)
 sum_reg=summary(reg)
-x = as.data.frame(t(sum_reg$coefficients))
-x1 = xtable(x, digits = 1)
-print(x1, comment=FALSE, type = 'html', size = '1')
+x = as.data.frame(t(sum_reg$coefficients)[,1:8])
+x1 = xtable(x, digits = 2)
+print(x1, comment=FALSE, type = 'html')
+```
+
+```{r, echo=FALSE, results='asis'}
+
+load('../data/ols-regression.Rdata')
+load('../data/scale-train-test.RData')
+reg = lm(balance ~ income+limit+rating+cards+age+education+student+gender+marriage+asian+caucasian
+         , data = scaled_credit_train)
+x2 = as.data.frame(t(sum_reg$coefficients)[,8:11])
+x3 = xtable(x2, digits = 2)
+print(x3, comment=FALSE, type='html')
 ```
 
 
@@ -226,6 +238,7 @@ names <- c('OLS', 'ridge', 'lasso', 'PCR', 'PLSR')
 mse_values <- c(test_mse_ols, test_mse_ridge, test_mse_lasso, test_mse_pcr, test_mse_plsr)
 results <- as.data.frame(matrix(c(mse_values), nrow=1))
 colnames(results) <- names
+rownames(results) = ' '
 results
 ```
 The smallest MSE value is:
