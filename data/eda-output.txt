@@ -179,22 +179,6 @@ lambda equals  0.01
 
 
 
-<<Summary Statistics of Pcr-regression>>
-
-1. Test Mean Square Error
-[1] 0.04747221
-
-2. Best Model
-Compression equals  11 
-
-3. Official Coefficient
-  (Intercept)     income     limit    rating      cards        age    education
- 7.666863e-16 -0.5981715 0.9584387 0.3824789 0.05286497 -0.0230334 -0.007469459
-      gender   student     marriage      asian  caucasian
- -0.01159309 0.2781549 -0.009054196 0.01595067 0.01100529
-
-
-
 <<Summary Statistics of Plsr-regression>>
 
 1. Test Mean Square Error
@@ -211,17 +195,19 @@ Compression equals  8
 
 
 
-<<Summary Statistics of OLS>>
+<<Summary Statistics of Pcr-regression>>
 
 1. Test Mean Square Error
-[1] 0.05005021
+[1] 0.04747221
 
 2. Best Model
-balance ~ income+limit+cards+student
+Compression equals  11 
 
 3. Official Coefficient
-  (Intercept)        income         limit         cards       student 
- 8.657571e-16 -6.009409e-01  1.338677e+00  6.912279e-02  2.806761e-01 
+  (Intercept)     income     limit    rating      cards        age    education
+ 7.666863e-16 -0.5981715 0.9584387 0.3824789 0.05286497 -0.0230334 -0.007469459
+      gender   student     marriage      asian  caucasian
+ -0.01159309 0.2781549 -0.009054196 0.01595067 0.01100529
 
 
 
@@ -268,4 +254,114 @@ lambda equals  0.01
  0.00000000 -0.55166063  0.92504680  0.36787493  0.04499772 -0.01666003 
   education      gender     student    marriage       asian   caucasian 
  0.00000000  0.00000000  0.26681304  0.00000000  0.00000000  0.00000000 
+
+
+
+<<Summary Statistics of Pcr-regression>>
+
+1. Test Mean Square Error
+[1] 0.04747221
+
+2. Best Model
+Compression equals  11 
+
+3. Official Coefficient
+  (Intercept)     income     limit    rating      cards        age    education
+ 7.666863e-16 -0.5981715 0.9584387 0.3824789 0.05286497 -0.0230334 -0.007469459
+      gender   student     marriage      asian  caucasian
+ -0.01159309 0.2781549 -0.009054196 0.01595067 0.01100529
+
+
+
+<<Summary Statistics of Plsr-regression>>
+
+1. Test Mean Square Error
+[1] 0.04646407
+
+2. Best Model
+Compression equals  8 
+
+3. Official Coefficient
+  (Intercept)     income     limit    rating      cards         age   education
+ 7.426374e-16 -0.5982993 0.8524712 0.4874152 0.04778795 -0.01922414 -0.01305036
+      gender   student    marriage      asian   caucasian
+ -0.01084262 0.2819885 -0.00578063 0.01483133 0.009538472
+
+
+
+<<Summary Statistics of OLS>>
+
+1. Test Mean Square Error
+[1] 0.05005021
+
+2. Best Model
+balance ~ income+limit+cards+student
+
+3. Official Coefficient
+  (Intercept)        income         limit         cards       student 
+ 8.657571e-16 -6.009409e-01  1.338677e+00  6.912279e-02  2.806761e-01 
+
+
+
+<<Summary Statistics of Ridge-regression>>
+
+1. Test Mean Square Error
+[1] 0.04798114
+
+2. Best Model
+lambda equals  0.01 
+
+3. Official Coefficient
+ (Intercept)       income        limit       rating        cards          age 
+ 0.000000000 -0.568706769  0.718657903  0.593058827  0.044252756 -0.025384931 
+   education       gender      student     marriage        asian    caucasian 
+-0.005879651 -0.010677773  0.273184181 -0.011027761  0.016378729  0.011011789 
+
+
+
+<<Summary Statistics of Lasso-regression>>
+
+1. Test Mean Square Error
+[1] 0.05151814
+
+2. Best Model
+lambda equals  0.01 
+
+3. Official Coefficient
+(Intercept)      income       limit      rating       cards         age 
+ 0.00000000 -0.55166063  0.92504680  0.36787493  0.04499772 -0.01666003 
+  education      gender     student    marriage       asian   caucasian 
+ 0.00000000  0.00000000  0.26681304  0.00000000  0.00000000  0.00000000 
+
+
+
+<<Summary Statistics of Pcr-regression>>
+
+1. Test Mean Square Error
+[1] 0.04747221
+
+2. Best Model
+Compression equals  11 
+
+3. Official Coefficient
+  (Intercept)     income     limit    rating      cards        age    education
+ 7.666863e-16 -0.5981715 0.9584387 0.3824789 0.05286497 -0.0230334 -0.007469459
+      gender   student     marriage      asian  caucasian
+ -0.01159309 0.2781549 -0.009054196 0.01595067 0.01100529
+
+
+
+<<Summary Statistics of Plsr-regression>>
+
+1. Test Mean Square Error
+[1] 0.04646407
+
+2. Best Model
+Compression equals  8 
+
+3. Official Coefficient
+  (Intercept)     income     limit    rating      cards         age   education
+ 7.426374e-16 -0.5982993 0.8524712 0.4874152 0.04778795 -0.01922414 -0.01305036
+      gender   student    marriage      asian   caucasian
+ -0.01084262 0.2819885 -0.00578063 0.01483133 0.009538472
 
