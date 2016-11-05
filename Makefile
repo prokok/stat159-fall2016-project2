@@ -27,8 +27,9 @@ pre: $(CS)/premodeling-data-processing.R $(AD)
 traintest: $(CS)/test-training.R data/scaled-credit.csv	
 	cd $(CS); Rscript $(<F)
 
-##tests: $(CF)/test-training-functions.R
-##Rscript $(CF)/test-training-functions.Rscript	
+#run the unit tests on ols-regression-functions.R
+tests: code/test-that.R code/tests/test-ols-regression-functions.R
+	cd code; Rscript $(<F)
 	
 #Runing OLS regression script
 ols: $(CS)/ols-regression.R $(D1) $(D2)
@@ -60,11 +61,12 @@ regressions:
 	make plsr
 	
 #Makeing report.pdf
-report: report/report.Rmd
+report: report/report.Rmd data/*.Rdata data/*.RData data/*.csv
 	cd report; Rscript -e '.libPaths(c("C:/Users/vlfgn/Documents/R/win-library/3.3", "C:/Users/vlfgn/Documents/R/win-library/3.3")); library(rmarkdown); render("report.Rmd")'
 
-##slides: slides/report-slides.Rmd data/*.Rdata data/*.RData data/*.csv
-##	cd slides; Rscript -e '.libPaths(c("C:/Users/vlfgn/Documents/R/win-library/3.3", ##"C:/Users/vlfgn/Documents/R/win-library/3.3"));library(rmarkdown); render('report-slides.Rmd')'
+#Making slides
+slides: slides/report-slides.Rmd data/*.Rdata data/*.RData data/*.csv
+	cd slides; Rscript -e '.libPaths(c("C:/Users/vlfgn/Documents/R/win-library/3.3", "C:/Users/vlfgn/Documents/R/win-library/3.3")); library(rmarkdown); render("report-slides.Rmd")'
 
 #making session.info.txt
 session: 
