@@ -13,6 +13,6 @@ load("../../data/plsr-regression.RData")
 
 #Conclusion
 
-  Among the 5 regression methods, it turns out that Partial Least Squares Regression(PLSR) yields the best result for predicting reponse variable. The advantage of PLSR over PCR is that it takes account into the direction of response variable as well as reducing the dimension. Thus, we actually need the subset of transformed predictor variables. This enables us to find the best model where number of observations is smaller than predictor variables. Again, below Table 11 shows the official coefficients of PLSR when the compression is equal to `r par_plsr` and Test MSE is equal to `r test_mse_plsr`.
+  Among the 5 regression methods, it turns out that Partial Least Squares Regression(PLSR) yields the best result for predicting reponse variable. The advantage of PLSR over PCR is that it takes account into the direction of the response variable as well as reducing the dimension. Thus, we actually need the subset of transformed predictor variables. This enables us to find the best model where number of observations is smaller than predictor variables. Again, below Table 11 shows the official coefficients of PLSR when the compression is equal to `r par_plsr` and Test MSE is equal to `r test_mse_plsr`.
 
 
