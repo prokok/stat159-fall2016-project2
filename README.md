@@ -5,7 +5,7 @@ This repository contains the Project2 for the fall 2016, Statistics 159 at UC Be
 
 This homework is about analyzing the Credit.csv using OLS, RR, LASSO, PCR, PLSR methods and finding the best model among them.
 
-In this repository, there are 5 directories: data, code, images, report, slides
+In this repository, there are 5 directories: code, data, images, report, slides
 
 Overview of the Repository Structure
 	
@@ -17,31 +17,31 @@ Overview of the Repository Structure
 			LICENSE
 			session-info.txt
 			.gitignore
-		code/
-			functions/
+			code/
+				functions/
+					...
+				scripts/
+					...
+				tests/
+					...
+			data/
+				Credit.csv
 				...
-			scripts/
+			images/
 				...
-			tests/
+			report/
+				report.pdf
+				report.Rmd
+				sections/
+					00-abstract.Rmd
+					01-introduction.Rmd
+					02-data.Rmd
+					03-methods.Rmd
+					04-analysis.Rmd
+					05-results.Rmd
+					06-conclusions.Rmd
+			slides/
 				...
-		data/
-			Credit.csv
-			...
-		images/
-			...
-		report/
-			report.pdf
-			report.Rmd
-		sections/
-			00-abstract.Rmd
-			01-introduction.Rmd
-			02-data.Rmd
-			03-methods.Rmd
-			04-analysis.Rmd
-			05-results.Rmd
-			06-conclusions.Rmd
-		slides/
-			...
 	```
 
 1. 'data' contains credit.csv, eda-output.txt, ols-regression.RData, ridge-regression.RData, lasso-regression.RData, pcr-regression.RData, plsr-regression.RData, anova-qual.Rdata, correlation-matrix.RData, scaled-credit.csv, scale-train-test.Rdata with its own README.md explaining 'data' structure in more details.
