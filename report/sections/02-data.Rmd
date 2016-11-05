@@ -7,15 +7,15 @@ library(xtable)
 ```
 #Data
 
-  We first start out with the original data set: credit.csv from the book __An Introduction to Statistical Learning__ by James et al. We stored this data set in R as the variable credit. Credit initally contains 12 columns(categories or predictors).  However, we remove the first column because it just contains the row numbers of each row, which is irrelevant to our analysis, so we will remember to subset that part out of the data set in R before doing analysis.   
+  We first start out with the original data set: credit.csv from the book _An Introduction to Statistical Learning_ by James et al. We stored this data set in R as the variable, credit. Credit initally contains 12 columns(categories or predictors).  However, we remove the first column because it just contains the row numbers of each row, which is irrelevant to our analysis, so we will remember to subset that part out of the data set in R before doing analysis.   
   There are two important steps in premodeling data proces.
 
 1. convert factors into dummy variables
 2. mean centering and standardization
   
   First, we need to factors into dummy variables. We pre-process the data set to make sure that it is in the format that we want. Notable changes are changing categorical variables (such as: M/F, Yes/No, Caucasian/Asian) into 0/1 slots.  
-  Second, we need to standaraize each predictor variables to apply 5 regression linear methods
+  Second, we need to standardize each predictor variables to apply 5 regression linear methods.
   
-  The first 6 results of the standardized data set are shown in Table 1 in Tables and Figures Sections.
+  The first 6 results of the standardized data set are shown in Table 1 in the Tables and Figures Sections.
 
   With this data, we are going to apply five regression methods:  OLS(Ordinary Least Squares), RR(ridge regression), LR(lasso regression), PCR(principle components regression) and PLSR(partial least squares regression).
