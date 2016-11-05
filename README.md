@@ -19,7 +19,7 @@ In this repository, there are 5 directories: data, code, images, report, slides
 	```
 
 
-	2. 'code' contains 3-sub directories: functions, scripts, tests with its own README.md explaining 'code' structure in more details and one test-that.R script.
+2. 'code' contains 3-sub directories: functions, scripts, tests with its own README.md explaining 'code' structure in more details and one test-that.R script.
 
 
 3. 'images' contains 22 png files which are produced by either eda-script.R or each methods of regression-script.R
