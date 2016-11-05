@@ -926,6 +926,9 @@ asian
 
 -0.7
 
+<<<<<<< HEAD
+<p>Now in order to use the data set for our regression models, we must standardize the data.</p>
+=======
 </td>
 
 <td align="right">
@@ -993,6 +996,7 @@ asian
 </td>
 
 <td align="right">
+>>>>>>> 0e68bbf9cddf7e937de2c59e77f333e742bb7fd9
 
 1.2
 
@@ -1058,6 +1062,49 @@ asian
 
 <p>We need to figure out which variables have a significant effect on the response variable. To do so, we look at the regression summary of all the predictors on the response (balance).</p>
 
+<<<<<<< HEAD
+<blockquote>
+<p>we can see that only income, limit, cards, and student are the only predictors that have a significant effect on balance.</p>
+</blockquote>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section" class="smaller">
+
+<pre class = 'prettyprint lang-r'>reg = lm(balance ~ income+limit+rating+cards+age+education+student+gender+marriage+asian+caucasian
+         , data = scaled_credit_train)
+sum_reg = summary(reg)
+sum_reg</pre>
+
+<pre >## 
+## Call:
+## lm(formula = balance ~ income + limit + rating + cards + age + 
+##     education + student + gender + marriage + asian + caucasian, 
+##     data = scaled_credit_train)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.33486 -0.16857 -0.02653  0.11932  0.70361 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -0.002281   0.012478  -0.183 0.855095    
+## income      -0.595385   0.021488 -27.708  &lt; 2e-16 ***
+## limit        1.059762   0.194619   5.445 1.11e-07 ***
+## rating       0.279175   0.195302   1.429 0.153957    
+## cards        0.052861   0.015118   3.496 0.000546 ***
+## age         -0.006628   0.012987  -0.510 0.610175    
+## education   -0.012060   0.012840  -0.939 0.348405    
+## student      0.276275   0.013047  21.175  &lt; 2e-16 ***
+## gender      -0.004894   0.012645  -0.387 0.699026    
+## marriage    -0.000123   0.012927  -0.010 0.992413    
+## asian        0.011161   0.016175   0.690 0.490752    
+## caucasian    0.006447   0.015805   0.408 0.683623    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.2154 on 288 degrees of freedom
+## Multiple R-squared:  0.9549, Adjusted R-squared:  0.9532 
+## F-statistic: 554.1 on 11 and 288 DF,  p-value: &lt; 2.2e-16</pre>
+=======
 <p>We can see that only income, limit, cards, and student are the only predictors that have a significant effect on balance.</p>
 
 </article></slide><slide class=''><hgroup><h2>OLS analysis on all the predictor variables</h2></hgroup><article  id="ols-analysis-on-all-the-predictor-variables">
@@ -1525,6 +1572,7 @@ Pr(&gt;|t|)
 </tr>
 
 </table>
+>>>>>>> 0e68bbf9cddf7e937de2c59e77f333e742bb7fd9
 
 </article></slide><slide class=''><hgroup><h2>OLS MSE</h2></hgroup><article  id="ols-mse">
 
@@ -1638,7 +1686,11 @@ Pr(&gt;|t|)
 
 </article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Results</h2></hgroup><article  id="results">
 
+<<<<<<< HEAD
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-1">
+=======
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section">
+>>>>>>> 0e68bbf9cddf7e937de2c59e77f333e742bb7fd9
 
 <p>Overview of the test data MSE values of each regression:</p>
 
