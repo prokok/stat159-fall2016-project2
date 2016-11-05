@@ -7,11 +7,12 @@ output: ioslides_presentation
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+library(xtable)
 ```
 
 ## References
 
-The information, code and methods in this report is based off of the book: "An Introduction to Statistical Learning" by James et al.
+The information, code and methods in this report is based off of the book: __An Introduction to Statistical Learning__ by James et al.
 
 Chapter 6: _Linear Model Selection to Statistical Learning_
 
@@ -29,40 +30,39 @@ Alternative Model Fitting using:
 
 We will be using these 5 methods to generate the response variable.  We will then determine which regression model produces the best response variable.
 
-## Variables
+## Variables & Original Dataset
 
-  Predictor Variables: 
+  Predictor Variables:  Income, Limit, Rating, Cards, Age, Education
+    Gender, Student, Married, Ethnicity
   
-    Income, Limit, Rating, Cards, Age, Education, Gender, Student, Married, Ethnicity
+  Response Variable:  Balance
+
+Here's a look at subset of the original dataset
+
   
-  Response Variable:
+```{r echo = FALSE, results='asis'}
+  credit = read.csv("../data/credit.csv")
+  credit2 = credit[,-1]
+  credit3 = credit2[,1:10]
+  x = xtable(head(credit3), digits=1)
+  print(x, comment=FALSE, type='html', include.rownames = FALSE)
+``` 
   
-    Balance
-
-## A look at the Credit data set
-
-```{r}
-
-credit=read.csv("../data/credit.csv")  
-head(credit)[,-1]
-```
-
-
+  
 ## Pre-processing the data set
 
-In order to use the data set, we must convert qualitative variables into 0/1 slots.  This makes it better for statisticans to work with.
+In order to use the data set, we must dummy out qualitative variables. This makes it better for statisticans to work with. Now in order to use the data set for our regression models, we must standardize the data.
 
-Here's a look:
+Here's a look at how original dataset is tramsformed
 
-Now in order to use the data set for our regression models, we must standardize the data.
+```{r echo = FALSE, results='asis'}
+  scaled_credit = read.csv("../data/scaled-credit.csv")
+  scaled_credit2 = scaled_credit[,-1]
+  scaled_credit3 = scaled_credit2[,1:10]
+  x = xtable(head(scaled_credit3), digits=1)
+  print(x, comment=FALSE, type='html', include.rownames = FALSE)
+``` 
 
-Here's a look at the new data set: scaled_credit.csv
-
-```{r}
-
-scaled_credit = read.csv("../data/scaled-credit.csv")  
-scaled_credit[1:3,-1]
-```
 
 
 ## Overview of the Regressions
@@ -84,23 +84,24 @@ _Dimension Reduction Methods_
 
 **Goal**: To minimize the sum of the squares between the observed and predicted values.
 
-```{r, echo=FALSE}
 
-load('../data/ols-regression.Rdata')
-load('../data/scale-train-test.RData')
-```
 We need to figure out which variables have a significant effect on the response variable.  To do so, we look at the regression summary of all the predictors on the response (balance).
 
 
-> we can see that only income, limit, cards, and student are the only predictors that have a significant effect on balance.
+We can see that only income, limit, cards, and student are the only predictors that have a significant effect on balance.
 
-##{.smaller}
-```{r, echo=TRUE}
+```{r, echo=FALSE, results='asis'}
+
+load('../data/ols-regression.Rdata')
+load('../data/scale-train-test.RData')
 reg = lm(balance ~ income+limit+rating+cards+age+education+student+gender+marriage+asian+caucasian
          , data = scaled_credit_train)
-sum_reg = summary(reg)
-sum_reg
+sum_reg=summary(reg)
+x = as.data.frame(t(sum_reg$coefficients))
+x1 = xtable(x, digits = 1)
+print(x1, comment=FALSE, type = 'html', size = '1')
 ```
+
 
 ## OLS MSE
 
