@@ -27,11 +27,9 @@ pre: $(CS)/premodeling-data-processing.R $(AD)
 traintest: $(CS)/test-training.R data/scaled-credit.csv	
 	cd $(CS); Rscript $(<F)
 
-##tests: $(CF)/test-training-functions.R
-##Rscript $(CF)/test-training-functions.Rscript	
-#run the unit tests on test-regression.R
-#tests: code/test-that.R code/tests/test-regression.R
-#	cd code; Rscript $(<F)
+#run the unit tests on ols-regression-functions.R
+tests: code/test-that.R code/tests/test-ols-regression-functions.R
+	cd code; Rscript $(<F)
 	
 #Runing OLS regression script
 ols: $(CS)/ols-regression.R $(D1) $(D2)
