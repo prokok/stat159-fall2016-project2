@@ -32,7 +32,7 @@ session-info-script.R just contains 3 lines of code to produce.
 	```
 		#excuting session-info-script.R
 		make session
-	``
+	```
 
 3. Inside the tests, there is a test-regression.R, the unit test Rscript on ols-regression-functions.R. Unlike previous scripts, it will be executed indirectly via test-that.R on its parent directory. 
 
