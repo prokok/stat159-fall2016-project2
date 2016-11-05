@@ -18,14 +18,14 @@ load("../../data/ols-regression.RData")
 
   There are several steps in applying the Ordinary Least Square method.
   
-  STEP1. Using the result from F-statistics, ruling out the qualitative variables that is not significant in identifying the response variable. As you can see in the anova Tables 2-5, only student variable is signifant in evaluating the response variable balance. Thus, we are ruling out ethnicity, gender, and marrage variables.
+  STEP1. Using the result from F-statistics, ruling out the qualitative variables that is not significant in identifying the response variable. As you can see in the anova Tables 2-5, only student variable is signifant in evaluating the response variable balance. Thus, we are ruling out ethnicity, gender, and marriage variables.
   
   STEP2. Apply the OLS on our training dataset on selected predictor variables: income, limit, rating, cards, ages, eduction, student as shown in Table 5. This also enables us to identify the optimal predictors to predict the balance: income, limit, cards, students in Table 6.
   
   STEP3. Using the result from step2, apply linear regression model on opitmal predictor variables to estimate the balance: income, limit, cards, student shown in Table 7. Figure 1 shows the residual plot of OLS on test dataset.
 
 
-  STEP4.  To identify the best OLS model. we are going to compare the Adjusted R square of both linear models. Model1, using selected predictor yields the `r round(summary(reg2)$adj.r.squared,5)`. Model2 using optimal predictor yields `r round(summary(reg3)$adj.r.squared,5)`. Therefore, the second model using optimal predictors is the best OLS model because it uses few variables but produces almost same Adjusted R square value as the first model as shown in Table 8.
+  STEP4.  To identify the best OLS model. we are going to compare the adjusted r-squared values of both linear models. Model1, using selected predictor yields the `r round(summary(reg2)$adj.r.squared,5)`. Model2 using optimal predictor yields `r round(summary(reg3)$adj.r.squared,5)`. Therefore, the second model using optimal predictors is the best OLS model because it uses few variables but produces almost same adjusted r-squared value as the first model as shown in Table 8.
   Lastly, using the best model we found, apply it to full data set to the "official coefficients" as shown in the Table 9.
   
 ###2) Ridge Regression(RR)
@@ -36,9 +36,9 @@ load("../../data/ridge-regression.RData")
 ```
 
   
-  First, using ten-fold cross-validation, Ridge Regression selects the best model when $\lambda =\ `r par_ridge`$ and cross-validation plot is shown in Figure 2.
+  First, using ten-fold cross-validation, ridge regression selects the best model when $\lambda =\ `r par_ridge`$ and cross-validation plot is shown in Figure 2.
   
-  After finding out the best model, applying the best model to our test set to compute the Test Mean Square Error, which is `r test_mse_ridge`, later use this figure to compare different method in the result section.
+  After finding out the best model, applying the best model to our test set to compute the test mean squared error (MSE), which is `r test_mse_ridge`, later use this figure to compare different method in the result section.
   
   Lastly, using the best model we found, apply it to full data set to the "official coefficients" as shown in the Table 9.
   
@@ -50,9 +50,9 @@ load("../../data/lasso-regression.RData")
 ```
 
   
-  Lasso Regression does exactly same procedure as Ridge Regression. It selecst the best model when  $\lambda =\ `r par_lasso`$ and cross-validation plot is shown in Figure 3.
+  Lasso regression does exactly same procedure as ridge regression. It selects the best model when  $\lambda =\ `r par_lasso`$ and cross-validation plot is shown in Figure 3.
   
-  After finding out the best model, applying the best model to our test set to compute the Test Mean Square Error, which is `r test_mse_lasso`, later use this figure to compare different method in the result section.
+  After finding out the best model, applying the best model to our test set to compute the test mean squared error, which is `r test_mse_lasso`, later use this figure to compare different method in the result section.
   
   Lastly, using the best model we found, apply it to full data set to the "official coefficients" as shown in the Table 9.
   
@@ -64,7 +64,7 @@ load("../../data/pcr-regression.RData")
 
   Principle Component Regression selecst the best model when  $M =\ `r par_pcr`$ where M represents the compression, reduced dimension and cross-validation plot is shown in Figure 4. 
   
-  After finding out the best model, applying the best model to our test set to compute the Test Mean Square Error, which is `r test_mse_pcr`, later use this figure to compare different methods in the result section.
+  After finding out the best model, applying the best model to our test set to compute the test mean squared error, which is `r test_mse_pcr`, later use this figure to compare different methods in the result section.
   
   Lastly, using the best model we found, apply it to full data set to the "official coefficients" as shown in the Table 9.
   
@@ -75,9 +75,9 @@ load("../../data/pcr-regression.RData")
 load("../../data/plsr-regression.RData")
 ```
 
-  Principle Component Regression selecst the best model when  $M =\ `r par_plsr`$ where M represents the compression, reduced dimension and cross-validation plot is shown in Figure 5. 
+  Principle Component Regression selects the best model when  $M =\ `r par_plsr`$ where M represents the compression, reduced dimension and cross-validation plot is shown in Figure 5. 
   
-  After finding out the best model, applying the best model to our test set to compute the Test Mean Square Error, which is `r test_mse_plsr`, later use this figure to compare different methods in the result section.
+  After finding out the best model, applying the best model to our test set to compute the test mean squared error, which is `r test_mse_plsr`, later use this figure to compare different methods in the result section.
   
   Lastly, using the best model we found, apply it to full data set to the "official coefficients" as shown in the Table 9.
 
