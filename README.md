@@ -7,6 +7,41 @@ This homework is about analyzing the Credit.csv using OLS, RR, LASSO, PCR, PLSR 
 
 In this repository, there are 5 directories: data, code, images, report, slides
 
+Overview of the Repository Structure
+	```
+		stat159-fall2016-project2/
+   README.md
+   Makefile
+   LICENSE
+   session-info.txt
+   .gitignore
+   code/
+      functions/
+         ...
+      scripts/
+         ...
+      tests/
+         ...
+   data/
+      Credit.csv
+      ...
+   images/
+      ...
+   report/
+      report.pdf
+      report.Rmd
+      sections/
+         00-abstract.Rmd
+         01-introduction.Rmd
+         02-data.Rmd
+         03-methods.Rmd
+         04-analysis.Rmd
+         05-results.Rmd
+         06-conclusions.Rmd
+   slides/
+      ...
+	```
+
 1. 'data' contains credit.csv, eda-output.txt, ols-regression.RData, ridge-regression.RData, lasso-regression.RData, pcr-regression.RData, plsr-regression.RData, anova-qual.Rdata, correlation-matrix.RData, scaled-credit.csv, scale-train-test.Rdata with its own README.md explaining 'data' structure in more details.
 
 	```
