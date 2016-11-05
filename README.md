@@ -8,6 +8,8 @@ This homework is about analyzing the Credit.csv using OLS, RR, LASSO, PCR, PLSR 
 In this repository, there are 5 directories: data, code, images, report, slides
 
 Overview of the Repository Structure
+	
+	
 	```
 		stat159-fall2016-project2/
 			README.md
