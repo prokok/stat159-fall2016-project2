@@ -94,7 +94,7 @@
 
 <slide class=''><hgroup><h2>References</h2></hgroup><article  id="references">
 
-<p>The information, code and methods in this report is based off of the book: &quot;An Introduction to Statistical Learning&quot; by James et al.</p>
+<p>The information, code and methods in this report is based off of the book: <strong>An Introduction to Statistical Learning</strong> by James et al.</p>
 
 <p>Chapter 6: <em>Linear Model Selection to Statistical Learning</em></p>
 
@@ -114,51 +114,927 @@
 
 <p>We will be using these 5 methods to generate the response variable. We will then determine which regression model produces the best response variable.</p>
 
-</article></slide><slide class=''><hgroup><h2>Variables</h2></hgroup><article  id="variables">
+</article></slide><slide class=''><hgroup><h2>Variables &amp; Original Dataset</h2></hgroup><article  id="variables-original-dataset">
 
-<p>Predictor Variables:</p>
+<p>Predictor Variables: Income, Limit, Rating, Cards, Age, Education Gender, Student, Married, Ethnicity</p>
 
-<pre >Income, Limit, Rating, Cards, Age, Education, Gender, Student, Married, Ethnicity</pre>
+<p>Response Variable: Balance</p>
 
-<p>Response Variable:</p>
+<p>Here&#39;s a look at subset of the original dataset</p>
 
-<pre >Balance</pre>
+<table border="1">
 
-</article></slide><slide class=''><hgroup><h2>A look at the Credit data set</h2></hgroup><article  id="a-look-at-the-credit-data-set">
+<tr>
 
-<pre >##    Income Limit Rating Cards Age Education Gender Student Married
-## 1  14.891  3606    283     2  34        11   Male      No     Yes
-## 2 106.025  6645    483     3  82        15 Female     Yes     Yes
-## 3 104.593  7075    514     4  71        11   Male      No      No
-## 4 148.924  9504    681     3  36        11 Female      No      No
-## 5  55.882  4897    357     2  68        16   Male      No     Yes
-## 6  80.180  8047    569     4  77        10   Male      No      No
-##   Ethnicity Balance
-## 1 Caucasian     333
-## 2     Asian     903
-## 3     Asian     580
-## 4     Asian     964
-## 5 Caucasian     331
-## 6 Caucasian    1151</pre>
+<th>
+
+Income
+
+</th>
+
+<th>
+
+Limit
+
+</th>
+
+<th>
+
+Rating
+
+</th>
+
+<th>
+
+Cards
+
+</th>
+
+<th>
+
+Age
+
+</th>
+
+<th>
+
+Education
+
+</th>
+
+<th>
+
+Gender
+
+</th>
+
+<th>
+
+Student
+
+</th>
+
+<th>
+
+Married
+
+</th>
+
+<th>
+
+Ethnicity
+
+</th>
+
+</tr>
+
+<tr>
+
+<td align="right">
+
+14.9
+
+</td>
+
+<td align="right">
+
+3606
+
+</td>
+
+<td align="right">
+
+283
+
+</td>
+
+<td align="right">
+
+2
+
+</td>
+
+<td align="right">
+
+34
+
+</td>
+
+<td align="right">
+
+11
+
+</td>
+
+<td>
+
+Male
+
+</td>
+
+<td>
+
+No
+
+</td>
+
+<td>
+
+Yes
+
+</td>
+
+<td>
+
+Caucasian
+
+</td>
+
+</tr>
+
+<tr>
+
+<td align="right">
+
+106.0
+
+</td>
+
+<td align="right">
+
+6645
+
+</td>
+
+<td align="right">
+
+483
+
+</td>
+
+<td align="right">
+
+3
+
+</td>
+
+<td align="right">
+
+82
+
+</td>
+
+<td align="right">
+
+15
+
+</td>
+
+<td>
+
+Female
+
+</td>
+
+<td>
+
+Yes
+
+</td>
+
+<td>
+
+Yes
+
+</td>
+
+<td>
+
+Asian
+
+</td>
+
+</tr>
+
+<tr>
+
+<td align="right">
+
+104.6
+
+</td>
+
+<td align="right">
+
+7075
+
+</td>
+
+<td align="right">
+
+514
+
+</td>
+
+<td align="right">
+
+4
+
+</td>
+
+<td align="right">
+
+71
+
+</td>
+
+<td align="right">
+
+11
+
+</td>
+
+<td>
+
+Male
+
+</td>
+
+<td>
+
+No
+
+</td>
+
+<td>
+
+No
+
+</td>
+
+<td>
+
+Asian
+
+</td>
+
+</tr>
+
+<tr>
+
+<td align="right">
+
+148.9
+
+</td>
+
+<td align="right">
+
+9504
+
+</td>
+
+<td align="right">
+
+681
+
+</td>
+
+<td align="right">
+
+3
+
+</td>
+
+<td align="right">
+
+36
+
+</td>
+
+<td align="right">
+
+11
+
+</td>
+
+<td>
+
+Female
+
+</td>
+
+<td>
+
+No
+
+</td>
+
+<td>
+
+No
+
+</td>
+
+<td>
+
+Asian
+
+</td>
+
+</tr>
+
+<tr>
+
+<td align="right">
+
+55.9
+
+</td>
+
+<td align="right">
+
+4897
+
+</td>
+
+<td align="right">
+
+357
+
+</td>
+
+<td align="right">
+
+2
+
+</td>
+
+<td align="right">
+
+68
+
+</td>
+
+<td align="right">
+
+16
+
+</td>
+
+<td>
+
+Male
+
+</td>
+
+<td>
+
+No
+
+</td>
+
+<td>
+
+Yes
+
+</td>
+
+<td>
+
+Caucasian
+
+</td>
+
+</tr>
+
+<tr>
+
+<td align="right">
+
+80.2
+
+</td>
+
+<td align="right">
+
+8047
+
+</td>
+
+<td align="right">
+
+569
+
+</td>
+
+<td align="right">
+
+4
+
+</td>
+
+<td align="right">
+
+77
+
+</td>
+
+<td align="right">
+
+10
+
+</td>
+
+<td>
+
+Male
+
+</td>
+
+<td>
+
+No
+
+</td>
+
+<td>
+
+No
+
+</td>
+
+<td>
+
+Caucasian
+
+</td>
+
+</tr>
+
+</table>
 
 </article></slide><slide class=''><hgroup><h2>Pre-processing the data set</h2></hgroup><article  id="pre-processing-the-data-set">
 
-<p>In order to use the data set, we must convert qualitative variables into 0/1 slots. This makes it better for statisticans to work with.</p>
+<p>In order to use the data set, we must dummy out qualitative variables. This makes it better for statisticans to work with. Now in order to use the data set for our regression models, we must standardize the data.</p>
 
-<p>Here&#39;s a look:</p>
+<p>Here&#39;s a look at how original dataset is tramsformed</p>
 
+<table border="1">
+
+<tr>
+
+<th>
+
+income
+
+</th>
+
+<th>
+
+limit
+
+</th>
+
+<th>
+
+rating
+
+</th>
+
+<th>
+
+cards
+
+</th>
+
+<th>
+
+age
+
+</th>
+
+<th>
+
+education
+
+</th>
+
+<th>
+
+gender
+
+</th>
+
+<th>
+
+student
+
+</th>
+
+<th>
+
+marriage
+
+</th>
+
+<th>
+
+asian
+
+</th>
+
+</tr>
+
+<tr>
+
+<td align="right">
+
+-0.9
+
+</td>
+
+<td align="right">
+
+-0.5
+
+</td>
+
+<td align="right">
+
+-0.5
+
+</td>
+
+<td align="right">
+
+-0.7
+
+</td>
+
+<td align="right">
+
+-1.3
+
+</td>
+
+<td align="right">
+
+-0.8
+
+</td>
+
+<td align="right">
+
+-1.0
+
+</td>
+
+<td align="right">
+
+-0.3
+
+</td>
+
+<td align="right">
+
+0.8
+
+</td>
+
+<td align="right">
+
+-0.6
+
+</td>
+
+</tr>
+
+<tr>
+
+<td align="right">
+
+1.7
+
+</td>
+
+<td align="right">
+
+0.8
+
+</td>
+
+<td align="right">
+
+0.8
+
+</td>
+
+<td align="right">
+
+0.0
+
+</td>
+
+<td align="right">
+
+1.5
+
+</td>
+
+<td align="right">
+
+0.5
+
+</td>
+
+<td align="right">
+
+1.0
+
+</td>
+
+<td align="right">
+
+3.0
+
+</td>
+
+<td align="right">
+
+0.8
+
+</td>
+
+<td align="right">
+
+1.7
+
+</td>
+
+</tr>
+
+<tr>
+
+<td align="right">
+
+1.7
+
+</td>
+
+<td align="right">
+
+1.0
+
+</td>
+
+<td align="right">
+
+1.0
+
+</td>
+
+<td align="right">
+
+0.8
+
+</td>
+
+<td align="right">
+
+0.9
+
+</td>
+
+<td align="right">
+
+-0.8
+
+</td>
+
+<td align="right">
+
+-1.0
+
+</td>
+
+<td align="right">
+
+-0.3
+
+</td>
+
+<td align="right">
+
+-1.3
+
+</td>
+
+<td align="right">
+
+1.7
+
+</td>
+
+</tr>
+
+<tr>
+
+<td align="right">
+
+2.9
+
+</td>
+
+<td align="right">
+
+2.1
+
+</td>
+
+<td align="right">
+
+2.1
+
+</td>
+
+<td align="right">
+
+0.0
+
+</td>
+
+<td align="right">
+
+-1.1
+
+</td>
+
+<td align="right">
+
+-0.8
+
+</td>
+
+<td align="right">
+
+1.0
+
+</td>
+
+<td align="right">
+
+-0.3
+
+</td>
+
+<td align="right">
+
+-1.3
+
+</td>
+
+<td align="right">
+
+1.7
+
+</td>
+
+</tr>
+
+<tr>
+
+<td align="right">
+
+0.3
+
+</td>
+
+<td align="right">
+
+0.1
+
+</td>
+
+<td align="right">
+
+0.0
+
+</td>
+
+<td align="right">
+
+-0.7
+
+<<<<<<< HEAD
 <p>Now in order to use the data set for our regression models, we must standardize the data.</p>
+=======
+</td>
 
-<p>Here&#39;s a look at the new data set: scaled_credit.csv</p>
+<td align="right">
 
-<pre >##       income      limit     rating       cards        age  education
-## 1 -0.8605053 -0.4893859 -0.4649565 -0.69825535 -1.2561010 -0.7839481
-## 2  1.7252765  0.8272251  0.8276666  0.03099306  1.5265388  0.4959672
-## 3  1.6846458  1.0135175  1.0280231  0.76024146  0.8888505 -0.7839481
-##       gender    student  marriage      asian  caucasian    balance
-## 1 -1.0343392 -0.3329164  0.794400 -0.5843168  1.0037555 -0.4067676
-## 2  0.9643839  2.9962477  0.794400  1.7071218 -0.9937679  0.8330127
-## 3 -1.0343392 -0.3329164 -1.255665  1.7071218 -0.9937679  0.1304706</pre>
+0.7
+
+</td>
+
+<td align="right">
+
+0.8
+
+</td>
+
+<td align="right">
+
+-1.0
+
+</td>
+
+<td align="right">
+
+-0.3
+
+</td>
+
+<td align="right">
+
+0.8
+
+</td>
+
+<td align="right">
+
+-0.6
+
+</td>
+
+</tr>
+
+<tr>
+
+<td align="right">
+
+1.0
+
+</td>
+
+<td align="right">
+
+1.4
+
+</td>
+
+<td align="right">
+
+1.4
+
+</td>
+
+<td align="right">
+
+0.8
+
+</td>
+
+<td align="right">
+>>>>>>> 0e68bbf9cddf7e937de2c59e77f333e742bb7fd9
+
+1.2
+
+</td>
+
+<td align="right">
+
+-1.1
+
+</td>
+
+<td align="right">
+
+-1.0
+
+</td>
+
+<td align="right">
+
+-0.3
+
+</td>
+
+<td align="right">
+
+-1.3
+
+</td>
+
+<td align="right">
+
+-0.6
+
+</td>
+
+</tr>
+
+</table>
 
 </article></slide><slide class=''><hgroup><h2>Overview of the Regressions</h2></hgroup><article  id="overview-of-the-regressions">
 
@@ -186,6 +1062,7 @@
 
 <p>We need to figure out which variables have a significant effect on the response variable. To do so, we look at the regression summary of all the predictors on the response (balance).</p>
 
+<<<<<<< HEAD
 <blockquote>
 <p>we can see that only income, limit, cards, and student are the only predictors that have a significant effect on balance.</p>
 </blockquote>
@@ -227,6 +1104,421 @@ sum_reg</pre>
 ## Residual standard error: 0.2154 on 288 degrees of freedom
 ## Multiple R-squared:  0.9549, Adjusted R-squared:  0.9532 
 ## F-statistic: 554.1 on 11 and 288 DF,  p-value: &lt; 2.2e-16</pre>
+=======
+<p>We can see that only income, limit, cards, and student are the only predictors that have a significant effect on balance.</p>
+
+<table border="1">
+
+<tr>
+
+<th>
+
+</th>
+
+<th>
+
+(Intercept)
+
+</th>
+
+<th>
+
+income
+
+</th>
+
+<th>
+
+limit
+
+</th>
+
+<th>
+
+rating
+
+</th>
+
+<th>
+
+cards
+
+</th>
+
+<th>
+
+age
+
+</th>
+
+<th>
+
+education
+
+</th>
+
+<th>
+
+student
+
+</th>
+
+<th>
+
+gender
+
+</th>
+
+<th>
+
+marriage
+
+</th>
+
+<th>
+
+asian
+
+</th>
+
+<th>
+
+caucasian
+
+</th>
+
+</tr>
+
+<tr>
+
+<td align="right">
+
+Estimate
+
+</td>
+
+<td align="right">
+
+-0.0
+
+</td>
+
+<td align="right">
+
+-0.6
+
+</td>
+
+<td align="right">
+
+1.1
+
+</td>
+
+<td align="right">
+
+0.3
+
+</td>
+
+<td align="right">
+
+0.1
+
+</td>
+
+<td align="right">
+
+-0.0
+
+</td>
+
+<td align="right">
+
+-0.0
+
+</td>
+
+<td align="right">
+
+0.3
+
+</td>
+
+<td align="right">
+
+-0.0
+
+</td>
+
+<td align="right">
+
+-0.0
+
+</td>
+
+<td align="right">
+
+0.0
+
+</td>
+
+<td align="right">
+
+0.0
+
+</td>
+
+</tr>
+
+<tr>
+
+<td align="right">
+
+Std. Error
+
+</td>
+
+<td align="right">
+
+0.0
+
+</td>
+
+<td align="right">
+
+0.0
+
+</td>
+
+<td align="right">
+
+0.2
+
+</td>
+
+<td align="right">
+
+0.2
+
+</td>
+
+<td align="right">
+
+0.0
+
+</td>
+
+<td align="right">
+
+0.0
+
+</td>
+
+<td align="right">
+
+0.0
+
+</td>
+
+<td align="right">
+
+0.0
+
+</td>
+
+<td align="right">
+
+0.0
+
+</td>
+
+<td align="right">
+
+0.0
+
+</td>
+
+<td align="right">
+
+0.0
+
+</td>
+
+<td align="right">
+
+0.0
+
+</td>
+
+</tr>
+
+<tr>
+
+<td align="right">
+
+t value
+
+</td>
+
+<td align="right">
+
+-0.2
+
+</td>
+
+<td align="right">
+
+-27.7
+
+</td>
+
+<td align="right">
+
+5.4
+
+</td>
+
+<td align="right">
+
+1.4
+
+</td>
+
+<td align="right">
+
+3.5
+
+</td>
+
+<td align="right">
+
+-0.5
+
+</td>
+
+<td align="right">
+
+-0.9
+
+</td>
+
+<td align="right">
+
+21.2
+
+</td>
+
+<td align="right">
+
+-0.4
+
+</td>
+
+<td align="right">
+
+-0.0
+
+</td>
+
+<td align="right">
+
+0.7
+
+</td>
+
+<td align="right">
+
+0.4
+
+</td>
+
+</tr>
+
+<tr>
+
+<td align="right">
+
+Pr(&gt;|t|)
+
+</td>
+
+<td align="right">
+
+0.9
+
+</td>
+
+<td align="right">
+
+0.0
+
+</td>
+
+<td align="right">
+
+0.0
+
+</td>
+
+<td align="right">
+
+0.2
+
+</td>
+
+<td align="right">
+
+0.0
+
+</td>
+
+<td align="right">
+
+0.6
+
+</td>
+
+<td align="right">
+
+0.3
+
+</td>
+
+<td align="right">
+
+0.0
+
+</td>
+
+<td align="right">
+
+0.7
+
+</td>
+
+<td align="right">
+
+1.0
+
+</td>
+
+<td align="right">
+
+0.5
+
+</td>
+
+<td align="right">
+
+0.7
+
+</td>
+
+</tr>
+
+</table>
+>>>>>>> 0e68bbf9cddf7e937de2c59e77f333e742bb7fd9
 
 </article></slide><slide class=''><hgroup><h2>OLS MSE</h2></hgroup><article  id="ols-mse">
 
@@ -340,7 +1632,11 @@ sum_reg</pre>
 
 </article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Results</h2></hgroup><article  id="results">
 
+<<<<<<< HEAD
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-1">
+=======
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section">
+>>>>>>> 0e68bbf9cddf7e937de2c59e77f333e742bb7fd9
 
 <p>Overview of the test data MSE values of each regression:</p>
 
