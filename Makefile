@@ -29,6 +29,9 @@ traintest: $(CS)/test-training.R data/scaled-credit.csv
 
 ##tests: $(CF)/test-training-functions.R
 ##Rscript $(CF)/test-training-functions.Rscript	
+#run the unit tests on test-regression.R
+#tests: code/test-that.R code/tests/test-regression.R
+#	cd code; Rscript $(<F)
 	
 #Runing OLS regression script
 ols: $(CS)/ols-regression.R $(D1) $(D2)
