@@ -57,7 +57,11 @@ Overview of the Repository Structure
 
 
 2. 'code' contains 3-sub directories: functions, scripts, tests with its own README.md explaining 'code' structure in more details and one test-that.R script.
-
+	
+	```
+		#generating unit test on functions
+		make test
+	```
 
 3. 'images' contains 22 png files which are produced by either eda-script.R or each methods of regression-script.R
 
